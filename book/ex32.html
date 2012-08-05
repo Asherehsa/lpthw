@@ -1,0 +1,286 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex32.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 32: Loops And Lists &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 33: While Loops" href="ex33.html" />
+    <link rel="prev" title="Exercise 31: Making Decisions" href="ex31.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex33.html" title="Exercise 33: While Loops"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex31.html" title="Exercise 31: Making Decisions"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-32-loops-and-lists">
+<h1>Exercise 32: Loops And Lists<a class="headerlink" href="#exercise-32-loops-and-lists" title="Permalink to this headline">¶</a></h1>
+<p>You should now be able to do some programs that are much more interesting.
+If you have been keeping up, you should realize that now you can combine
+all the other things you have learned with <tt class="docutils literal"><span class="pre">if-statements</span></tt> and boolean
+expressions to make your programs do smart things.</p>
+<p>However, programs also need to do repetitive things very quickly.  We are going
+to use a <tt class="docutils literal"><span class="pre">for-loop</span></tt> in this exercise to build and print various lists.  When
+you do the exercise, you will start to figure out what they are.  I won't tell you
+right now.  You have to figure it out.</p>
+<p>Before you can use a for-loop, you need a way to <em>store</em> the results of loops
+somewhere.  The best way to do this is with a <tt class="docutils literal"><span class="pre">list</span></tt>.  A list is exactly
+what its name says, a container of things that are organized in order.
+It's not complicated; you just have to learn a new syntax.  First, there's how
+you make a list:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hairs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;brown&#39;</span><span class="p">,</span> <span class="s">&#39;blond&#39;</span><span class="p">,</span> <span class="s">&#39;red&#39;</span><span class="p">]</span>
+<span class="n">eyes</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;brown&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="s">&#39;green&#39;</span><span class="p">]</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>What you do is start the list with the <tt class="docutils literal"><span class="pre">[</span></tt> (left-bracket) which &quot;opens&quot; the
+list.  Then you put each item you want in the list separated by commas, just
+like when you did function arguments.  Lastly you end the list with a <tt class="docutils literal"><span class="pre">]</span></tt>
+(right-bracket) to indicate that it's over.  Python then takes this list and
+all its contents, and assigns them to the variable.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This is where things get tricky for people who can't program.  Your
+brain has been taught that the world is flat.  Remember in the last
+exercise where you put <tt class="docutils literal"><span class="pre">if-statements</span></tt> inside <tt class="docutils literal"><span class="pre">if-statements</span></tt>?  That
+probably made your brain hurt because most people do not ponder how to
+&quot;nest&quot; things inside things.  In programming this is all over the place.
+You will find functions that call other functions that have <tt class="docutils literal"><span class="pre">if-statements</span></tt>
+that have lists with lists inside lists.  If you see a structure like this
+that you can't figure out, take out pencil and paper and break it down
+manually bit by bit until you understand it.</p>
+</div>
+<p>We now will build some lists using some loops and print them out:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">the_count</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;apples&#39;</span><span class="p">,</span> <span class="s">&#39;oranges&#39;</span><span class="p">,</span> <span class="s">&#39;pears&#39;</span><span class="p">,</span> <span class="s">&#39;apricots&#39;</span><span class="p">]</span>
+<span class="n">change</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;pennies&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;dimes&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&#39;quarters&#39;</span><span class="p">]</span>
+
+<span class="c"># this first kind of for-loop goes through a list</span>
+<span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">the_count</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;This is count </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">number</span>
+
+<span class="c"># same as above</span>
+<span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;A fruit of type: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">fruit</span>
+
+<span class="c"># also we can go through mixed lists too</span>
+<span class="c"># notice we have to use %r since we don&#39;t know what&#39;s in it</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">change</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;I got </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">i</span>
+
+<span class="c"># we can also build lists, first start with an empty one</span>
+<span class="n">elements</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c"># then use the range function to do 0 to 5 counts</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">&quot;Adding </span><span class="si">%d</span><span class="s"> to the list.&quot;</span> <span class="o">%</span> <span class="n">i</span>
+    <span class="c"># append is a function that lists understand</span>
+    <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="c"># now we can print them out too</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;Element was: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">i</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python ex32.py
+<span class="go">This is count 1</span>
+<span class="go">This is count 2</span>
+<span class="go">This is count 3</span>
+<span class="go">This is count 4</span>
+<span class="go">This is count 5</span>
+<span class="go">A fruit of type: apples</span>
+<span class="go">A fruit of type: oranges</span>
+<span class="go">A fruit of type: pears</span>
+<span class="go">A fruit of type: apricots</span>
+<span class="go">I got 1</span>
+<span class="go">I got &#39;pennies&#39;</span>
+<span class="go">I got 2</span>
+<span class="go">I got &#39;dimes&#39;</span>
+<span class="go">I got 3</span>
+<span class="go">I got &#39;quarters&#39;</span>
+<span class="go">Adding 0 to the list.</span>
+<span class="go">Adding 1 to the list.</span>
+<span class="go">Adding 2 to the list.</span>
+<span class="go">Adding 3 to the list.</span>
+<span class="go">Adding 4 to the list.</span>
+<span class="go">Adding 5 to the list.</span>
+<span class="go">Element was: 0</span>
+<span class="go">Element was: 1</span>
+<span class="go">Element was: 2</span>
+<span class="go">Element was: 3</span>
+<span class="go">Element was: 4</span>
+<span class="go">Element was: 5</span>
+<span class="gp">$</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Take a look at how you used <tt class="docutils literal"><span class="pre">range</span></tt>.  Look up the <tt class="docutils literal"><span class="pre">range</span></tt> function to
+understand it.</li>
+<li>Could you have avoided that <tt class="docutils literal"><span class="pre">for-loop</span></tt> entirely on line 22 and just assigned
+<tt class="docutils literal"><span class="pre">range(0,6)</span></tt> directly to <tt class="docutils literal"><span class="pre">elements</span></tt>?</li>
+<li>Find the Python documentation on lists and read about them.  What other
+operations can you do to lists besides <tt class="docutils literal"><span class="pre">append</span></tt>?</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex33.html" title="Exercise 33: While Loops"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex31.html" title="Exercise 31: Making Decisions"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex32.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+</html>

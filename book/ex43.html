@@ -1,0 +1,586 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex43.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 43: Gothons From Planet Percal #25 &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 44: Inheritance Vs. Composition" href="ex44.html" />
+    <link rel="prev" title="Exercise 42: Is-A, Has-A, Objects, and Classes" href="ex42.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex44.html" title="Exercise 44: Inheritance Vs. Composition"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex42.html" title="Exercise 42: Is-A, Has-A, Objects, and Classes"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-43-gothons-from-planet-percal-25">
+<h1>Exercise 43: Gothons From Planet Percal #25<a class="headerlink" href="#exercise-43-gothons-from-planet-percal-25" title="Permalink to this headline">¶</a></h1>
+<p>Here is a new game, using what you've learned so far and some
+new tricks.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+
+<span class="k">class</span> <span class="nc">Game</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">quips</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s">&quot;You died.  You kinda suck at this.&quot;</span><span class="p">,</span>
+             <span class="s">&quot;Your mom would be proud. If she were smarter.&quot;</span><span class="p">,</span>
+             <span class="s">&quot;Such a luser.&quot;</span><span class="p">,</span>
+             <span class="s">&quot;I have a small puppy that&#39;s better at this.&quot;</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
+
+    <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">next_room_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span>
+
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">--------&quot;</span>
+            <span class="n">room</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">next_room_name</span><span class="p">)</span>
+            <span class="n">next_room_name</span> <span class="o">=</span> <span class="n">room</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">death</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">quips</span><span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">quips</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+        <span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">central_corridor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;The Gothons of Planet Percal #25 have invaded your ship and destroyed&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;your entire crew.  You are the last surviving member and your last&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;mission is to get the neutron destruct bomb from the Weapons Armory,&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;put it in the bridge, and blow the ship up after getting into an &quot;</span>
+        <span class="k">print</span> <span class="s">&quot;escape pod.&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;You&#39;re running down the central corridor to the Weapons Armory when&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;a Gothon jumps out, red scaly skin, dark grimy teeth, and evil clown costume&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;flowing around his hate filled body.  He&#39;s blocking the door to the&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;Armory and about to pull a weapon to blast you.&quot;</span>
+
+        <span class="n">action</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;&gt; &quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s">&quot;shoot!&quot;</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;Quick on the draw you yank out your blaster and fire it at the Gothon.&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;His clown costume is flowing and moving around his body, which throws&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;off your aim.  Your laser hits his costume but misses him entirely.  This&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;completely ruins his brand new costume his mother bought him, which&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;makes him fly into an insane rage and blast you repeatedly in the face until&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;you are dead.  Then he eats you.&quot;</span>
+            <span class="k">return</span> <span class="s">&#39;death&#39;</span>
+
+        <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s">&quot;dodge!&quot;</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;Like a world class boxer you dodge, weave, slip and slide right&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;as the Gothon&#39;s blaster cranks a laser past your head.&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;In the middle of your artful dodge your foot slips and you&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;bang your head on the metal wall and pass out.&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;You wake up shortly after only to die as the Gothon stomps on&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;your head and eats you.&quot;</span>
+            <span class="k">return</span> <span class="s">&#39;death&#39;</span>
+
+        <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s">&quot;tell a joke&quot;</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;Lucky for you they made you learn Gothon insults in the academy.&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;You tell the one Gothon joke you know:&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;Lbhe zbgure vf fb sng, jura fur fvgf nebhaq gur ubhfr, fur fvgf nebhaq gur ubhfr.&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;The Gothon stops, tries not to laugh, then busts out laughing and can&#39;t move.&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;While he&#39;s laughing you run up and shoot him square in the head&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;putting him down, then jump through the Weapon Armory door.&quot;</span>
+            <span class="k">return</span> <span class="s">&#39;laser_weapon_armory&#39;</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;DOES NOT COMPUTE!&quot;</span>
+            <span class="k">return</span> <span class="s">&#39;central_corridor&#39;</span>
+
+    <span class="k">def</span> <span class="nf">laser_weapon_armory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;You do a dive roll into the Weapon Armory, crouch and scan the room&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;for more Gothons that might be hiding.  It&#39;s dead quiet, too quiet.&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;You stand up and run to the far side of the room and find the&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;neutron bomb in its container.  There&#39;s a keypad lock on the box&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;and you need the code to get the bomb out.  If you get the code&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;wrong 10 times then the lock closes forever and you can&#39;t&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;get the bomb.  The code is 3 digits.&quot;</span>
+        <span class="n">code</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%d%d%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
+        <span class="n">guess</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;[keypad]&gt; &quot;</span><span class="p">)</span>
+        <span class="n">guesses</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">while</span> <span class="n">guess</span> <span class="o">!=</span> <span class="n">code</span> <span class="ow">and</span> <span class="n">guesses</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;BZZZZEDDD!&quot;</span>
+            <span class="n">guesses</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">guess</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;[keypad]&gt; &quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">guess</span> <span class="o">==</span> <span class="n">code</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;The container clicks open and the seal breaks, letting gas out.&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;You grab the neutron bomb and run as fast as you can to the&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;bridge where you must place it in the right spot.&quot;</span>
+            <span class="k">return</span> <span class="s">&#39;the_bridge&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;The lock buzzes one last time and then you hear a sickening&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;melting sound as the mechanism is fused together.&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;You decide to sit there, and finally the Gothons blow up the&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;ship from their ship and you die.&quot;</span>
+            <span class="k">return</span> <span class="s">&#39;death&#39;</span>
+
+
+    <span class="k">def</span> <span class="nf">the_bridge</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;You burst onto the Bridge with the netron destruct bomb&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;under your arm and surprise 5 Gothons who are trying to&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;take control of the ship.  Each of them has an even uglier&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;clown costume than the last.  They haven&#39;t pulled their&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;weapons out yet, as they see the active bomb under your&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;arm and don&#39;t want to set it off.&quot;</span>
+        
+        <span class="n">action</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;&gt; &quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s">&quot;throw the bomb&quot;</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;In a panic you throw the bomb at the group of Gothons&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;and make a leap for the door.  Right as you drop it a&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;Gothon shoots you right in the back killing you.&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;As you die you see another Gothon frantically try to disarm&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;the bomb. You die knowing they will probably blow up when&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;it goes off.&quot;</span>
+            <span class="k">return</span> <span class="s">&#39;death&#39;</span>
+
+        <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s">&quot;slowly place the bomb&quot;</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;You point your blaster at the bomb under your arm&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;and the Gothons put their hands up and start to sweat.&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;You inch backward to the door, open it, and then carefully&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;place the bomb on the floor, pointing your blaster at it.&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;You then jump back through the door, punch the close button&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;and blast the lock so the Gothons can&#39;t get out.&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;Now that the bomb is placed you run to the escape pod to&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;get off this tin can.&quot;</span>
+            <span class="k">return</span> <span class="s">&#39;escape_pod&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;DOES NOT COMPUTE!&quot;</span>
+            <span class="k">return</span> <span class="s">&quot;the_bridge&quot;</span>
+
+    <span class="k">def</span> <span class="nf">escape_pod</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;You rush through the ship desperately trying to make it to&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;the escape pod before the whole ship explodes.  It seems like&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;hardly any Gothons are on the ship, so your run is clear of&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;interference.  You get to the chamber with the escape pods, and&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;now need to pick one to take.  Some of them could be damaged&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;but you don&#39;t have time to look.  There&#39;s 5 pods, which one&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;do you take?&quot;</span>
+
+        <span class="n">good_pod</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">guess</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;[pod #]&gt; &quot;</span><span class="p">)</span>
+
+
+        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">guess</span><span class="p">)</span> <span class="o">!=</span> <span class="n">good_pod</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;You jump into pod </span><span class="si">%s</span><span class="s"> and hit the eject button.&quot;</span> <span class="o">%</span> <span class="n">guess</span>
+            <span class="k">print</span> <span class="s">&quot;The pod escapes out into the void of space, then&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;implodes as the hull ruptures, crushing your body&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;into jam jelly.&quot;</span>
+            <span class="k">return</span> <span class="s">&#39;death&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;You jump into pod </span><span class="si">%s</span><span class="s"> and hit the eject button.&quot;</span> <span class="o">%</span> <span class="n">guess</span>
+            <span class="k">print</span> <span class="s">&quot;The pod easily slides out into space heading to&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;the planet below.  As it flies to the planet, you look&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;back and see your ship implode then explode like a&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;bright star, taking out the Gothon ship at the same&quot;</span>
+            <span class="k">print</span> <span class="s">&quot;time.  You won!&quot;</span>
+            <span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+
+<span class="n">a_game</span> <span class="o">=</span> <span class="n">Game</span><span class="p">(</span><span class="s">&quot;central_corridor&quot;</span><span class="p">)</span>
+<span class="n">a_game</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p>It's a lot of code, but go through it, make sure it works, play it.</p>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<p>Here's me playing the game.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python ex41.py 
+
+<span class="go">--------</span>
+<span class="go">The Gothons of Planet Percal #25 have invaded your ship and destroyed</span>
+<span class="go">your entire crew.  You are the last surviving member and your last</span>
+<span class="go">mission is to get the neutron destruct bomb from the Weapons Armory,</span>
+<span class="go">put it in the bridge, and blow the ship up after getting into an </span>
+<span class="go">escape pod.</span>
+
+
+<span class="go">You&#39;re running down the central corridor to the Weapons Armory when</span>
+<span class="go">a Gothon jumps out, red scaly skin, dark grimy teeth, and evil clown costume</span>
+<span class="go">flowing around his hate filled body.  He&#39;s blocking the door to the</span>
+<span class="go">Armory and about to pull a weapon to blast you.</span>
+<span class="gp">&gt;</span> dodge!
+<span class="go">Like a world class boxer you dodge, weave, slip and slide right</span>
+<span class="go">as the Gothon&#39;s blaster cranks a laser past your head.</span>
+<span class="go">In the middle of your artful dodge your foot slips and you</span>
+<span class="go">bang your head on the metal wall and pass out.</span>
+<span class="go">You wake up shortly after only to die as the Gothon stomps on</span>
+<span class="go">your head and eats you.</span>
+
+<span class="go">--------</span>
+<span class="go">Such a luser.</span>
+<span class="go">learnpythehardway $ python ex/ex41.py </span>
+
+<span class="go">--------</span>
+<span class="go">The Gothons of Planet Percal #25 have invaded your ship and destroyed</span>
+<span class="go">your entire crew.  You are the last surviving member and your last</span>
+<span class="go">mission is to get the neutron destruct bomb from the Weapons Armory,</span>
+<span class="go">put it in the bridge, and blow the ship up after getting into an </span>
+<span class="go">escape pod.</span>
+
+
+<span class="go">You&#39;re running down the central corridor to the Weapons Armory when</span>
+<span class="go">a Gothon jumps out, red scaly skin, dark grimy teeth, and evil clown costume</span>
+<span class="go">flowing around his hate filled body.  He&#39;s blocking the door to the</span>
+<span class="go">Armory and about to pull a weapon to blast you.</span>
+<span class="gp">&gt;</span> tell a joke
+<span class="go">Lucky for you they made you learn Gothon insults in the academy.</span>
+<span class="go">You tell the one Gothon joke you know:</span>
+<span class="go">Lbhe zbgure vf fb sng, jura fur fvgf nebhaq gur ubhfr, fur fvgf nebhaq gur ubhfr.</span>
+<span class="go">The Gothon stops, tries not to laugh, then busts out laughing and can&#39;t move.</span>
+<span class="go">While he&#39;s laughing you run up and shoot him square in the head</span>
+<span class="go">putting him down, then jump through the Weapon Armory door.</span>
+
+<span class="go">--------</span>
+<span class="go">You do a dive roll into the Weapon Armory, crouch and scan the room</span>
+<span class="go">for more Gothons that might be hiding.  It&#39;s dead quiet, too quiet.</span>
+<span class="go">You stand up and run to the far side of the room and find the</span>
+<span class="go">neutron bomb in its container.  There&#39;s a keypad lock on the box</span>
+<span class="go">and you need the code to get the bomb out.  If you get the code</span>
+<span class="go">wrong 10 times then the lock closes forever and you can&#39;t</span>
+<span class="go">get the bomb.  The code is 3 digits.</span>
+<span class="go">[keypad]&gt; 123 </span>
+<span class="go">BZZZZEDDD!</span>
+<span class="go">[keypad]&gt; 234</span>
+<span class="go">BZZZZEDDD!</span>
+<span class="go">[keypad]&gt; 345</span>
+<span class="go">BZZZZEDDD!</span>
+<span class="go">[keypad]&gt; 456</span>
+<span class="go">BZZZZEDDD!</span>
+<span class="go">[keypad]&gt; 567</span>
+<span class="go">BZZZZEDDD!</span>
+<span class="go">[keypad]&gt; 678</span>
+<span class="go">BZZZZEDDD!</span>
+<span class="go">[keypad]&gt; 789</span>
+<span class="go">BZZZZEDDD!</span>
+<span class="go">[keypad]&gt; 384</span>
+<span class="go">BZZZZEDDD!</span>
+<span class="go">[keypad]&gt; 764</span>
+<span class="go">BZZZZEDDD!</span>
+<span class="go">[keypad]&gt; 354</span>
+<span class="go">BZZZZEDDD!</span>
+<span class="go">[keypad]&gt; 263</span>
+<span class="go">The lock buzzes one last time and then you hear a sickening</span>
+<span class="go">melting sound as the mechanism is fused together.</span>
+<span class="go">You decide to sit there, and finally the Gothons blow up the</span>
+<span class="go">ship from their ship and you die.</span>
+
+<span class="go">--------</span>
+<span class="go">You died.  You kinda suck at this.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Explain how returning the next room works.</li>
+<li>Add cheat codes to the game so you can get past the more difficult rooms. I can do this with two words on one line.</li>
+<li>Instead of having each function print itself, learn about &quot;doc string&quot; style comments.
+Write the room description as doc comments, and change the runner to print them.</li>
+<li>Once you have doc comments as the room description, do you need to have the
+function prompt even?  Have the runner prompt the user, and pass that in to
+each function.  Your functions should just be if-statements printing the
+result and returning the next room.</li>
+<li>This is actually a small version of something called a &quot;finite state machine&quot;.
+Read about them.  They might not make sense but try anyway.</li>
+<li>I have a bug in this code. Why is the door lock guessing 11 times?</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex44.html" title="Exercise 44: Inheritance Vs. Composition"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex42.html" title="Exercise 42: Is-A, Has-A, Objects, and Classes"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex43.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+</html>

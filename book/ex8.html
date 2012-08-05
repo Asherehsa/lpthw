@@ -1,0 +1,215 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex8.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 8: Printing, Printing &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 9: Printing, Printing, Printing" href="ex9.html" />
+    <link rel="prev" title="Exercise 7: More Printing" href="ex7.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex9.html" title="Exercise 9: Printing, Printing, Printing"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex7.html" title="Exercise 7: More Printing"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-8-printing-printing">
+<h1>Exercise 8: Printing, Printing<a class="headerlink" href="#exercise-8-printing-printing" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">formatter</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%r</span><span class="s"> </span><span class="si">%r</span><span class="s"> </span><span class="si">%r</span><span class="s"> </span><span class="si">%r</span><span class="s">&quot;</span>
+
+<span class="k">print</span> <span class="n">formatter</span> <span class="o">%</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">formatter</span> <span class="o">%</span> <span class="p">(</span><span class="s">&quot;one&quot;</span><span class="p">,</span> <span class="s">&quot;two&quot;</span><span class="p">,</span> <span class="s">&quot;three&quot;</span><span class="p">,</span> <span class="s">&quot;four&quot;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">formatter</span> <span class="o">%</span> <span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">formatter</span> <span class="o">%</span> <span class="p">(</span><span class="n">formatter</span><span class="p">,</span> <span class="n">formatter</span><span class="p">,</span> <span class="n">formatter</span><span class="p">,</span> <span class="n">formatter</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">formatter</span> <span class="o">%</span> <span class="p">(</span>
+    <span class="s">&quot;I had this thing.&quot;</span><span class="p">,</span>
+    <span class="s">&quot;That you could type up right.&quot;</span><span class="p">,</span>
+    <span class="s">&quot;But it didn&#39;t sing.&quot;</span><span class="p">,</span>
+    <span class="s">&quot;So I said goodnight.&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python ex8.py
+<span class="go">1 2 3 4</span>
+<span class="go">&#39;one&#39; &#39;two&#39; &#39;three&#39; &#39;four&#39;</span>
+<span class="go">True False False True</span>
+<span class="go">&#39;%r %r %r %r&#39; &#39;%r %r %r %r&#39; &#39;%r %r %r %r&#39; &#39;%r %r %r %r&#39;</span>
+<span class="go">&#39;I had this thing.&#39; &#39;That you could type up right.&#39; &quot;But it didn&#39;t sing.&quot; &#39;So I said goodnight.&#39;</span>
+<span class="gp">$</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Do your checks of your work, write down your mistakes, try not to make them
+on the next exercise.</li>
+<li>Notice that the last line of output uses both single and double
+quotes for individual pieces. Why do you think that is?</li>
+</ol>
+</div>
+<div class="section" id="frequently-asked-questions">
+<h2>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Should I use <cite>%s</cite> or <cite>%r</cite> for formatting?</dt>
+<dd>You should use <cite>%s</cite> and only use <cite>%r</cite> for getting debugging information about something.  The <cite>%r</cite> will give you the
+&quot;raw programmer's&quot; version of variable, also known as the &quot;representation&quot;.</dd>
+<dt>Why do I have to put quotes around &quot;one&quot; but not around <cite>True</cite> or <cite>False</cite>?</dt>
+<dd>That's because Python recognizes <cite>True</cite> and <cite>False</cite> as keywords representing the concept of true and false.  If you put quotes
+around them then they are turned into strings and won't work right.  You'll learn more about how these work in Exercise 27.</dd>
+<dt>I tried putting Chinese (or some other non-ASCII characters) into these strings, but <cite>%r</cite> prints out weird symbols.</dt>
+<dd>Use <cite>%s</cite> to print that instead and it'll work.</dd>
+<dt>Why does <cite>%r</cite> sometimes print things with single-quotes when I wrote them with double-quotes.</dt>
+<dd>Python is going to print the strings in the most efficient way it can, not replicate exactly the way you
+wrote them.  This perfectly fine since <cite>%r</cite> is used for debugging and inspection, so it's not necessary
+that it be pretty.</dd>
+<dt>Why doesn't this work in Python 3?</dt>
+<dd>Don't use Python 3.  Use Python 2.7 or better, although Python 2.6 might work fine.</dd>
+<dt>Can I use IDLE to run this?</dt>
+<dd>No, you should learn to use the command line.  It is essential to learning programming and is a
+good place to start if you want to learn about programming.  IDLE will fail for you when you
+get further in the book.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex9.html" title="Exercise 9: Printing, Printing, Printing"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex7.html" title="Exercise 7: More Printing"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex8.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+</html>

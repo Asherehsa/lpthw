@@ -1,0 +1,223 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex2.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 2: Comments And Pound Characters &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 3: Numbers And Math" href="ex3.html" />
+    <link rel="prev" title="Exercise 1: A Good First Program" href="ex1.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex3.html" title="Exercise 3: Numbers And Math"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex1.html" title="Exercise 1: A Good First Program"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-2-comments-and-pound-characters">
+<h1>Exercise 2: Comments And Pound Characters<a class="headerlink" href="#exercise-2-comments-and-pound-characters" title="Permalink to this headline">¶</a></h1>
+<p>Comments are very important in your programs.  They are used to tell you
+what something does in English, and they also are used to disable parts
+of your program if you need to remove them temporarily.  Here's how you
+use comments in Python:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># A comment, this is so you can read your program later.</span>
+<span class="c"># Anything after the # is ignored by python.</span>
+
+<span class="k">print</span> <span class="s">&quot;I could have code like this.&quot;</span> <span class="c"># and the comment after is ignored</span>
+
+<span class="c"># You can also use a comment to &quot;disable&quot; or comment out a piece of code:</span>
+<span class="c"># print &quot;This won&#39;t run.&quot;</span>
+
+<span class="k">print</span> <span class="s">&quot;This will run.&quot;</span>
+</pre></div>
+</td></tr></table></div>
+<p>From now on, I'm going to write code like this.  It is important for you to understand
+that everything does not have to be literal.  Your screen and program may visually look
+different, but what's important is the text you type into the file you're writing in your
+text editor.  In fact, I could work with any text editor and the results would be the same.</p>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python ex2.py 
+<span class="go">I could have code like this.</span>
+<span class="go">This will run.</span>
+<span class="gp">$</span>
+</pre></div>
+</div>
+<p>Again, I'm not going to show you screenshots of all the terminals possible.  You should understand
+that the above is not a literal translation of what your output should look like visually, but that
+the text between the first <tt class="docutils literal"><span class="pre">$</span> <span class="pre">python</span> <span class="pre">...</span></tt> and last <tt class="docutils literal"><span class="pre">$</span></tt> lines will be what you focus on.</p>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Find out if you were right about what the # character does and make sure you know what it's called (octothorpe or pound character).</li>
+<li>Take your <tt class="docutils literal"><span class="pre">ex2.py</span></tt> file and review each line going backwards.  Start at the last line, and check each word in reverse against what you should have typed.</li>
+<li>Did you find more mistakes?  Fix them.</li>
+<li>Read what you typed above out loud, including saying each character by its name.  Did you find more mistakes?  Fix them.</li>
+</ol>
+</div>
+<div class="section" id="frequently-asked-questions">
+<h2>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Are you sure <cite>#</cite> is called the pound character?</dt>
+<dd>I call it the octothorpe and that is the only name that no country uses and
+that works in every country. Every country thinks their way to call this one
+character is both the most important way to do it, and also the only way
+it's done. To me this is simply arrogance and really, y'all should just
+chill out and focus on more important things like learning to code.</dd>
+<dt>If <cite>#</cite> is for comments, then how come <tt class="docutils literal"><span class="pre">#</span> <span class="pre">-*-</span> <span class="pre">coding:</span> <span class="pre">utf-8</span> <span class="pre">-*-</span></tt> works?</dt>
+<dd>Python still ignores that as code, but it's used as a kind of &quot;hack&quot; or
+workaround for problems with setting and detecting the format of a file.
+You also find a similar kind of comment for editor settings.</dd>
+<dt>Why does the <cite>#</cite> in <tt class="docutils literal"><span class="pre">print</span> <span class="pre">&quot;Hi</span> <span class="pre">#</span> <span class="pre">there.&quot;</span></tt> not get ignored?</dt>
+<dd>The <cite>#</cite> in that code is inside a string, so it will be put into the string
+until the ending <cite>&quot;</cite> character is hit.  These pound characters are just
+considered characters and aren't considered comments.</dd>
+<dt>How do I comment out multiple lines?</dt>
+<dd>Put a <cite>#</cite> in front of each one.</dd>
+<dt>I can't figure out how to type a <cite>#</cite> character on my country's keyboard?</dt>
+<dd>Some countries use the Alt key and combinations of those to print
+characters foreign to their language.  You'll have to look online in
+a search enging to see how to type it.</dd>
+<dt>Why do I have to read code backwards?</dt>
+<dd>It's a trick to make your brain not attach meaning to each part
+of the code, and doing that makes you process each piece exactly.
+This catches errors and is a handy error checking technique.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex3.html" title="Exercise 3: Numbers And Math"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex1.html" title="Exercise 1: A Good First Program"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex2.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+</html>

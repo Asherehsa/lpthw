@@ -1,0 +1,387 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex0.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:08 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 0: The Setup &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 1: A Good First Program" href="ex1.html" />
+    <link rel="prev" title="The Hard Way Is Easier" href="intro.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex1.html" title="Exercise 1: A Good First Program"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="intro.html" title="The Hard Way Is Easier"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-0-the-setup">
+<h1>Exercise 0: The Setup<a class="headerlink" href="#exercise-0-the-setup" title="Permalink to this headline">¶</a></h1>
+<p>This exercise has no code.  It is simply the exercise you complete
+to get your computer setup to run Python.   You should follow these instructions
+as exactly as possible.  For example, Mac OSX computers already have Python 2, so
+do not install Python 3 (or any Python).</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you do not know how to use PowerShell on Windows or the Terminal on
+OSX or &quot;bash&quot; on Linux then you need to go learn that first.  I have a
+quick crash course at <a class="reference external" href="http://cli.learncodethehardway.org/">http://cli.learncodethehardway.org/</a> which is free
+and will teach you the basics of PowerShell and Terminal quickly.  Go
+through that then come back here.</p>
+</div>
+<div class="section" id="mac-osx">
+<h2>Mac OSX<a class="headerlink" href="#mac-osx" title="Permalink to this headline">¶</a></h2>
+<p>To complete this exercise, complete the following tasks:</p>
+<ol class="arabic simple">
+<li>Go to <a class="reference external" href="http://www.barebones.com/products/textwrangler/">http://www.barebones.com/products/textwrangler/</a> with your browser, get
+the <tt class="docutils literal"><span class="pre">TextWrangler</span></tt> text editor, and install it.</li>
+<li>Put TextWrangler (your editor) in your Dock so you can reach
+it easily.</li>
+<li>Find your &quot;Terminal&quot; program.  Search for it.  You will find it.</li>
+<li>Put your Terminal in your Dock as well.</li>
+<li>Run your Terminal program.  It won't look like much.</li>
+<li>In your Terminal program, run <tt class="docutils literal"><span class="pre">python</span></tt>.  You run
+things in Terminal by just typing their name and hitting RETURN.</li>
+<li>Hit CTRL-D (^D) and get out of python.</li>
+<li>You should be back at a prompt similar to what you had before you typed <tt class="docutils literal"><span class="pre">python</span></tt>.  If not find out why.</li>
+<li>Learn how to make a directory in the Terminal.  Search online for help.</li>
+<li>Learn how to change into a directory in the Terminal.  Again search online.</li>
+<li>Use your editor to create a file in this directory.  You
+will make the file, &quot;Save&quot; or &quot;Save As...&quot;, and pick this directory.</li>
+<li>Go back to Terminal using just the keyboard to switch windows.  Look it
+up if you can't figure it out.</li>
+<li>Back in Terminal, see if you can list the directory to see your
+newly created file.  Search online for how to list a directory.</li>
+</ol>
+<div class="section" id="osx-what-you-should-see">
+<h3>OSX: What You Should See<a class="headerlink" href="#osx-what-you-should-see" title="Permalink to this headline">¶</a></h3>
+<p>Here's me doing the above on my computer in Terminal.  Your computer would be
+different, so see if you can figure out all the differences between what I did
+and what you should do.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Last login: Sat Apr 24 00:56:54 on ttys001</span>
+<span class="go">~ $ python</span>
+<span class="go">Python 2.5.1 (r251:54863, Feb  6 2009, 19:02:12)</span>
+<span class="go">[GCC 4.0.1 (Apple Inc. build 5465)] on darwin</span>
+<span class="go">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span>
+<span class="gp">&gt;</span>&gt;&gt; ^D
+<span class="go">~ $ mkdir mystuff</span>
+<span class="go">~ $ cd mystuff</span>
+<span class="go">mystuff $ ls</span>
+<span class="gp">#</span> ... Use TextWrangler here to edit test.txt....
+<span class="go">mystuff $ ls</span>
+<span class="go">test.txt</span>
+<span class="go">mystuff $</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="windows">
+<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Contributed by zhmark.</p>
+</div>
+<ol class="arabic">
+<li><p class="first">Go to <a class="reference external" href="http://notepad-plus-plus.org/">http://notepad-plus-plus.org/</a> with your browser, get
+the <tt class="docutils literal"><span class="pre">Notepad++</span></tt> text editor, and install it. You do not need to be administrator to do this.</p>
+</li>
+<li><p class="first">Make sure you can get to <tt class="docutils literal"><span class="pre">Notepad++</span></tt> easily by putting it on your desktop and/or in
+<tt class="docutils literal"><span class="pre">Quick</span> <span class="pre">Launch</span></tt>. Both options are available during setup.</p>
+</li>
+<li><p class="first">Run &quot;powershell&quot; from the start menu.  Search for it and you can just hit enter to run it.</p>
+</li>
+<li><p class="first">Make a shortcut to it on your desktop and/or <tt class="docutils literal"><span class="pre">Quick</span> <span class="pre">Launch</span></tt> for your convenience.</p>
+</li>
+<li><p class="first">Run your Terminal program.  It won't look like much.</p>
+</li>
+<li><p class="first">In your Terminal program, run <tt class="docutils literal"><span class="pre">python</span></tt>.  You run things in Terminal by just typing their
+name and hitting RETURN.</p>
+<ol class="loweralpha">
+<li><p class="first">If you run <tt class="docutils literal"><span class="pre">python</span></tt> and it's not there (<tt class="docutils literal"><span class="pre">python</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">recognized..</span></tt>).  Install it from <a class="reference external" href="http://python.org/download">http://python.org/download</a></p>
+</li>
+<li><p class="first"><em>Make sure you install Python 2 not Python 3.</em></p>
+</li>
+<li><p class="first">You may be better off with ActiveState Python especially when you miss Administrative rights</p>
+</li>
+<li><p class="first">If after you install it <tt class="docutils literal"><span class="pre">python</span></tt> still isn't recognized then in powershell enter this:</p>
+<blockquote>
+<div><p><tt class="docutils literal"><span class="pre">[Environment]::SetEnvironmentVariable(&quot;Path&quot;,</span> <span class="pre">&quot;$env:Path;C:\Python27&quot;,</span> <span class="pre">&quot;User&quot;)</span></tt></p>
+</div></blockquote>
+</li>
+<li><p class="first">Close powershell and then start it again to make sure python now runs.  If it doesn't restart may be required.</p>
+</li>
+</ol>
+</li>
+<li><p class="first">Hit CTRL-Z (^Z), <tt class="docutils literal"><span class="pre">Enter</span></tt> and get out of <tt class="docutils literal"><span class="pre">python</span></tt>.</p>
+</li>
+<li><p class="first">You should be back at a prompt similar to what you had before you typed <tt class="docutils literal"><span class="pre">python</span></tt>.  If not find out why.</p>
+</li>
+<li><p class="first">Learn how to make a directory in the Terminal.  Search online for help.</p>
+</li>
+<li><p class="first">Learn how to change into a directory in the Terminal.  Again search online.</p>
+</li>
+<li><p class="first">Use your editor to create a file in this directory.  Make the file, &quot;Save&quot; or &quot;Save As...&quot;, and pick this directory.</p>
+</li>
+<li><p class="first">Go back to Terminal using just the keyboard to switch windows.  Look it
+up if you can't figure it out.</p>
+</li>
+<li><p class="first">Back in Terminal, see if you can list the directory to see your
+newly created file.  Search online for how to list a directory.</p>
+</li>
+</ol>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you missed it, sometimes you install Python on Windows and it doesn't configure the path correctly.
+Make sure you enter <tt class="docutils literal"><span class="pre">[Environment]::SetEnvironmentVariable(&quot;Path&quot;,</span> <span class="pre">&quot;$env:Path;C:\Python27&quot;,</span> <span class="pre">&quot;User&quot;)</span></tt>
+in <tt class="docutils literal"><span class="pre">powershell</span></tt> to configure it correctly.  You also have to either restart powershell or your
+whole computer to get it to really be fixed.</p>
+</div>
+<div class="section" id="windows-what-you-should-see">
+<h3>Windows: What You Should See<a class="headerlink" href="#windows-what-you-should-see" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">&gt;</span> python
+<span class="go">ActivePython 2.6.5.12 (ActiveState Software Inc.) based on</span>
+<span class="go">Python 2.6.5 (r265:79063, Mar 20 2010, 14:22:52) [MSC v.1500 32 bit (Intel)] on win32</span>
+<span class="go">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span>
+<span class="gp">&gt;</span>&gt;&gt; ^Z
+
+
+<span class="gp">&gt;</span> mkdir mystuff
+
+<span class="gp">&gt;</span> <span class="nb">cd </span>mystuff
+
+<span class="go">... Here you would use Notepad++ to make test.txt in mystuff ...</span>
+
+<span class="gp">&gt;</span>
+<span class="go">   &lt;bunch of unimportant errors if you istalled it as non-admin - ignore them - hit Enter&gt;</span>
+<span class="gp">&gt;</span> dir
+<span class="go"> Volume in drive C is</span>
+<span class="go"> Volume Serial Number is 085C-7E02</span>
+
+<span class="go"> Directory of C:\Documents and Settings\you\mystuff</span>
+
+<span class="go">04.05.2010  23:32    &lt;DIR&gt;          .</span>
+<span class="go">04.05.2010  23:32    &lt;DIR&gt;          ..</span>
+<span class="go">04.05.2010  23:32                 6 test.txt</span>
+<span class="go">               1 File(s)              6 bytes</span>
+<span class="go">               2 Dir(s)  14 804 623 360 bytes free</span>
+
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>You will probably see a very different prompt, Python information, and other stuff but this is
+the general idea.  If your system is different let us know at <a class="reference external" href="../index.html">http://learnpythonthehardway.org</a>
+and we'll fix it.</p>
+</div>
+</div>
+<div class="section" id="linux">
+<h2>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h2>
+<p>Linux is a varied operating system with a bunch of different ways to install software.
+I'm assuming if you are running Linux then you know how to install packages so here are
+your instructions:</p>
+<ol class="arabic simple">
+<li>Use your Linux package manager and install the <tt class="docutils literal"><span class="pre">gedit</span></tt> text editor.</li>
+<li>Make sure you can get to <tt class="docutils literal"><span class="pre">gedit</span></tt> easily
+by putting it in your window manager's menu.<ol class="loweralpha">
+<li>Run gedit so we can fix some stupid defaults it has.</li>
+<li>Open <tt class="docutils literal"><span class="pre">Preferences</span></tt> select the <tt class="docutils literal"><span class="pre">Editor</span></tt> tab.</li>
+<li>Change <tt class="docutils literal"><span class="pre">Tab</span> <span class="pre">width:</span></tt> to 4.</li>
+<li>Select (make sure a check mark is in) <tt class="docutils literal"><span class="pre">Insert</span> <span class="pre">spaces</span> <span class="pre">instead</span> <span class="pre">of</span> <span class="pre">tabs</span></tt>.</li>
+<li>Turn on &quot;Automatic indentation&quot; as well.</li>
+<li>Open the <tt class="docutils literal"><span class="pre">View</span></tt> tab turn on &quot;Display line numbers&quot;.</li>
+</ol>
+</li>
+<li>Find your &quot;Terminal&quot; program.  It could be called <tt class="docutils literal"><span class="pre">GNOME</span> <span class="pre">Terminal</span></tt>, <tt class="docutils literal"><span class="pre">Konsole</span></tt>, or <tt class="docutils literal"><span class="pre">xterm</span></tt>.</li>
+<li>Put your Terminal in your Dock as well.</li>
+<li>Run your Terminal program.  It won't look like much.</li>
+<li>In your Terminal program, run <tt class="docutils literal"><span class="pre">python</span></tt>.  You run
+things in Terminal by just typing their name and hitting RETURN.<ol class="loweralpha">
+<li>If you run <tt class="docutils literal"><span class="pre">python</span></tt> and it's not there, install it.  <em>Make sure you install Python 2 not Python 3.</em></li>
+</ol>
+</li>
+<li>Hit CTRL-D (^D) and get out of <tt class="docutils literal"><span class="pre">python</span></tt>.</li>
+<li>You should be back at a prompt similar to what you had before you typed <tt class="docutils literal"><span class="pre">python</span></tt>.  If not find out why.</li>
+<li>Learn how to make a directory in the Terminal.  Search online for help.</li>
+<li>Learn how to change into a directory in the Terminal.  Again search online.</li>
+<li>Use your editor to create a file in this directory.  Typically you
+will make the file, &quot;Save&quot; or &quot;Save As..&quot;, and pick this directory.</li>
+<li>Go back to Terminal using just the keyboard to switch windows.  Look it
+up if you can't figure it out.</li>
+<li>Back in Terminal see if you can list the directory to see your
+newly created file.  Search online for how to list a directory.</li>
+</ol>
+<div class="section" id="linux-what-you-should-see">
+<h3>Linux: What You Should See<a class="headerlink" href="#linux-what-you-should-see" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python
+<span class="go">Python 2.6.5 (r265:79063, Apr  1 2010, 05:28:39)</span>
+<span class="go">[GCC 4.4.3 20100316 (prerelease)] on linux2</span>
+<span class="go">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span>
+<span class="gp">&gt;</span>&gt;&gt;
+<span class="gp">$</span> mkdir mystuff
+<span class="gp">$</span> <span class="nb">cd </span>mystuff
+<span class="gp">#</span> ... Use gedit here to edit test.txt ...
+<span class="gp">$</span> ls
+<span class="go">test.txt</span>
+<span class="gp">$</span>
+</pre></div>
+</div>
+<p>You will probably see a very different prompt, Python information, and other stuff but this is
+the general idea.</p>
+</div>
+</div>
+<div class="section" id="warnings-for-beginners">
+<h2>Warnings For Beginners<a class="headerlink" href="#warnings-for-beginners" title="Permalink to this headline">¶</a></h2>
+<p>You are done with this exercise.  This exercise might be hard for you
+depending on your familiarity with your computer.  If it is difficult,
+take the time to read and study and get through it, because until you can do
+these very basic things you will find it difficult to get much programming done.</p>
+<p>If a programmer tells you to use <tt class="docutils literal"><span class="pre">vim</span></tt> or <tt class="docutils literal"><span class="pre">emacs</span></tt>, tell them, &quot;No.&quot;  These
+editors are for when you are a better programmer.  All you need right now is an
+editor that lets you put text into a file.  We will use <tt class="docutils literal"><span class="pre">gedit</span></tt>,
+<tt class="docutils literal"><span class="pre">TextWraingler</span></tt>, or <tt class="docutils literal"><span class="pre">Notepad++</span></tt> (from now on called &quot;the text editor&quot; or &quot;a
+text editor&quot;) because it is simple and the same on all computers.  Professional
+programmers use these text editors so it's good enough for you starting out.</p>
+<p>A programmer may try to get you to install Python 3 and learn that.  You
+should tell them, &quot;When all of the python code on your computer is Python 3,
+then I'll try to learn it.&quot;  That should keep them busy for about 10 years.</p>
+<p>A programmer will eventually tell you to use Mac OSX or Linux.  If the programmer
+likes fonts and typography, they'll tell you to get a Mac OSX computer.  If they
+like control and have a huge beard, they'll tell you to install Linux.  Again,
+use whatever computer you have right now that works.  All you need is <tt class="docutils literal"><span class="pre">gedit</span></tt>,
+a Terminal, and <tt class="docutils literal"><span class="pre">python</span></tt>.</p>
+<p>Finally the purpose of this setup is so you can do three things very reliably
+while you work on the exercises:</p>
+<ol class="arabic simple">
+<li><em>Write</em> exercises using your text editor, <tt class="docutils literal"><span class="pre">gedit</span></tt> on Linux, <tt class="docutils literal"><span class="pre">TextWrangler</span></tt> on OSX, <tt class="docutils literal"><span class="pre">Notepad++</span></tt> on Windows.</li>
+<li><em>Run</em> the exercises you wrote.</li>
+<li><em>Fix</em> them when they are broken.</li>
+<li>Repeat.</li>
+</ol>
+<p>Anything else will only confuse you, so stick to the plan.</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex1.html" title="Exercise 1: A Good First Program"
+             >next</a></li>
+        <li class="right" >
+          <a href="intro.html" title="The Hard Way Is Easier"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex0.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:08 GMT -->
+</html>

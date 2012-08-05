@@ -1,0 +1,277 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex17.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:15 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 17: More Files &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 18: Names, Variables, Code, Functions" href="ex18.html" />
+    <link rel="prev" title="Exercise 16: Reading And Writing Files" href="ex16.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex18.html" title="Exercise 18: Names, Variables, Code, Functions"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex16.html" title="Exercise 16: Reading And Writing Files"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-17-more-files">
+<h1>Exercise 17: More Files<a class="headerlink" href="#exercise-17-more-files" title="Permalink to this headline">¶</a></h1>
+<p>Now let's do a few more things with files.  We're going to actually write a
+Python script to copy one file to another.  It'll be very short but will give
+you some ideas about other things you can do with files.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">argv</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">exists</span>
+
+<span class="n">script</span><span class="p">,</span> <span class="n">from_file</span><span class="p">,</span> <span class="n">to_file</span> <span class="o">=</span> <span class="n">argv</span>
+
+<span class="k">print</span> <span class="s">&quot;Copying from </span><span class="si">%s</span><span class="s"> to </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">from_file</span><span class="p">,</span> <span class="n">to_file</span><span class="p">)</span>
+
+<span class="c"># we could do these two on one line too, how?</span>
+<span class="n">in_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">from_file</span><span class="p">)</span>
+<span class="n">indata</span> <span class="o">=</span> <span class="n">in_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="k">print</span> <span class="s">&quot;The input file is </span><span class="si">%d</span><span class="s"> bytes long&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">indata</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s">&quot;Does the output file exist? </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">exists</span><span class="p">(</span><span class="n">to_file</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&quot;Ready, hit RETURN to continue, CTRL-C to abort.&quot;</span>
+<span class="nb">raw_input</span><span class="p">()</span>
+
+<span class="n">out_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">to_file</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">out_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">indata</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s">&quot;Alright, all done.&quot;</span>
+
+<span class="n">out_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">in_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p>You should immediately notice that we <tt class="docutils literal"><span class="pre">import</span></tt> another handy command
+named <tt class="docutils literal"><span class="pre">exists</span></tt>.  This returns <tt class="docutils literal"><span class="pre">True</span></tt> if a file exists, based on its
+name in a string as an argument.  It returns <tt class="docutils literal"><span class="pre">False</span></tt> if not.  We'll be using
+this function in the second half of this book to do lots of things, but
+right now you should see how you can import it.</p>
+<p>Using <tt class="docutils literal"><span class="pre">import</span></tt> is a way to get tons of free code other better (well, usually)
+programmers have written so you do not have to write it.</p>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<p>Just like your other scripts, run this one with two arguments, the file to copy
+from and the file to copy it to.  If we use your <tt class="docutils literal"><span class="pre">test.txt</span></tt> file from before
+we get this:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python ex17.py test.txt copied.txt
+<span class="go">Copying from test.txt to copied.txt</span>
+<span class="go">The input file is 81 bytes long</span>
+<span class="go">Does the output file exist? False</span>
+<span class="go">Ready, hit RETURN to continue, CTRL-C to abort.</span>
+
+<span class="go">Alright, all done.</span>
+
+<span class="gp">$</span> cat copied.txt
+<span class="go">To all the people out there.</span>
+<span class="go">I say I don&#39;t like my hair.</span>
+<span class="go">I need to shave it off.</span>
+<span class="gp">$</span>
+</pre></div>
+</div>
+<p>It should work with any file.  Try a bunch more and see what happens.  Just
+be careful you do not blast an important file.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Did you see that trick I did with <tt class="docutils literal"><span class="pre">cat</span></tt>? It only works on Linux or OSX,
+on Windows use <tt class="docutils literal"><span class="pre">type</span></tt> to do the same thing.</p>
+</div>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Go read up on Python's <tt class="docutils literal"><span class="pre">import</span></tt> statement, and start <tt class="docutils literal"><span class="pre">python</span></tt> to try
+it out.  Try importing some things and see if you can get it right.  It's
+alright if you do not.</li>
+<li>This script is <em>really</em> annoying.  There's no need to ask you before
+doing the copy, and it prints too much out to the screen.  Try to make it
+more friendly to use by removing features.</li>
+<li>See how short you can make the script.  I could make this 1 line long.</li>
+<li>Notice at the end of the WYSS I used something called <cite>cat</cite>?  It's an old
+command that &quot;con*cat*enates&quot; files together, but mostly it's just an
+easy way to print a file to the screen.  Type <tt class="docutils literal"><span class="pre">man</span> <span class="pre">cat</span></tt> to read about it.</li>
+<li>Windows people, find the alternative to <tt class="docutils literal"><span class="pre">cat</span></tt> that Linux/OSX
+people have.  Do not worry about <tt class="docutils literal"><span class="pre">man</span></tt> since there is nothing like that.</li>
+<li>Find out why you had to do <tt class="docutils literal"><span class="pre">output.close()</span></tt> in the code.</li>
+</ol>
+</div>
+<div class="section" id="frequently-asked-questions">
+<h2>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Why is the <tt class="docutils literal"><span class="pre">'w'</span></tt> in quotes?</dt>
+<dd>That's a string. You've been using them for a while now, so make sure you know what
+a string is.</dd>
+<dt>No way you can make this one line!</dt>
+<dd>That ; depends ; on ; how ; you ; define ; one ; line ; of ; code.</dd>
+<dt>What does the <tt class="docutils literal"><span class="pre">len()</span></tt> function do?</dt>
+<dd>It gets the length of the string that you pass to it then returns that as a number.  Play with it.</dd>
+<dt>When I try to make this script shorter I get an error when I close the files at the end.</dt>
+<dd>You probably did something like this <tt class="docutils literal"><span class="pre">indata</span> <span class="pre">=</span> <span class="pre">open(from_file).read()</span></tt> which
+means you don't need to then do <tt class="docutils literal"><span class="pre">in_file.close()</span></tt> when you reach the end
+of the script.  It should already be closed by Python once that one line
+runs.</dd>
+<dt>Is it normal to feel like this exercise was really hard?</dt>
+<dd>Yes, it is totally normal.  Programming may not &quot;click&quot; for you until
+maybe even exercise 36, or it might not until you finish the book and then
+make something with Python.  Everyone is different, so just keep going
+and keep reviewing exercises that you had trouble with until it
+clicks.  Be patient.</dd>
+<dt>I get a <tt class="docutils literal"><span class="pre">Syntax:EOL</span> <span class="pre">while</span> <span class="pre">scanning</span> <span class="pre">string</span> <span class="pre">literal</span></tt> error.</dt>
+<dd>You forgot to end a string properly with a quote.  Go look at that
+line again.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex18.html" title="Exercise 18: Names, Variables, Code, Functions"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex16.html" title="Exercise 16: Reading And Writing Files"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex17.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:15 GMT -->
+</html>

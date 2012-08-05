@@ -1,0 +1,258 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex4.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 4: Variables And Names &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 5: More Variables And Printing" href="ex5.html" />
+    <link rel="prev" title="Exercise 3: Numbers And Math" href="ex3.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex5.html" title="Exercise 5: More Variables And Printing"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex3.html" title="Exercise 3: Numbers And Math"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-4-variables-and-names">
+<h1>Exercise 4: Variables And Names<a class="headerlink" href="#exercise-4-variables-and-names" title="Permalink to this headline">¶</a></h1>
+<p>Now you can print things with <tt class="docutils literal"><span class="pre">print</span></tt> and you can do math.  The next step is
+to learn about variables.  In programming a variable is nothing more than a
+name for something so you can use the name rather than the something as you
+code.  Programmers use these variable names to make their code read more like
+English, and because they have lousy memories.  If they didn't use good names
+for things in their software, they'd get lost when they tried to read their
+code again.</p>
+<p>If you get stuck with this exercise, remember the tricks you have been taught
+so far of finding differences and focusing on details:</p>
+<ol class="arabic simple">
+<li>Write a comment above each line explaining to yourself what it does in English.</li>
+<li>Read your <tt class="docutils literal"><span class="pre">.py</span></tt> file backwards.</li>
+<li>Read your <tt class="docutils literal"><span class="pre">.py</span></tt> file out loud saying even the characters.</li>
+</ol>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">cars</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">space_in_a_car</span> <span class="o">=</span> <span class="mf">4.0</span>
+<span class="n">drivers</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">passengers</span> <span class="o">=</span> <span class="mi">90</span>
+<span class="n">cars_not_driven</span> <span class="o">=</span> <span class="n">cars</span> <span class="o">-</span> <span class="n">drivers</span>
+<span class="n">cars_driven</span> <span class="o">=</span> <span class="n">drivers</span>
+<span class="n">carpool_capacity</span> <span class="o">=</span> <span class="n">cars_driven</span> <span class="o">*</span> <span class="n">space_in_a_car</span>
+<span class="n">average_passengers_per_car</span> <span class="o">=</span> <span class="n">passengers</span> <span class="o">/</span> <span class="n">cars_driven</span>
+
+
+<span class="k">print</span> <span class="s">&quot;There are&quot;</span><span class="p">,</span> <span class="n">cars</span><span class="p">,</span> <span class="s">&quot;cars available.&quot;</span>
+<span class="k">print</span> <span class="s">&quot;There are only&quot;</span><span class="p">,</span> <span class="n">drivers</span><span class="p">,</span> <span class="s">&quot;drivers available.&quot;</span>
+<span class="k">print</span> <span class="s">&quot;There will be&quot;</span><span class="p">,</span> <span class="n">cars_not_driven</span><span class="p">,</span> <span class="s">&quot;empty cars today.&quot;</span>
+<span class="k">print</span> <span class="s">&quot;We can transport&quot;</span><span class="p">,</span> <span class="n">carpool_capacity</span><span class="p">,</span> <span class="s">&quot;people today.&quot;</span>
+<span class="k">print</span> <span class="s">&quot;We have&quot;</span><span class="p">,</span> <span class="n">passengers</span><span class="p">,</span> <span class="s">&quot;to carpool today.&quot;</span>
+<span class="k">print</span> <span class="s">&quot;We need to put about&quot;</span><span class="p">,</span> <span class="n">average_passengers_per_car</span><span class="p">,</span> <span class="s">&quot;in each car.&quot;</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <tt class="docutils literal"><span class="pre">_</span></tt> in <tt class="docutils literal"><span class="pre">space_in_a_car</span></tt> is called an <tt class="docutils literal"><span class="pre">underscore</span> <span class="pre">character</span></tt>.  Find out how to type it
+if you do not already know.  We use this character a lot to put an imaginary space between
+words in variable names.</p>
+</div>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python ex4.py
+<span class="go">There are 100 cars available.</span>
+<span class="go">There are only 30 drivers available.</span>
+<span class="go">There will be 70 empty cars today.</span>
+<span class="go">We can transport 120.0 people today.</span>
+<span class="go">We have 90 to carpool today.</span>
+<span class="go">We need to put about 3 in each car.</span>
+<span class="gp">$</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<p>When I wrote this program the first time I had a mistake, and <em>python</em> told me
+about it like this:</p>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "ex4.py", line 8, in &lt;module&gt;
+    average_passengers_per_car = car_pool_capacity / passenger
+NameError: name 'car_pool_capacity' is not defined
+</pre>
+</div>
+<p>Explain this error in your own words.  Make sure you use line numbers and
+explain why.</p>
+<p>Here's more extra credit:</p>
+<ol class="arabic simple">
+<li>I used 4.0 for <tt class="docutils literal"><span class="pre">space_in_a_car</span></tt>, but is that necessary? What happens if it's
+just 4?</li>
+<li>Remember that 4.0 is a &quot;floating point&quot; number.  Find out what that means.</li>
+<li>Write comments above each of the variable assignments.</li>
+<li>Make sure you know what <tt class="docutils literal"><span class="pre">=</span></tt> is called (equals) and that it's making names for things.</li>
+<li>Remember <tt class="docutils literal"><span class="pre">_</span></tt> is an underscore character.</li>
+<li>Try running <tt class="docutils literal"><span class="pre">python</span></tt> as a calculator like you did before and use variable names
+to do your calculations.  Popular variable names are also <tt class="docutils literal"><span class="pre">i</span></tt>, <tt class="docutils literal"><span class="pre">x</span></tt>, and <tt class="docutils literal"><span class="pre">j</span></tt>.</li>
+</ol>
+</div>
+<div class="section" id="frequently-asked-questions">
+<h2>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>What is the difference between <cite>=</cite> (single-equal) and <cite>==</cite> (double-equal)?</dt>
+<dd>The <cite>=</cite> (single-equal) assigns the value on the right to a variable
+on the left.  The <cite>==</cite> (double-equal) tests if two things have the
+same value, and you'll learn about this in exercise 27.</dd>
+<dt>Can we write <cite>x=100</cite> instead of <cite>x = 100</cite>?</dt>
+<dd>You can, but it's bad form. You should add space around operators like
+this so that it's easier to read.</dd>
+<dt>How can I print without spaces between words in <cite>print</cite>?</dt>
+<dd>You do it like this: <tt class="docutils literal"><span class="pre">print</span> <span class="pre">&quot;Hey</span> <span class="pre">%s</span> <span class="pre">there.&quot;</span> <span class="pre">%</span> <span class="pre">&quot;you&quot;</span></tt>. You will do more
+of this soon.</dd>
+<dt>What do you mean by &quot;read the file backwards&quot;?</dt>
+<dd>Very simple. Imagine you have a file with 16 lines of code in it.
+Start at line 16, and compare it to my file at line 16. Then do
+it again for 15, and so on until you've read the whole file backwards.</dd>
+<dt>Why did you use <cite>4.0</cite> for <cite>space</cite>?</dt>
+<dd>It is mostly so you can then find out what a floating point number
+is and ask this questions.  See the extra credit.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex5.html" title="Exercise 5: More Variables And Printing"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex3.html" title="Exercise 3: Numbers And Math"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex4.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+</html>

@@ -1,0 +1,379 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex46.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 46: A Project Skeleton &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 47: Automated Testing" href="ex47.html" />
+    <link rel="prev" title="Exercise 45: You Make A Game" href="ex45.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex47.html" title="Exercise 47: Automated Testing"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex45.html" title="Exercise 45: You Make A Game"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-46-a-project-skeleton">
+<h1>Exercise 46: A Project Skeleton<a class="headerlink" href="#exercise-46-a-project-skeleton" title="Permalink to this headline">¶</a></h1>
+<p>This will be where you start learning how to setup a good project &quot;skeleton&quot;
+directory.  This skeleton directory will have all the basics you need to get a
+new project up and running.  It will have your project layout, automated tests,
+modules, and install scripts.  When you go to make a new project, just copy
+this directory to a new name and edit the files to get started.</p>
+<div class="section" id="skeleton-contents">
+<h2>Skeleton Contents<a class="headerlink" href="#skeleton-contents" title="Permalink to this headline">¶</a></h2>
+<p>First, create the structure of your skeleton directory with these
+commands:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> mkdir -p projects
+<span class="gp">$</span> <span class="nb">cd </span>projects/
+<span class="gp">$</span> mkdir skeleton
+<span class="gp">$</span> <span class="nb">cd </span>skeleton
+<span class="gp">$</span> mkdir bin NAME tests docs
+</pre></div>
+</div>
+<p>I use a directory named <tt class="docutils literal"><span class="pre">projects</span></tt> to store all the various things I'm
+working on.  Inside that directory I have my <tt class="docutils literal"><span class="pre">skeleton</span></tt> directory that
+I put the basis of my projects into.  The directory <tt class="docutils literal"><span class="pre">NAME</span></tt> will be
+renamed to whatever you are calling your project's main module when you
+use the skeleton.</p>
+<p>Next we need to setup some initial
+files:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> touch NAME/__init__.py
+<span class="gp">$</span> touch tests/__init__.py
+</pre></div>
+</div>
+<p>That creates empty Python module directories we can put our code in.
+Then we need to create a <tt class="docutils literal"><span class="pre">setup.py</span></tt> file we can use to install our
+project later if we want:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;description&#39;</span><span class="p">:</span> <span class="s">&#39;My Project&#39;</span><span class="p">,</span>
+    <span class="s">&#39;author&#39;</span><span class="p">:</span> <span class="s">&#39;My Name&#39;</span><span class="p">,</span>
+    <span class="s">&#39;url&#39;</span><span class="p">:</span> <span class="s">&#39;URL to get it at.&#39;</span><span class="p">,</span>
+    <span class="s">&#39;download_url&#39;</span><span class="p">:</span> <span class="s">&#39;Where to download it.&#39;</span><span class="p">,</span>
+    <span class="s">&#39;author_email&#39;</span><span class="p">:</span> <span class="s">&#39;My email.&#39;</span><span class="p">,</span>
+    <span class="s">&#39;version&#39;</span><span class="p">:</span> <span class="s">&#39;0.1&#39;</span><span class="p">,</span>
+    <span class="s">&#39;install_requires&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;nose&#39;</span><span class="p">],</span>
+    <span class="s">&#39;packages&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;NAME&#39;</span><span class="p">],</span>
+    <span class="s">&#39;scripts&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;projectname&#39;</span>
+<span class="p">}</span>
+
+<span class="n">setup</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>Edit this file so that it has your contact information
+and is ready to go for when you copy it.</p>
+<p>Finally you will want a simple skeleton file for tests named <tt class="docutils literal"><span class="pre">tests/NAME_tests.py</span></tt>:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nose.tools</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">NAME</span>
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">&quot;SETUP!&quot;</span>
+
+<span class="k">def</span> <span class="nf">teardown</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">&quot;TEAR DOWN!&quot;</span>
+
+<span class="k">def</span> <span class="nf">test_basic</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">&quot;I RAN!&quot;</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="final-directory-structure">
+<h3>Final Directory Structure<a class="headerlink" href="#final-directory-structure" title="Permalink to this headline">¶</a></h3>
+<p>When you are done setting all of this up, your directory should look like mine here:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ls -R
+<span class="go">NAME                bin             docs            setup.py        tests</span>
+
+<span class="go">./NAME:</span>
+<span class="go">__init__.py</span>
+
+<span class="go">./bin:</span>
+
+<span class="go">./docs:</span>
+
+<span class="go">./tests:</span>
+<span class="go">NAME_tests.py       __init__.py</span>
+</pre></div>
+</div>
+<p>This is on unix, but the structure is the same on Windows, and if I were to draw it out as a tree:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">setup.py</span>
+<span class="go">NAME/</span>
+<span class="go">    __init__.py</span>
+<span class="go">bin/</span>
+<span class="go">docs/</span>
+<span class="go">tests/</span>
+<span class="go">    NAME_tests.py</span>
+<span class="go">    __init__.py</span>
+</pre></div>
+</div>
+<p>And from now on, you should run your commands from that work with this directory from this
+point.  If you can't to <tt class="docutils literal"><span class="pre">ls</span> <span class="pre">-R</span></tt> and see this same structure, then you are in the wrong place.
+For example, people commonly go into the <tt class="docutils literal"><span class="pre">tests/</span></tt> directory to try to run files there, which
+won't work.  To run your application's tests, you would need to be <em>above</em> <tt class="docutils literal"><span class="pre">tests/</span></tt> and this
+location I have above.  So, if you try this:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>tests/   <span class="c"># WRONG! WRONG! WRONG!</span>
+<span class="gp">$</span> nosetests
+
+<span class="go">----------------------------------------------------------------------</span>
+<span class="go">Ran 0 tests in 0.000s</span>
+
+<span class="go">OK</span>
+</pre></div>
+</div>
+<p>Then that is <em>wrong</em>!  You have to be above tests, so assuming you made this mistake, you would
+fix it by doing:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> ..   <span class="c"># get out of tests/</span>
+<span class="gp">$</span> ls      <span class="c"># CORRECT! you are now in the right spot</span>
+<span class="go">NAME                bin             docs            setup.py        tests</span>
+<span class="gp">$</span> nosetests
+<span class="go">.</span>
+<span class="go">----------------------------------------------------------------------</span>
+<span class="go">Ran 1 test in 0.004s</span>
+
+<span class="go">OK</span>
+</pre></div>
+</div>
+<p>Remember this because people make this mistake quite frequently.</p>
+</div>
+<div class="section" id="installing-python-packages">
+<h3>Installing Python Packages<a class="headerlink" href="#installing-python-packages" title="Permalink to this headline">¶</a></h3>
+<p>Make sure you have some packages installed that makes
+these things work.  Here's the problem though.  You are at a point where it's
+difficult for me to help you do that and keep this book sane and clean.  There
+are so many ways to install software on so many computers that I'd have to spend
+10 pages walking you through every step, and let me tell you I am a lazy guy.</p>
+<p>Rather than tell you how to do it exactly, I'm going to tell you what you
+should install, and then tell you to figure it out and get it working.  This
+will be really good for you since it will open a whole world of software
+you can use that other people have released to the world.</p>
+<p>Next, install the following python packages:</p>
+<ol class="arabic simple">
+<li>pip from <a class="reference external" href="http://pypi.python.org/pypi/pip">http://pypi.python.org/pypi/pip</a></li>
+<li>distribute from <a class="reference external" href="http://pypi.python.org/pypi/distribute">http://pypi.python.org/pypi/distribute</a></li>
+<li>nose from <a class="reference external" href="http://pypi.python.org/pypi/nose/">http://pypi.python.org/pypi/nose/</a></li>
+<li>virtualenv from <a class="reference external" href="http://pypi.python.org/pypi/virtualenv">http://pypi.python.org/pypi/virtualenv</a></li>
+</ol>
+<p>Do not just download these packages and install them by hand.  Instead see how
+other people recommend you install these packages and use them for your particular
+system.  The process will be different for most versions of Linux, OSX, and definitely
+different for Windows.</p>
+<p>I am warning you, this will be frustrating.  In the business we call this &quot;yak shaving&quot;.
+Yak shaving is any activity that is mind numblingly irritatingly boring and tedious
+that you have to do before you can do something else that's more fun.  You want to
+create cool Python projects, but you can't do that until you setup a skeleton
+directory, but you can't setup a skeleton directory until you install some packages,
+but you can't install packages until you install package installers, and you can't
+install package installers until you figure out how your system installs software
+in general, and so on.</p>
+<p>Struggle through this anyway.  Consider it your trial-by-annoyance to get into
+the programmer club.  Every programmer has to do these annoying tedious tasks
+before they can do something cool.</p>
+</div>
+</div>
+<div class="section" id="testing-your-setup">
+<h2>Testing Your Setup<a class="headerlink" href="#testing-your-setup" title="Permalink to this headline">¶</a></h2>
+<p>After you get all that installed you should be able to do this:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> nosetests
+<span class="go">.</span>
+<span class="go">----------------------------------------------------------------------</span>
+<span class="go">Ran 1 test in 0.007s</span>
+
+<span class="go">OK</span>
+</pre></div>
+</div>
+<p>I'll explain what this <tt class="docutils literal"><span class="pre">nosetests</span></tt> thing is doing in the next exercise, but
+for now if you do not see that, you probably got something wrong.  Make sure
+you put <tt class="docutils literal"><span class="pre">__init__.py</span></tt> files in your <tt class="docutils literal"><span class="pre">NAME</span></tt> and <tt class="docutils literal"><span class="pre">tests</span></tt> directory and make
+sure you got <tt class="docutils literal"><span class="pre">tests/NAME_tests.py</span></tt> right.</p>
+</div>
+<div class="section" id="using-the-skeleton">
+<h2>Using The Skeleton<a class="headerlink" href="#using-the-skeleton" title="Permalink to this headline">¶</a></h2>
+<p>You are now done with most of your yak shaving.  Whenever you want to start a new
+project, just do this:</p>
+<ol class="arabic simple">
+<li>Make a copy of your skeleton directory.  Name it after your new project.</li>
+<li>Rename (move) the NAME module to be the name of your project or whatever you want to call
+your root module.</li>
+<li>Edit your setup.py to have all the information for your project.</li>
+<li>Rename <tt class="docutils literal"><span class="pre">tests/NAME_tests.py</span></tt> to also have your module name.</li>
+<li>Double check it's all working using <tt class="docutils literal"><span class="pre">nosetests</span></tt> again.</li>
+<li>Start coding.</li>
+</ol>
+</div>
+<div class="section" id="required-quiz">
+<h2>Required Quiz<a class="headerlink" href="#required-quiz" title="Permalink to this headline">¶</a></h2>
+<p>This exercise doesn't have extra credit but a quiz you should complete:</p>
+<ol class="arabic simple">
+<li>Read about how to use all of the things you installed.</li>
+<li>Read about the <tt class="docutils literal"><span class="pre">setup.py</span></tt> file and all it has to offer.  Warning, it is not a very
+well-written piece of software, so it will be very strange to use.</li>
+<li>Make a project and start putting code into the module, then get the
+module working.</li>
+<li>Put a script in the <tt class="docutils literal"><span class="pre">bin</span></tt> directory that you can run.  Read about how you can make
+a Python script that's runnable for your system.</li>
+<li>Mention the <tt class="docutils literal"><span class="pre">bin</span></tt> script you created in your <tt class="docutils literal"><span class="pre">setup.py</span></tt> so that it gets installed.</li>
+<li>Use your <tt class="docutils literal"><span class="pre">setup.py</span></tt> to install your own module and make sure it works, then use
+<tt class="docutils literal"><span class="pre">pip</span></tt> to uninstall it.</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex47.html" title="Exercise 47: Automated Testing"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex45.html" title="Exercise 45: You Make A Game"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex46.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+</html>

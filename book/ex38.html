@@ -1,0 +1,284 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex38.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 38: Doing Things To Lists &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 39: Dictionaries, Oh Lovely Dictionaries" href="ex39.html" />
+    <link rel="prev" title="Exercise 37: Symbol Review" href="ex37.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex39.html" title="Exercise 39: Dictionaries, Oh Lovely Dictionaries"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex37.html" title="Exercise 37: Symbol Review"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-38-doing-things-to-lists">
+<h1>Exercise 38: Doing Things To Lists<a class="headerlink" href="#exercise-38-doing-things-to-lists" title="Permalink to this headline">¶</a></h1>
+<p>You have learned about lists. When you learned about <tt class="docutils literal"><span class="pre">while-loops</span></tt> you
+&quot;appended&quot; numbers to the end of a list and printed them out.   There was also
+extra credit where you were supposed to find all the other things you can do to
+lists in the Python documentation.  That was a while back, so go find in the
+book where you did that and review if you do not know what I'm talking about.</p>
+<p>Found it?  Remember it?  Good.  When you did this you had a list, and you &quot;called&quot; the
+function <tt class="docutils literal"><span class="pre">append</span></tt> on it.  However, you may not really understand what's going on so let's see what
+we can do to lists.</p>
+<p>When you type Python code that reads <tt class="docutils literal"><span class="pre">mystuff.append('hello')</span></tt> you are actually
+setting off a chain of events inside Python to cause something to happen to the
+<tt class="docutils literal"><span class="pre">mystuff</span></tt> list.  Here's how it works:</p>
+<ol class="arabic simple">
+<li>Python sees you mentioned <tt class="docutils literal"><span class="pre">mystuff</span></tt> and looks up that variable.  It might have to
+look backwards to see if you created with <tt class="docutils literal"><span class="pre">=</span></tt>, look and see if it is a function
+argument, or maybe it's a global variable.  Either way it has to find the <tt class="docutils literal"><span class="pre">mystuff</span></tt>
+first.</li>
+<li>Once it finds <tt class="docutils literal"><span class="pre">mystuff</span></tt> it then hits the <tt class="docutils literal"><span class="pre">.</span></tt> (period) operator and starts to look
+at <em>variables</em> that are a part of <tt class="docutils literal"><span class="pre">mystuff</span></tt>.  Since <tt class="docutils literal"><span class="pre">mystuff</span></tt> is a list, it knows
+that <tt class="docutils literal"><span class="pre">mystuff</span></tt> has a bunch of functions.</li>
+<li>It then hits <tt class="docutils literal"><span class="pre">append</span></tt> and compares the name &quot;append&quot; to all the ones that <tt class="docutils literal"><span class="pre">mystuff</span></tt>
+says it owns.  If append is in there (it is) then it grabs <em>that</em> to use.</li>
+<li>Next Python sees the <tt class="docutils literal"><span class="pre">(</span></tt> (parenthesis) and realizes, &quot;Oh hey, this should be a function.&quot;
+At this point it <em>calls</em> (aka runs, executes) the function just like normally, but instead it calls the function
+with an <em>extra</em> argument.</li>
+<li>That <em>extra</em> argument is ... <tt class="docutils literal"><span class="pre">mystuff</span></tt>!  I know, weird right?  But that's how Python
+works so it's best to just remember it and assume that's alright.  What happens then, at
+the end of all this is a function call that looks like: <tt class="docutils literal"><span class="pre">append(mystuff,</span> <span class="pre">'hello')</span></tt>
+instead of what you read which is <tt class="docutils literal"><span class="pre">mystuff.append('hello')</span></tt>.</li>
+</ol>
+<p>For the most part you do not have to know that this is going on, but it helps when you
+get error messages from python like this:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="go">$ python</span>
+<span class="go">Python 2.6.5 (r265:79063, Apr 16 2010, 13:57:41)</span>
+<span class="go">[GCC 4.4.3] on linux2</span>
+<span class="go">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Thing</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">hi</span><span class="p">):</span>
+<span class="gp">... </span>            <span class="k">print</span> <span class="s">&quot;hi&quot;</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Thing</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">test() takes exactly 1 argument (2 given)</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>What was all that?  Well, this is me typing into the Python shell and showing you
+some magic.  You haven't seen <tt class="docutils literal"><span class="pre">class</span></tt> yet but we'll get into those later.  For
+now you see how Python said <tt class="docutils literal"><span class="pre">test()</span> <span class="pre">takes</span> <span class="pre">exactly</span> <span class="pre">1</span> <span class="pre">argument</span> <span class="pre">(2</span> <span class="pre">given)</span></tt>.  If
+you see this it means that python changed <tt class="docutils literal"><span class="pre">a.test(&quot;hello&quot;)</span></tt> to <tt class="docutils literal"><span class="pre">test(a,</span> <span class="pre">&quot;hello&quot;)</span></tt>
+and that somewhere someone messed up and didn't add the argument for <tt class="docutils literal"><span class="pre">a</span></tt>.</p>
+<p>That might be a lot to take in, but we're going to spend a few exercises getting this
+concept firm in your brain.  To kick things off, here's an exercise that mixes
+strings and lists for all kinds of fun.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">ten_things</span> <span class="o">=</span> <span class="s">&quot;Apples Oranges Crows Telephone Light Sugar&quot;</span>
+
+<span class="k">print</span> <span class="s">&quot;Wait there&#39;s not 10 things in that list, let&#39;s fix that.&quot;</span>
+
+<span class="n">stuff</span> <span class="o">=</span> <span class="n">ten_things</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">)</span>
+<span class="n">more_stuff</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Day&quot;</span><span class="p">,</span> <span class="s">&quot;Night&quot;</span><span class="p">,</span> <span class="s">&quot;Song&quot;</span><span class="p">,</span> <span class="s">&quot;Frisbee&quot;</span><span class="p">,</span> <span class="s">&quot;Corn&quot;</span><span class="p">,</span> <span class="s">&quot;Banana&quot;</span><span class="p">,</span> <span class="s">&quot;Girl&quot;</span><span class="p">,</span> <span class="s">&quot;Boy&quot;</span><span class="p">]</span>
+
+<span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">stuff</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="n">next_one</span> <span class="o">=</span> <span class="n">more_stuff</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="k">print</span> <span class="s">&quot;Adding: &quot;</span><span class="p">,</span> <span class="n">next_one</span>
+    <span class="n">stuff</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_one</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&quot;There&#39;s </span><span class="si">%d</span><span class="s"> items now.&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">stuff</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s">&quot;There we go: &quot;</span><span class="p">,</span> <span class="n">stuff</span>
+
+<span class="k">print</span> <span class="s">&quot;Let&#39;s do some things with stuff.&quot;</span>
+
+<span class="k">print</span> <span class="n">stuff</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">stuff</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c"># whoa! fancy</span>
+<span class="k">print</span> <span class="n">stuff</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="k">print</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">stuff</span><span class="p">)</span> <span class="c"># what? cool!</span>
+<span class="k">print</span> <span class="s">&#39;#&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">stuff</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span> <span class="c"># super stellar!</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Wait there&#39;s not 10 things in that list, let&#39;s fix that.</span>
+<span class="go">Adding:  Boy</span>
+<span class="go">There&#39;s 7 items now.</span>
+<span class="go">Adding:  Girl</span>
+<span class="go">There&#39;s 8 items now.</span>
+<span class="go">Adding:  Banana</span>
+<span class="go">There&#39;s 9 items now.</span>
+<span class="go">Adding:  Corn</span>
+<span class="go">There&#39;s 10 items now.</span>
+<span class="go">There we go:  [&#39;Apples&#39;, &#39;Oranges&#39;, &#39;Crows&#39;, &#39;Telephone&#39;, &#39;Light&#39;, &#39;Sugar&#39;, &#39;Boy&#39;, &#39;Girl&#39;, &#39;Banana&#39;, &#39;Corn&#39;]</span>
+<span class="go">Let&#39;s do some things with stuff.</span>
+<span class="go">Oranges</span>
+<span class="go">Corn</span>
+<span class="go">Corn</span>
+<span class="go">Apples Oranges Crows Telephone Light Sugar Boy Girl Banana</span>
+<span class="go">Telephone#Light</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Take each function that is called, and go through the steps outlined above to translate them to what
+Python does.  For example, <tt class="docutils literal"><span class="pre">'</span> <span class="pre">'.join(things)</span></tt> is <tt class="docutils literal"><span class="pre">join('</span> <span class="pre">',</span> <span class="pre">things)</span></tt>.</li>
+<li>Translate these two ways to view the function calls in English.  For example, <tt class="docutils literal"><span class="pre">'</span> <span class="pre">'.join(things)</span></tt>
+reads as, &quot;Join things with ' ' between them.&quot;  Meanwhile, <tt class="docutils literal"><span class="pre">join('</span> <span class="pre">',</span> <span class="pre">things)</span></tt> means,
+&quot;Call join with ' ' and things.&quot;  Understand how they are really the same thing.</li>
+<li>Go read about &quot;Object Oriented Programming&quot; online.  Confused?  I was too.  Do not worry.
+You will learn enough to be dangerous, and you can slowly learn more later.</li>
+<li>Read up on what a &quot;class&quot; is in Python.  <em>Do not read about how other languages use the word &quot;class&quot;.</em> That will only mess you up.</li>
+<li>What's the relationship between <tt class="docutils literal"><span class="pre">dir(something)</span></tt> and the &quot;class&quot; of <tt class="docutils literal"><span class="pre">something</span></tt>?</li>
+<li>If you do not have any idea what I'm talking about do not worry.  Programmers like to feel smart
+so they invented Object Oriented Programming, named it OOP, and then used it way too much.  If you
+think that's hard, you should try to use &quot;functional programming&quot;.</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex39.html" title="Exercise 39: Dictionaries, Oh Lovely Dictionaries"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex37.html" title="Exercise 37: Symbol Review"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex38.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+</html>

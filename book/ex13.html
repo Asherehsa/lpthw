@@ -1,0 +1,285 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex13.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 13: Parameters, Unpacking, Variables &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 14: Prompting And Passing" href="ex14.html" />
+    <link rel="prev" title="Exercise 12: Prompting People" href="ex12.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex14.html" title="Exercise 14: Prompting And Passing"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex12.html" title="Exercise 12: Prompting People"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-13-parameters-unpacking-variables">
+<h1>Exercise 13: Parameters, Unpacking, Variables<a class="headerlink" href="#exercise-13-parameters-unpacking-variables" title="Permalink to this headline">¶</a></h1>
+<p>In this exercise we will cover one more input method you can use to pass
+variables to a script (script being another name for your <tt class="docutils literal"><span class="pre">.py</span></tt> files).  You
+know how you type <tt class="docutils literal"><span class="pre">python</span> <span class="pre">ex13.py</span></tt> to run the <tt class="docutils literal"><span class="pre">ex13.py</span></tt> file?  Well the
+<tt class="docutils literal"><span class="pre">ex13.py</span></tt> part of the command is called an &quot;argument&quot;.  What we'll do now is
+write a script that also accepts arguments.</p>
+<p>Type this program and I'll explain it in detail:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">argv</span>
+
+<span class="n">script</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">third</span> <span class="o">=</span> <span class="n">argv</span>
+
+<span class="k">print</span> <span class="s">&quot;The script is called:&quot;</span><span class="p">,</span> <span class="n">script</span>
+<span class="k">print</span> <span class="s">&quot;Your first variable is:&quot;</span><span class="p">,</span> <span class="n">first</span>
+<span class="k">print</span> <span class="s">&quot;Your second variable is:&quot;</span><span class="p">,</span> <span class="n">second</span>
+<span class="k">print</span> <span class="s">&quot;Your third variable is:&quot;</span><span class="p">,</span> <span class="n">third</span>
+</pre></div>
+</td></tr></table></div>
+<p>On line <tt class="docutils literal"><span class="pre">1</span></tt> we have what's called an &quot;import&quot;.  This is how you add
+features to your script from the Python feature set.  Rather than
+give you all the features at once, Python asks you to say what
+you plan to use.  This keeps your programs small, but it also acts
+as documentation for other programmers who read your code later.</p>
+<p>The <tt class="docutils literal"><span class="pre">argv</span></tt> is the &quot;argument variable&quot;, a very standard name in programming,
+that you will find used in many other languages.  This variable <em>holds</em> the
+arguments you pass to your Python script when you run it.  In the exercises you
+will get to play with this more and see what happens.</p>
+<p>Line 3 &quot;unpacks&quot; <tt class="docutils literal"><span class="pre">argv</span></tt> so that, rather than holding all the arguments, it
+gets assigned to four variables you can work with: <tt class="docutils literal"><span class="pre">script</span></tt>, <tt class="docutils literal"><span class="pre">first</span></tt>,
+<tt class="docutils literal"><span class="pre">second</span></tt>, and <tt class="docutils literal"><span class="pre">third</span></tt>.  This may look strange, but &quot;unpack&quot; is probably the
+best word to describe what it does.  It just says, &quot;Take whatever is in argv,
+unpack it, and assign it to all of these variables on the left in order.&quot;</p>
+<p>After that we just print them out like normal.</p>
+<div class="section" id="hold-up-features-have-another-name">
+<h2>Hold Up! Features Have Another Name<a class="headerlink" href="#hold-up-features-have-another-name" title="Permalink to this headline">¶</a></h2>
+<p>I call them &quot;features&quot; here (these little things you <tt class="docutils literal"><span class="pre">import</span></tt> to make
+your Python program do more) but nobody else calls them features. I just
+used that name because I needed to trick you into learning what they
+are without jargon.  Before you can continue, you need to learn
+their real name:  <tt class="docutils literal"><span class="pre">modules</span></tt>.</p>
+<p>From now on we will be calling these &quot;features&quot; that we <tt class="docutils literal"><span class="pre">import</span></tt> <em>modules</em>.
+I'll say things like, &quot;You want to import the <tt class="docutils literal"><span class="pre">sys</span></tt> module.&quot;  They are
+also called &quot;libraries&quot; by other programmers, but let's just stick with
+modules.</p>
+</div>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<p>Run the program like this (and you <em>must</em> pass <em>three</em> command line arguments):</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">python ex13.py first 2nd 3rd</span>
+</pre></div>
+</div>
+<p>This is what you should see when you do a few different runs
+with different arguments:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python ex13.py first 2nd 3rd
+<span class="go">The script is called: ex13.py</span>
+<span class="go">Your first variable is: first</span>
+<span class="go">Your second variable is: 2nd</span>
+<span class="go">Your third variable is: 3rd</span>
+
+<span class="gp">$</span> python ex13.py cheese apples bread
+<span class="go">The script is called: ex13.py</span>
+<span class="go">Your first variable is: cheese</span>
+<span class="go">Your second variable is: apples</span>
+<span class="go">Your third variable is: bread</span>
+
+<span class="gp">$</span> python ex13.py Zed A. Shaw
+<span class="go">The script is called: ex13.py</span>
+<span class="go">Your first variable is: Zed</span>
+<span class="go">Your second variable is: A.</span>
+<span class="go">Your third variable is: Shaw</span>
+</pre></div>
+</div>
+<p>You can actually replace &quot;first&quot;, &quot;2nd&quot;, and &quot;3rd&quot; with any three things.
+You do not have to give these parameters either, you can give any 3 strings
+you want:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">python ex13.py stuff I like</span>
+<span class="go">python ex13.py anything 6 7</span>
+</pre></div>
+</div>
+<p>If you do not run it correctly, then you will get an error like this:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">python ex13.py first 2nd</span>
+<span class="go">Traceback (most recent call last):</span>
+<span class="go">  File &quot;ex/ex13.py&quot;, line 3, in &lt;module&gt;</span>
+<span class="go">    script, first, second, third = argv</span>
+<span class="go">ValueError: need more than 3 values to unpack</span>
+</pre></div>
+</div>
+<p>This happens when you do not put enough arguments on the command when you
+run it (in this case just <tt class="docutils literal"><span class="pre">first</span> <span class="pre">2nd</span></tt>).  Notice when I run it I give it
+<tt class="docutils literal"><span class="pre">first</span> <span class="pre">2nd</span></tt>, which caused it to give an error about &quot;need more than 3
+values to unpack&quot; telling you that you didn't give it enough parameters.</p>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Try giving fewer than three arguments to your script.  See that error
+you get?  See if you can explain it.</li>
+<li>Write a script that has fewer arguments and one that has more.  Make
+sure you give the unpacked variables good names.</li>
+<li>Combine <tt class="docutils literal"><span class="pre">raw_input</span></tt> with <tt class="docutils literal"><span class="pre">argv</span></tt> to make a script that gets more
+input from a user.</li>
+<li>Remember that modules give you features.  Modules.  Modules.  Remember this
+because we'll need it later.</li>
+</ol>
+</div>
+<div class="section" id="frequently-asked-questions">
+<h2>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>When I run it I get <tt class="docutils literal"><span class="pre">ValueError:</span> <span class="pre">need</span> <span class="pre">more</span> <span class="pre">than</span> <span class="pre">1</span> <span class="pre">value</span> <span class="pre">to</span> <span class="pre">unpack</span></tt>.</dt>
+<dd>Remember that an important skill is paying attention to details.
+If you look at the <em>What You Should See</em> section you see that I
+run the script with parameters on the command line.  You should
+replicate how I ran it exactly.</dd>
+<dt>What's the difference between <tt class="docutils literal"><span class="pre">argv</span></tt> and <tt class="docutils literal"><span class="pre">raw_input()</span></tt>?</dt>
+<dd>The different has to do with where the user is required to give input.
+If they give your script inputs on the command line, then you use
+<tt class="docutils literal"><span class="pre">argv</span></tt>.  If you want them to input using the keyboard while the
+script is running, then use <tt class="docutils literal"><span class="pre">raw_input()</span></tt>.</dd>
+<dt>Are the command line arguments strings?</dt>
+<dd>Yes, they come in as strings, even if you typed numbers on the command line.
+Use <tt class="docutils literal"><span class="pre">int()</span></tt> to convert them just like with <tt class="docutils literal"><span class="pre">raw_input()</span></tt>.</dd>
+<dt>How do you use the command line?</dt>
+<dd>You should have learned to use it real quick by now, but if you need
+to learn it at this stage, then read the Command Line Crash Course
+I wrote for this book at <a class="reference external" href="http://cli.learncodethehardway.org/book/">http://cli.learncodethehardway.org/book/</a></dd>
+<dt>I can't combine <tt class="docutils literal"><span class="pre">argv</span></tt> with <tt class="docutils literal"><span class="pre">raw_input()</span></tt>.</dt>
+<dd>Don't over think it.  Just slap two lines at the end of this script
+that uses <tt class="docutils literal"><span class="pre">raw_input()</span></tt> to get something and then print it. From that
+start playing with more ways to use both in the same script.</dd>
+<dt>Why can't I do this <tt class="docutils literal"><span class="pre">raw_input('?</span> <span class="pre">')</span> <span class="pre">=</span> <span class="pre">x</span></tt>?</dt>
+<dd>Because that's backwards to how it should work.  Do it the way I do it and it'll
+work.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex14.html" title="Exercise 14: Prompting And Passing"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex12.html" title="Exercise 12: Prompting People"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex13.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:15 GMT -->
+</html>

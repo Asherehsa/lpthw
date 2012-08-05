@@ -1,0 +1,224 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex34.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 34: Accessing Elements Of Lists &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 35: Branches and Functions" href="ex35.html" />
+    <link rel="prev" title="Exercise 33: While Loops" href="ex33.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex35.html" title="Exercise 35: Branches and Functions"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex33.html" title="Exercise 33: While Loops"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-34-accessing-elements-of-lists">
+<h1>Exercise 34: Accessing Elements Of Lists<a class="headerlink" href="#exercise-34-accessing-elements-of-lists" title="Permalink to this headline">¶</a></h1>
+<p>Lists are pretty useful, but unless you can get at the things in them they
+aren't all that good.  You can already go through the elements of a list in
+order, but what if you want say, the 5th element?  You need to know how to
+access the elements of a list.  Here's how you would access the <em>first</em> element
+of a list:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">animals</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;bear&#39;</span><span class="p">,</span> <span class="s">&#39;tiger&#39;</span><span class="p">,</span> <span class="s">&#39;penguin&#39;</span><span class="p">,</span> <span class="s">&#39;zebra&#39;</span><span class="p">]</span>
+<span class="n">bear</span> <span class="o">=</span> <span class="n">animals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>You take a list of animals, and then you get the first one using <tt class="docutils literal"><span class="pre">0</span></tt>?!  How
+does that work?  Because of the way math works, Python start its
+lists at 0 rather than 1.  It seems weird, but there's many advantages to this,
+even though it is mostly arbitrary.</p>
+<p>The best way to explain why is by showing you the difference between how
+you use numbers and how programmers use numbers.</p>
+<p>Imagine you are watching the four animals in our list above
+(<tt class="docutils literal"><span class="pre">['bear',</span> <span class="pre">'tiger',</span> <span class="pre">'penguin',</span> <span class="pre">'zebra']</span></tt>) run in a race.  They win in the <em>order</em> we have
+them in this list.  The race was really exciting because, the animals
+didn't eat each other and somehow managed to run a race.  Your friend however
+shows up late and wants to know who won.  Does your friend say,
+&quot;Hey, who came in <em>zeroth</em>?&quot;  No, he says, &quot;Hey, who came in <em>first</em>?&quot;</p>
+<p>This is because the <em>order</em> of the animals is important.  You can't have the second
+animal without the first animal, and can't have the third without the second.  It's
+also impossible to have a &quot;zeroth&quot; animal since zero means nothing.  How can you have
+a nothing win a race?  It just doesn't make sense.  We call these kinds of
+numbers &quot;ordinal&quot; numbers, because they indicate an ordering of things.</p>
+<p>Programmers, however, can't think this way because they can pick any element
+out of a list at any point.  To a programmer, the above list is more like a deck
+of cards.  If they want the tiger, they grab it.  If they want the zebra, they
+can take it too.  This need to pull elements out of lists at random means that
+they need a way to indicate elements consistently by an address, or an &quot;index&quot;, and
+the best way to do that is to start the indices at 0.  Trust me on this, the math
+is <em>way</em> easier for these kinds of accesses.  This kind of number is a
+&quot;cardinal&quot; number and means you can pick at random, so there needs to be a 0
+element.</p>
+<p>So, how does this help you work with lists?  Simple, every time you say
+to yourself, &quot;I want the 3rd animal,&quot; you translate this &quot;ordinal&quot; number to
+a &quot;cardinal&quot; number by subtracting 1.  The &quot;3rd&quot; animal is at index 2 and is the
+penguin.  You have to do this because you have spent your whole life using ordinal
+numbers, and now you have to think in cardinal.  Just subtract 1 and you will
+be good.</p>
+<p>Remember:  ordinal == ordered, 1st; cardinal == cards at random, 0.</p>
+<p>Let's practice this.  Take this list of animals, and follow the exercises
+where I tell you to write down what animal you get for that ordinal or cardinal
+number.  Remember if I say &quot;first&quot;, &quot;second&quot;, etc. then I'm using ordinal, so
+subtract 1.  If I give you cardinal (0, 1, 2) then use it directly.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">animals</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;bear&#39;</span><span class="p">,</span> <span class="s">&#39;python&#39;</span><span class="p">,</span> <span class="s">&#39;peacock&#39;</span><span class="p">,</span> <span class="s">&#39;kangaroo&#39;</span><span class="p">,</span> <span class="s">&#39;whale&#39;</span><span class="p">,</span> <span class="s">&#39;platypus&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li>The animal at 1.</li>
+<li>The 3rd animal.</li>
+<li>The 1st animal.</li>
+<li>The animal at 3.</li>
+<li>The 5th animal.</li>
+<li>The animal at 2.</li>
+<li>The 6th animal.</li>
+<li>The animal at 4.</li>
+</ol>
+<p>For each of these, write out a full sentence of the form:  &quot;The 1st animal is at 0 and is a bear.&quot;
+Then say it backwards, &quot;The animal at 0 is the 1st animal and is a bear.&quot;</p>
+<p>Use your python to check your answers.</p>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Read about ordinal and cardinal numbers online.</li>
+<li>With what you know of the difference between these types of numbers, can you explain why the year 2010 in
+&quot;January 1, 2010&quot; really is 2010 and not 2009?  (Hint, you can't pick years at random.)</li>
+<li>Write some more lists and work out similar indexes until you can translate them.</li>
+<li>Use Python to check your answers to this as well.</li>
+</ol>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Programmers will tell you to read this guy named &quot;Dijkstra&quot; on this subject.
+I recommend you avoid his writings on this unless you enjoy being yelled at
+by someone who stopped programming at the same time programming started.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex35.html" title="Exercise 35: Branches and Functions"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex33.html" title="Exercise 33: While Loops"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex34.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+</html>

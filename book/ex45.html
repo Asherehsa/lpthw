@@ -1,0 +1,289 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex45.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 45: You Make A Game &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 46: A Project Skeleton" href="ex46.html" />
+    <link rel="prev" title="Exercise 44: Inheritance Vs. Composition" href="ex44.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex46.html" title="Exercise 46: A Project Skeleton"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex44.html" title="Exercise 44: Inheritance Vs. Composition"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-45-you-make-a-game">
+<h1>Exercise 45: You Make A Game<a class="headerlink" href="#exercise-45-you-make-a-game" title="Permalink to this headline">¶</a></h1>
+<p>You need to start learning to feed yourself.  Hopefully as you have worked
+through this book, you have learned that all the information you need is on the
+internet, you just have to go search for it.  The only thing you have been
+missing are the right words and what to look for when you search.  Now you
+should have a sense of it, so it's about time you struggled through a big
+project and tried to get it working.</p>
+<p>Here are your requirements:</p>
+<ol class="arabic simple">
+<li>Make a different game from the one I made.</li>
+<li>Use more than one file, and use <tt class="docutils literal"><span class="pre">import</span></tt> to use them.  Make
+sure you know what that is.</li>
+<li>Use <em>one class per room</em> and give the classes names that fit
+their purpose.  Like <tt class="docutils literal"><span class="pre">GoldRoom</span></tt>, <tt class="docutils literal"><span class="pre">KoiPondRoom</span></tt>.</li>
+<li>Your runner will need to know about these rooms, so make a class that runs
+them and knows about them.  There's plenty of ways to do this, but consider
+having each room return what room is next or setting a variable of what
+room is next.</li>
+</ol>
+<p>Other than that I leave it to you.  Spend a whole week on this and
+make it the best game you can.  Use classes, functions, dicts, lists anything
+you can to make it nice.  The purpose of this lesson is to teach you how to
+structure classes that need other classes inside other files.</p>
+<p>Remember, I'm not telling you <em>exactly</em> how to do this because you have to
+do this yourself.  Go figure it out.  Programming is problem solving, and
+that means trying things, experimenting, failing, scrapping your work, and
+trying again.  When you get stuck, ask for help and show people your code.
+If they are mean to you, ignore them, focus on the people who are not mean
+and offer to help.  Keep working it and cleaning it until it's good, then
+show it some more.</p>
+<p>Good luck, and see you in a week with your game.</p>
+<div class="section" id="evaluating-your-game">
+<h2>Evaluating Your Game<a class="headerlink" href="#evaluating-your-game" title="Permalink to this headline">¶</a></h2>
+<p>In this exercise you will evaluate the game you just made.  Maybe you got
+part-way through it and you got stuck.  Maybe you got it working but just barely.
+Either way, we're going to go through a bunch of things you should know now and
+make sure you covered them in your game.  We're going to study how to properly
+format a class, common conventions in using classes, and a lot of &quot;textbook&quot; knowledge.</p>
+<p>Why would I have you try to do it yourself and then show you how to do it right?
+From now on in the book I'm going to try to make you self-sufficient.  I've been
+holding your hand mostly this whole time, and I can't do that for much longer.
+I'm now instead going to give you things to do, have you do them on your own,
+and then give you ways to improve what you did.</p>
+<p>You will struggle at first and probably be very frustrated but stick
+with it and eventually you will build a mind for solving problems.  You will start
+to find creative solutions to problems rather than just copy solutions out of
+textbooks.</p>
+</div>
+<div class="section" id="function-style">
+<h2>Function Style<a class="headerlink" href="#function-style" title="Permalink to this headline">¶</a></h2>
+<p>All the other rules I've taught you about how to make a function nice apply here, but
+add these things:</p>
+<ul class="simple">
+<li>For various reasons, programmers call functions that are part of classes <tt class="docutils literal"><span class="pre">methods</span></tt>.
+It's mostly marketing but just be warned that every time you say &quot;function&quot; they'll
+annoyingly correct you and say &quot;method&quot;.  If they get too annoying, just ask them to
+demonstrate the mathematical basis that determines how a &quot;method&quot; is different from
+a &quot;function&quot; and they'll shut up.</li>
+<li>When you work with classes much of your time is spent talking about making the class
+&quot;do things&quot;.  Instead of naming your functions after what the function does, instead
+name it as if it's a command you are giving to the class.  Same as <tt class="docutils literal"><span class="pre">pop</span></tt> is saying
+&quot;Hey list, <tt class="docutils literal"><span class="pre">pop</span></tt> this off.&quot;  It isn't called <tt class="docutils literal"><span class="pre">remove_from_end_of_list</span></tt> because
+even though that's what it does, that's not a <em>command</em> to a list.</li>
+<li>Keep your functions small and simple.  For some reason when people start learning about
+classes they forget this.</li>
+</ul>
+</div>
+<div class="section" id="class-style">
+<h2>Class Style<a class="headerlink" href="#class-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Your class should use &quot;camel case&quot; like <tt class="docutils literal"><span class="pre">SuperGoldFactory</span></tt> rather than <tt class="docutils literal"><span class="pre">super_gold_factory</span></tt>.</li>
+<li>Try not to do too much in your <tt class="docutils literal"><span class="pre">__init__</span></tt> functions. It makes them harder to use.</li>
+<li>Your other functions should use &quot;underscore format&quot; so write <tt class="docutils literal"><span class="pre">my_awesome_hair</span></tt> and not
+<tt class="docutils literal"><span class="pre">myawesomehair</span></tt> or <tt class="docutils literal"><span class="pre">MyAwesomeHair</span></tt>.</li>
+<li>Be consistent in how you organize your function arguments.  If your class has to deal
+with users, dogs, and cats, keep that order throughout unless it really doesn't make
+sense.  If you have one function takes <tt class="docutils literal"><span class="pre">(dog,</span> <span class="pre">cat,</span> <span class="pre">user)</span></tt> and the other takes <tt class="docutils literal"><span class="pre">(user,</span> <span class="pre">cat,</span> <span class="pre">dog)</span></tt>, it'll be hard to use.</li>
+<li>Try not to use variables that come from the module or globals.  They should be fairly
+self-contained.</li>
+<li>A foolish consistency is the hobgoblin of little minds.  Consistency is good, but foolishly
+following some idiotic mantra because everyone else does is bad style.  Think for yourself.</li>
+<li>Always, <em>always</em> have <tt class="docutils literal"><span class="pre">class</span> <span class="pre">Name(object)</span></tt> format or else you will be in big trouble.</li>
+</ul>
+</div>
+<div class="section" id="code-style">
+<h2>Code Style<a class="headerlink" href="#code-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Give your code vertical space so people can read it.  You will find some very
+bad programmers who are able to write reasonable code, but who do not add
+<em>any</em> spaces.  This is bad style in any language because the human eye and
+brain use space and vertical alignment to scan and separate visual elements.
+Not having space is the same as giving your code an awesome camouflage paint job.</li>
+<li>If you can't read it out loud, it's probably hard to read.  If you are having a
+problem making something easy to use, try reading it out loud.  Not only
+does this force you to slow down and really read it, but it also helps you find
+difficult passages and things to change for readability.</li>
+<li>Try to do what other people are doing in Python until you find your own style.</li>
+<li>Once you find your own style, do not be a jerk about it.  Working with other people's
+code is part of being a programmer, and other people have really bad taste.
+Trust me, you will probably have really bad taste too and not even realize it.</li>
+<li>If you find someone who writes code in a style you like, try writing something
+that mimics their style.</li>
+</ul>
+</div>
+<div class="section" id="good-comments">
+<h2>Good Comments<a class="headerlink" href="#good-comments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>There are programmers who will tell you that your code should be readable
+enough that you do not need comments.  They'll then tell you in their most
+official sounding voice that, &quot;Ergo you should never write comments.&quot; Those
+programmers are either consultants who get paid more if other people can't
+use their code, or incompetents who tend to never work with other people.
+Ignore them and write comments.</li>
+<li>When you write comments, describe <em>why</em> you are doing what
+you are doing.  The code already says how, but why you did things the way
+you did is more important.</li>
+<li>When you write doc comments for your functions , make the
+comments documentation for someone who will have to use your code.  You do not
+have to go crazy, but a nice little sentence about what someone does with
+that function helps a lot.</li>
+<li>Finally, while comments are good, too many are bad, and you have to
+maintain them.  Keep your comments relatively short and to the point,
+and if you change a function, review the comment to make sure it's still
+correct.</li>
+</ul>
+</div>
+<div class="section" id="evaluate-your-game">
+<h2>Evaluate Your Game<a class="headerlink" href="#evaluate-your-game" title="Permalink to this headline">¶</a></h2>
+<p>I want you now to pretend you are me.  Adopt a very stern look, print out your
+code, and take a red pen and mark every mistake you find.  Anything from
+this exercise and from other things you have known.  Once you are done marking
+your code up, I want you to fix everything you came up with.  Then repeat this
+a couple of times, looking for anything that could be better.  Use all the
+tricks I've given you to break your code down into the smallest tiniest
+little analysis you can.</p>
+<p>The purpose of this exercise is to train your attention to detail on classes.
+Once you are done with this bit of code, find someone else's code and do the
+same thing.  Go through a printed copy of some part of it and point out all
+the mistakes and style errors you find.  Then fix it and see if your fixes
+can be done without breaking their program.</p>
+<p>I want you to do nothing but evaluate and fix code for the week.  Your own code
+and other people's.  It'll be pretty hard work, but when you are done your brain
+will be wired tight like a boxer's hands.</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex46.html" title="Exercise 46: A Project Skeleton"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex44.html" title="Exercise 44: Inheritance Vs. Composition"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex45.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+</html>

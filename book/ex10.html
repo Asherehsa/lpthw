@@ -1,0 +1,330 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex10.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 10: What Was That? &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 11: Asking Questions" href="ex11.html" />
+    <link rel="prev" title="Exercise 9: Printing, Printing, Printing" href="ex9.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex11.html" title="Exercise 11: Asking Questions"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex9.html" title="Exercise 9: Printing, Printing, Printing"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-10-what-was-that">
+<h1>Exercise 10: What Was That?<a class="headerlink" href="#exercise-10-what-was-that" title="Permalink to this headline">¶</a></h1>
+<p>In Exercise 9 I threw you some new stuff, just to keep you on your toes.  I
+showed you two ways to make a string that goes across multiple lines.  In the
+first way, I put the characters <tt class="docutils literal"><span class="pre">\n</span></tt> (back-slash <tt class="docutils literal"><span class="pre">n</span></tt>) between the names of
+the months.  What these two characters do is put a <tt class="docutils literal"><span class="pre">new</span> <span class="pre">line</span> <span class="pre">character</span></tt> into
+the string at that point.</p>
+<p>This use of the <tt class="docutils literal"><span class="pre">\</span></tt> (back-slash) character is a way we can put difficult-to-type
+characters into a string.  There are plenty of these &quot;escape sequences&quot; available
+for different characters you might want to put in, but there's a special one,
+the <tt class="docutils literal"><span class="pre">double</span> <span class="pre">back-slash</span></tt> which is just two of them <tt class="docutils literal"><span class="pre">\\</span></tt>.  These two characters
+will print just one back-slash.  We'll try a few of these sequences so you can
+see what I mean.</p>
+<p>Another important escape sequence is to escape a single-quote <tt class="docutils literal"><span class="pre">'</span></tt> or
+double-quote <tt class="docutils literal"><span class="pre">&quot;</span></tt>.  Imagine you have a string that uses double-quotes
+and you want to put a double-quote in for the output.  If you do this <tt class="docutils literal"><span class="pre">&quot;I</span> <span class="pre">&quot;understand&quot;</span> <span class="pre">joe.&quot;</span></tt>
+then Python will get confused since it will think the <tt class="docutils literal"><span class="pre">&quot;</span></tt> around <tt class="docutils literal"><span class="pre">&quot;understand&quot;</span></tt>
+actually <em>ends</em> the string.  You need a way to tell Python that the <tt class="docutils literal"><span class="pre">&quot;</span></tt> inside
+the string isn't a <em>real</em> double-quote.</p>
+<p>To solve this problem you <em>escape</em> double-quotes and single-quotes so Python
+knows to include in the string.  Here's an example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;I am 6&#39;2</span><span class="se">\&quot;</span><span class="s"> tall.&quot;</span>  <span class="c"># escape double-quote inside string</span>
+<span class="s">&#39;I am 6</span><span class="se">\&#39;</span><span class="s">2&quot; tall.&#39;</span>  <span class="c"># escape single-quote inside string</span>
+</pre></div>
+</div>
+<p>The second way is by using triple-quotes, which is just <tt class="docutils literal"><span class="pre">&quot;&quot;&quot;</span></tt> and works
+like a string, but you also can put as many lines of text you as want
+until you type <tt class="docutils literal"><span class="pre">&quot;&quot;&quot;</span></tt> again.  We'll also play with these.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">tabby_cat</span> <span class="o">=</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s">I&#39;m tabbed in.&quot;</span>
+<span class="n">persian_cat</span> <span class="o">=</span> <span class="s">&quot;I&#39;m split</span><span class="se">\n</span><span class="s">on a line.&quot;</span>
+<span class="n">backslash_cat</span> <span class="o">=</span> <span class="s">&quot;I&#39;m </span><span class="se">\\</span><span class="s"> a </span><span class="se">\\</span><span class="s"> cat.&quot;</span>
+
+<span class="n">fat_cat</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">I&#39;ll do a list:</span>
+<span class="se">\t</span><span class="s">* Cat food</span>
+<span class="se">\t</span><span class="s">* Fishies</span>
+<span class="se">\t</span><span class="s">* Catnip</span><span class="se">\n\t</span><span class="s">* Grass</span>
+<span class="s">&quot;&quot;&quot;</span>
+
+<span class="k">print</span> <span class="n">tabby_cat</span>
+<span class="k">print</span> <span class="n">persian_cat</span>
+<span class="k">print</span> <span class="n">backslash_cat</span>
+<span class="k">print</span> <span class="n">fat_cat</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<p>Look for the tab characters that you made.  In this exercise the spacing is
+important to get right.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python ex10.py
+<span class="go">	I&#39;m tabbed in.</span>
+<span class="go">I&#39;m split</span>
+<span class="go">on a line.</span>
+<span class="go">I&#39;m \ a \ cat.</span>
+
+<span class="go">I&#39;ll do a list:</span>
+<span class="go">	* Cat food</span>
+<span class="go">	* Fishies</span>
+<span class="go">	* Catnip</span>
+<span class="go">	* Grass</span>
+
+<span class="gp">$</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="escape-sequences">
+<h2>Escape Sequences<a class="headerlink" href="#escape-sequences" title="Permalink to this headline">¶</a></h2>
+<p>This is the list of all of the escape sequences Python supports.  You may not use
+many of these, but memorize their format and what they do anyway. Also try them out
+in some strings to see if you can make them work.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Escape</th>
+<th class="head">What it does.</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">\\</span></tt></td>
+<td>Backslash ()</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">\'</span></tt></td>
+<td>Single quote (')</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">\&quot;</span></tt></td>
+<td>Double quote (&quot;)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">\a</span></tt></td>
+<td>ASCII Bell (BEL)</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">\b</span></tt></td>
+<td>ASCII Backspace (BS)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">\f</span></tt></td>
+<td>ASCII Formfeed (FF)</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">\n</span></tt></td>
+<td>ASCII Linefeed (LF)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">\N{name}</span></tt></td>
+<td>Character named name in the Unicode database (Unicode only)</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">\r</span> <span class="pre">ASCII</span></tt></td>
+<td>Carriage Return (CR)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">\t</span> <span class="pre">ASCII</span></tt></td>
+<td>Horizontal Tab (TAB)</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">\uxxxx</span></tt></td>
+<td>Character with 16-bit hex value xxxx (Unicode only)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">\Uxxxxxxxx</span></tt></td>
+<td>Character with 32-bit hex value xxxxxxxx (Unicode only)</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">\v</span></tt></td>
+<td>ASCII Vertical Tab (VT)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">\ooo</span></tt></td>
+<td>Character with octal value ooo</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">\xhh</span></tt></td>
+<td>Character with hex value hh</td>
+</tr>
+</tbody>
+</table>
+<p>Here's a tiny piece of fun code to try out:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="s">&quot;-&quot;</span><span class="p">,</span><span class="s">&quot;|&quot;</span><span class="p">,</span><span class="s">&quot;</span><span class="se">\\</span><span class="s">&quot;</span><span class="p">,</span><span class="s">&quot;|&quot;</span><span class="p">]:</span>
+        <span class="k">print</span> <span class="s">&quot;</span><span class="si">%s</span><span class="se">\r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">,</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Memorize all the escape sequences by putting them on flash cards.</li>
+<li>Use <tt class="docutils literal"><span class="pre">'''</span></tt> (triple-single-quote) instead.  Can you see why you might use that instead of <tt class="docutils literal"><span class="pre">&quot;&quot;&quot;</span></tt>?</li>
+<li>Combine escape sequences and format strings to create a more complex format.</li>
+<li>Remember the <tt class="docutils literal"><span class="pre">%r</span></tt> format?  Combine <tt class="docutils literal"><span class="pre">%r</span></tt> with double-quote and
+single-quote escapes and print them out.  Compare %r with %s.
+Notice how %r prints it the way you'd write it in your file, but
+%s prints it the way you'd like to see it?</li>
+</ol>
+</div>
+<div class="section" id="frequently-asked-questions">
+<h2>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>I still haven't completely figured out the last exercise, should I continue?</dt>
+<dd>Yes, keep going and instead of stopping take notes listing things you don't understand for each exercise.  Periodically go
+through your notes and see if you can figure these things out after you've completed more exercises.  Sometimes though you may
+need to go back a few exercises and go through them again.</dd>
+<dt>What makes <tt class="docutils literal"><span class="pre">\\</span></tt> special compared to the other ones?</dt>
+<dd>It's not special, it's simply the way you would write out one backslash (<tt class="docutils literal"><span class="pre">\</span></tt>) character.  Think about why you
+would need this.</dd>
+<dt>When I write <tt class="docutils literal"><span class="pre">//</span></tt> or <tt class="docutils literal"><span class="pre">/n</span></tt> it doesn't work.</dt>
+<dd>That's because you are using a forward-slash <tt class="docutils literal"><span class="pre">/</span></tt> and not a backslash <tt class="docutils literal"><span class="pre">\</span></tt>.  They are different characters that
+do very different things.</dd>
+<dt>When I use a <tt class="docutils literal"><span class="pre">%r</span></tt> format none of the escape sequences work.</dt>
+<dd>That's because <tt class="docutils literal"><span class="pre">%r</span></tt> is printing out the raw representation of what you typed, which is going to include
+the original escape sequences. Use <tt class="docutils literal"><span class="pre">%s</span></tt> instead. Always remember this:  <tt class="docutils literal"><span class="pre">%r</span></tt> is for debugging, <tt class="docutils literal"><span class="pre">%s</span></tt> is for displaying.</dd>
+<dt>I don't get Extra Credit #3. What do you mean by &quot;combine&quot; escapes and formats?</dt>
+<dd>One of the things I try to get you to understand is taht each of these exercises can be combined
+to solve problems.  Take what you know about format sequences and write some new code that uses
+those <em>and</em> the escapes from this exercise.</dd>
+<dt>What's better, <tt class="docutils literal"><span class="pre">'''</span></tt> or <tt class="docutils literal"><span class="pre">&quot;&quot;&quot;</span></tt>?</dt>
+<dd>It's entirely based on style.  Go with the <tt class="docutils literal"><span class="pre">'''</span></tt> (triple-single-quote) style for now
+but be ready to use either depending on what feels best or what everyone else is doing.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex11.html" title="Exercise 11: Asking Questions"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex9.html" title="Exercise 9: Printing, Printing, Printing"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex10.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+</html>

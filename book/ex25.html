@@ -1,0 +1,373 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex25.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:15 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 25: Even More Practice &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 26: Congratulations, Take A Test!" href="ex26.html" />
+    <link rel="prev" title="Exercise 24: More Practice" href="ex24.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex26.html" title="Exercise 26: Congratulations, Take A Test!"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex24.html" title="Exercise 24: More Practice"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-25-even-more-practice">
+<h1>Exercise 25: Even More Practice<a class="headerlink" href="#exercise-25-even-more-practice" title="Permalink to this headline">¶</a></h1>
+<p>We're going to do some more practice involving functions and variables to make
+sure you know them well.  This exercise should be straight forward for you to
+type in, break down, and understand.</p>
+<p>However, this exercise is a little different.  You won't be running it.
+Instead <em>you</em> will import it into your python and run the functions yourself.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">break_words</span><span class="p">(</span><span class="n">stuff</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This function will break up words for us.&quot;&quot;&quot;</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">stuff</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">words</span>
+
+<span class="k">def</span> <span class="nf">sort_words</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sorts the words.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">print_first_word</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Prints the first word after popping it off.&quot;&quot;&quot;</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">words</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">word</span>
+
+<span class="k">def</span> <span class="nf">print_last_word</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Prints the last word after popping it off.&quot;&quot;&quot;</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">words</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">word</span>
+
+<span class="k">def</span> <span class="nf">sort_sentence</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Takes in a full sentence and returns the sorted words.&quot;&quot;&quot;</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">break_words</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sort_words</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">print_first_and_last</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Prints the first and last words of the sentence.&quot;&quot;&quot;</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">break_words</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+    <span class="n">print_first_word</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+    <span class="n">print_last_word</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">print_first_and_last_sorted</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sorts the words then prints the first and last one.&quot;&quot;&quot;</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">sort_sentence</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+    <span class="n">print_first_word</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+    <span class="n">print_last_word</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>First, run this like normal with <tt class="docutils literal"><span class="pre">python</span> <span class="pre">ex25.py</span></tt> to find any errors you have
+made.  Once you have found all of the errors you can and fixed them, you will
+then want to follow the WYSS section to complete the exercise.</p>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<p>In this exercise we're going to interact with your <tt class="docutils literal"><span class="pre">.py</span></tt> file inside
+the <tt class="docutils literal"><span class="pre">python</span></tt> interpreter you used periodically to do calculations.</p>
+<p>Here's what it looks like when I do it:</p>
+<div class="highlight-pycon"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre></div></td><td class="code"><div class="highlight"><pre><span class="go">$ python</span>
+<span class="go">Python 2.5.1 (r251:54863, Feb  6 2009, 19:02:12) </span>
+<span class="go">[GCC 4.0.1 (Apple Inc. build 5465)] on darwin</span>
+<span class="go">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ex25</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sentence</span> <span class="o">=</span> <span class="s">&quot;All good things come to those who wait.&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">words</span> <span class="o">=</span> <span class="n">ex25</span><span class="o">.</span><span class="n">break_words</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">words</span>
+<span class="go">[&#39;All&#39;, &#39;good&#39;, &#39;things&#39;, &#39;come&#39;, &#39;to&#39;, &#39;those&#39;, &#39;who&#39;, &#39;wait.&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sorted_words</span> <span class="o">=</span> <span class="n">ex25</span><span class="o">.</span><span class="n">sort_words</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sorted_words</span>
+<span class="go">[&#39;All&#39;, &#39;come&#39;, &#39;good&#39;, &#39;things&#39;, &#39;those&#39;, &#39;to&#39;, &#39;wait.&#39;, &#39;who&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ex25</span><span class="o">.</span><span class="n">print_first_word</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="go">All</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ex25</span><span class="o">.</span><span class="n">print_last_word</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="go">wait.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wrods</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;wrods&#39; is not defined</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">words</span>
+<span class="go">[&#39;good&#39;, &#39;things&#39;, &#39;come&#39;, &#39;to&#39;, &#39;those&#39;, &#39;who&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ex25</span><span class="o">.</span><span class="n">print_first_word</span><span class="p">(</span><span class="n">sorted_words</span><span class="p">)</span>
+<span class="go">All</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ex25</span><span class="o">.</span><span class="n">print_last_word</span><span class="p">(</span><span class="n">sorted_words</span><span class="p">)</span>
+<span class="go">who</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sorted_words</span>
+<span class="go">[&#39;come&#39;, &#39;good&#39;, &#39;things&#39;, &#39;those&#39;, &#39;to&#39;, &#39;wait.&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sorted_words</span> <span class="o">=</span> <span class="n">ex25</span><span class="o">.</span><span class="n">sort_sentence</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sorted_words</span>
+<span class="go">[&#39;All&#39;, &#39;come&#39;, &#39;good&#39;, &#39;things&#39;, &#39;those&#39;, &#39;to&#39;, &#39;wait.&#39;, &#39;who&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ex25</span><span class="o">.</span><span class="n">print_first_and_last</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+<span class="go">All</span>
+<span class="go">wait.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ex25</span><span class="o">.</span><span class="n">print_first_and_last_sorted</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+<span class="go">All</span>
+<span class="go">who</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">^</span><span class="n">D</span>
+<span class="go">$</span>
+</pre></div>
+</td></tr></table></div>
+<p>Let's break this down line by line to make sure you know what's going
+on:</p>
+<ul class="simple">
+<li>Line 5 you import <em>your</em> <tt class="docutils literal"><span class="pre">ex25.py</span></tt> python file, just like other imports you have done.  Notice you do not need to put the <tt class="docutils literal"><span class="pre">.py</span></tt> at the end to import it.  When you do this you make a <tt class="docutils literal"><span class="pre">module</span></tt> that has all your functions in it to use.</li>
+<li>Line 6 you made a <tt class="docutils literal"><span class="pre">sentence</span></tt> to work with.</li>
+<li>Line 7 you use the <tt class="docutils literal"><span class="pre">ex25</span></tt> module and call your first function <tt class="docutils literal"><span class="pre">ex25.break_words</span></tt>.  The <tt class="docutils literal"><span class="pre">.</span></tt> (dot, period) symbol is how you tell python, &quot;Hey, inside <tt class="docutils literal"><span class="pre">ex25</span></tt> there's a function called <tt class="docutils literal"><span class="pre">break_words</span></tt> and I want to run it.&quot;</li>
+<li>Line 8 we just type <tt class="docutils literal"><span class="pre">words</span></tt>, and python will print out what's in that variable (line 9).  It looks weird but this is a <tt class="docutils literal"><span class="pre">list</span></tt> which you will learn about later.</li>
+<li>Lines 10-11 we do the same thing with <tt class="docutils literal"><span class="pre">ex25.sort_words</span></tt> to get a sorted sentence.</li>
+<li>Lines 13-16 we use <tt class="docutils literal"><span class="pre">ex25.print_first_word</span></tt> and <tt class="docutils literal"><span class="pre">ex25.print_last_word</span></tt> to get the first and last word printed out.</li>
+<li>Line 17 is interesting.  I made a mistake and typed the <tt class="docutils literal"><span class="pre">words</span></tt> variable as <tt class="docutils literal"><span class="pre">wrods</span></tt> so python gave me an error on Lines 18-20.</li>
+<li>Line 21-22 is where we print the modified words list. Notice that since we printed the first and last one, those words are now missing.</li>
+</ul>
+<p>The remaining lines are for you to figure out and analyze in the extra credit.</p>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Take the remaining lines of the WYSS output and figure out what they are doing.
+Make sure you understand how you are running your functions in the <tt class="docutils literal"><span class="pre">ex25</span></tt>
+module.</li>
+<li>Try doing this:  <tt class="docutils literal"><span class="pre">help(ex25)</span></tt> and also <tt class="docutils literal"><span class="pre">help(ex25.break_words)</span></tt>.  Notice how
+you get help for your module, and how the help is those odd <tt class="docutils literal"><span class="pre">&quot;&quot;&quot;</span></tt>
+strings you put after each function in ex25?  Those special strings are called
+<tt class="docutils literal"><span class="pre">documentation</span> <span class="pre">comments</span></tt> and we'll be seeing more of them.</li>
+<li>Typing <tt class="docutils literal"><span class="pre">ex25.</span></tt> is annoying.  A shortcut is to do your import like
+this:  <tt class="docutils literal"><span class="pre">from</span> <span class="pre">ex25</span> <span class="pre">import</span> <span class="pre">*</span></tt> which is like saying, &quot;Import everything
+from ex25.&quot;  Programmers like saying things backwards.  Start a new
+session and see how all your functions are right there.</li>
+<li>Try breaking your file and see what it looks like in <tt class="docutils literal"><span class="pre">python</span></tt> when you use it.
+You will have to quit python with CTRL-D (CTRL-Z on windows) to be able to reload it.</li>
+</ol>
+</div>
+<div class="section" id="frequently-asked-questions">
+<h2>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>I get a <tt class="docutils literal"><span class="pre">None</span></tt> printed out for some of the functions.</dt>
+<dd>You probalby have a function that is missing the <tt class="docutils literal"><span class="pre">return</span></tt> at the end.
+Go backwards through the file like I taught you and confirm that every
+line is right.</dd>
+<dt>I get <tt class="docutils literal"><span class="pre">-bash:</span> <span class="pre">import:</span> <span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></tt> when I type <tt class="docutils literal"><span class="pre">import</span> <span class="pre">ex15</span></tt>.</dt>
+<dd>Pay attention to what I'm doing in the <cite>What You Should See</cite> section.
+I'm doing this in <em>python</em> not in the terminal.  That means you first run
+python.</dd>
+<dt>I get <tt class="docutils literal"><span class="pre">ImportError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">ex25.py</span></tt> when I type <tt class="docutils literal"><span class="pre">import</span> <span class="pre">ex25.py</span></tt>.</dt>
+<dd>Don't add the <tt class="docutils literal"><span class="pre">.py</span></tt> to the end.  Python know's the file ends in <tt class="docutils literal"><span class="pre">.py</span></tt>
+so you just type <tt class="docutils literal"><span class="pre">import</span> <span class="pre">ex25</span></tt>.</dd>
+<dt>I get <tt class="docutils literal"><span class="pre">SyntaxError:</span> <span class="pre">invalid</span> <span class="pre">syntax</span></tt> when I run this.</dt>
+<dd>That means you have something like a missing <tt class="docutils literal"><span class="pre">(</span></tt> or <tt class="docutils literal"><span class="pre">&quot;</span></tt> or similar
+syntax error on that line or above it.  Any time you get that error, start
+at the line it mentions and check that it's right, then go backwards
+checking each line above that.</dd>
+<dt>I thought code in a function only impacts that function.  How can the <tt class="docutils literal"><span class="pre">words.pop(0)</span></tt> be changing the words variable then?</dt>
+<dd>That's a complicated question, but in this case <tt class="docutils literal"><span class="pre">words</span></tt> is a list, and
+because of that you can give it commands and it'll retain the results of
+those commands.  This is similar to how files and many other things worked
+when you were working with <tt class="docutils literal"><span class="pre">f.readline()</span></tt>.</dd>
+<dt>When should I <tt class="docutils literal"><span class="pre">print</span></tt> vs. <tt class="docutils literal"><span class="pre">return</span></tt> in a function?</dt>
+<dd>You need to understand that <tt class="docutils literal"><span class="pre">print</span></tt> is only for printing to the screen,
+and that you can actually do both <tt class="docutils literal"><span class="pre">print</span></tt> and return a value.  When you
+understand this then you'll see that the question is kind of a pointless
+question.  You use <tt class="docutils literal"><span class="pre">print</span></tt> when you want to print.  You use <tt class="docutils literal"><span class="pre">return</span></tt>
+when you want to return.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex26.html" title="Exercise 26: Congratulations, Take A Test!"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex24.html" title="Exercise 24: More Practice"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex25.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:15 GMT -->
+</html>

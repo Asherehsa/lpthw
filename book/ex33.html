@@ -1,0 +1,253 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex33.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 33: While Loops &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 34: Accessing Elements Of Lists" href="ex34.html" />
+    <link rel="prev" title="Exercise 32: Loops And Lists" href="ex32.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex34.html" title="Exercise 34: Accessing Elements Of Lists"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex32.html" title="Exercise 32: Loops And Lists"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-33-while-loops">
+<h1>Exercise 33: While Loops<a class="headerlink" href="#exercise-33-while-loops" title="Permalink to this headline">¶</a></h1>
+<p>Now to totally blow your mind with a new loop, the <tt class="docutils literal"><span class="pre">while-loop</span></tt>.
+A <tt class="docutils literal"><span class="pre">while-loop</span></tt> will keep executing the code block under it as long as
+a boolean expression is <tt class="docutils literal"><span class="pre">True</span></tt>.</p>
+<p>Wait, you have been keeping up with the terminology right?  That if we write a
+line and end it with a <tt class="docutils literal"><span class="pre">:</span></tt> (colon) then that tells Python to start a new
+block of code?  Then we indent and that's the new code.  This is all about
+structuring your programs so that Python knows what you mean.  If you do not
+get that idea then go back and do some more work with <tt class="docutils literal"><span class="pre">if-statements</span></tt>,
+functions, and the <tt class="docutils literal"><span class="pre">for-loop</span></tt> until you get it.</p>
+<p>Later on we'll have some exercises that will train your brain to read these
+structures, similar to how we burned boolean expressions into your brain.</p>
+<p>Back to <tt class="docutils literal"><span class="pre">while-loops</span></tt>. What they do is simply do a test like an
+<tt class="docutils literal"><span class="pre">if-statement</span></tt>, but instead of running the code block <em>once</em>, they jump back
+to the &quot;top&quot; where the <tt class="docutils literal"><span class="pre">while</span></tt> is, and repeat.  It keeps doing this until the
+expression is <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+<p>Here's the problem with <tt class="docutils literal"><span class="pre">while-loops</span></tt>: Sometimes they do not stop. This is
+great if your intention is to just keep looping until the end of the universe.
+Otherwise you almost always want your loops to end eventually.</p>
+<p>To avoid these problems, there's some rules to follow:</p>
+<ol class="arabic simple">
+<li>Make sure that you use <tt class="docutils literal"><span class="pre">while-loops</span></tt> sparingly.  Usually a <tt class="docutils literal"><span class="pre">for-loop</span></tt> is
+better.</li>
+<li>Review your while statements and make sure that the thing you are testing will
+become <tt class="docutils literal"><span class="pre">False</span></tt> at some point.</li>
+<li>When in doubt, print out your test variable at the top and bottom of the <tt class="docutils literal"><span class="pre">while-loop</span></tt>
+to see what it's doing.</li>
+</ol>
+<p>In this exercise, you will learn the <tt class="docutils literal"><span class="pre">while-loop</span></tt> by doing the above three things:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;At the top i is </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">i</span>
+    <span class="n">numbers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">print</span> <span class="s">&quot;Numbers now: &quot;</span><span class="p">,</span> <span class="n">numbers</span>
+    <span class="k">print</span> <span class="s">&quot;At the bottom i is </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">i</span>
+
+
+<span class="k">print</span> <span class="s">&quot;The numbers: &quot;</span>
+
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">num</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python ex33.py
+<span class="go">At the top i is 0</span>
+<span class="go">Numbers now:  [0]</span>
+<span class="go">At the bottom i is 1</span>
+<span class="go">At the top i is 1</span>
+<span class="go">Numbers now:  [0, 1]</span>
+<span class="go">At the bottom i is 2</span>
+<span class="go">At the top i is 2</span>
+<span class="go">Numbers now:  [0, 1, 2]</span>
+<span class="go">At the bottom i is 3</span>
+<span class="go">At the top i is 3</span>
+<span class="go">Numbers now:  [0, 1, 2, 3]</span>
+<span class="go">At the bottom i is 4</span>
+<span class="go">At the top i is 4</span>
+<span class="go">Numbers now:  [0, 1, 2, 3, 4]</span>
+<span class="go">At the bottom i is 5</span>
+<span class="go">At the top i is 5</span>
+<span class="go">Numbers now:  [0, 1, 2, 3, 4, 5]</span>
+<span class="go">At the bottom i is 6</span>
+<span class="go">The numbers: </span>
+<span class="go">0</span>
+<span class="go">1</span>
+<span class="go">2</span>
+<span class="go">3</span>
+<span class="go">4</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Convert this while loop to a function that you can call, and
+replace <tt class="docutils literal"><span class="pre">6</span></tt> in the test (<tt class="docutils literal"><span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">6</span></tt>) with a variable.</li>
+<li>Now use this function to rewrite the script to try different numbers.</li>
+<li>Add another variable to the function arguments that you can pass in that
+lets you change the <tt class="docutils literal"><span class="pre">+</span> <span class="pre">1</span></tt> on line 8 so you can change how much it
+increments by.</li>
+<li>Rewrite the script again to use this function to see what effect that has.</li>
+<li>Now, write it to use <tt class="docutils literal"><span class="pre">for-loops</span></tt> and <tt class="docutils literal"><span class="pre">range</span></tt> instead.  Do you need the incrementor in the middle anymore?  What happens if you do not get rid of it?</li>
+</ol>
+<p>If at any time that you are doing this it goes crazy (it probably will), just
+hold down <tt class="docutils literal"><span class="pre">CTRL</span></tt> and hit <tt class="docutils literal"><span class="pre">c</span></tt> (CTRL-c) and the program will abort.</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex34.html" title="Exercise 34: Accessing Elements Of Lists"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex32.html" title="Exercise 32: Loops And Lists"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex33.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+</html>

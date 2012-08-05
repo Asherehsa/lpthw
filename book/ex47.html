@@ -1,0 +1,319 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex47.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 47: Automated Testing &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 48: Advanced User Input" href="ex48.html" />
+    <link rel="prev" title="Exercise 46: A Project Skeleton" href="ex46.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex48.html" title="Exercise 48: Advanced User Input"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex46.html" title="Exercise 46: A Project Skeleton"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-47-automated-testing">
+<h1>Exercise 47: Automated Testing<a class="headerlink" href="#exercise-47-automated-testing" title="Permalink to this headline">¶</a></h1>
+<p>Having to type commands into your game over and over to make sure
+it's working is annoying.  Wouldn't it be better to write little pieces of code
+that test your code?  Then when you make a change, or add a new thing to your
+program, you just &quot;run your tests&quot; and the tests make sure things are still
+working.  These automated tests won't catch all your bugs, but they will
+cut down on the time you spend repeatedly typing and running your code.</p>
+<p>Every exercise after this one will not have a <tt class="docutils literal"><span class="pre">What</span> <span class="pre">You</span> <span class="pre">Should</span> <span class="pre">See</span></tt> section,
+but instead it will have a <tt class="docutils literal"><span class="pre">What</span> <span class="pre">You</span> <span class="pre">Should</span> <span class="pre">Test</span></tt> section.  You will be writing
+automated tests for all of your code starting now, and this will hopefully make you
+an even better programmer.</p>
+<p>I won't try to explain why you should write automated tests.  I will only say that,
+you are trying to be a programmer, and programmers automate boring and tedious
+tasks.  Testing a piece of software is definitely boring and tedious, so you might
+as well write a little bit of code to do it for you.</p>
+<p>That should be all the explanation you need because <em>your</em> reason for writing unit
+tests is to make your brain stronger.  You have gone through this book writing code
+to do things.  Now you are going to take the next leap and write code that
+knows about other code you have written.  This process of writing a test that runs
+some code you have written <em>forces</em> you to understand clearly what you have just written.
+It solidifies in your brain exactly what it does and why it works and gives you a new
+level of attention to detail.</p>
+<div class="section" id="writing-a-test-case">
+<h2>Writing A Test Case<a class="headerlink" href="#writing-a-test-case" title="Permalink to this headline">¶</a></h2>
+<p>We're going to take a very simple piece of code and write one simple test.  We're
+going to base this little test on a new project from your project skeleton.</p>
+<p>First, make a <tt class="docutils literal"><span class="pre">ex47</span></tt> project from your project skeleton.  Make sure you
+do it right and rename the module and get that first <tt class="docutils literal"><span class="pre">tests/ex47_tests.py</span></tt> test
+file going right.  Also make sure nose runs this test file.  <em>IMPORTANT</em> make sure you
+also delete <tt class="docutils literal"><span class="pre">tests/skel_tests.pyc</span></tt> if it's there.</p>
+<p>Next, create a simple file <tt class="docutils literal"><span class="pre">ex47/game.py</span></tt> where you can put the code to test.
+This will be a very silly little class that we want to test with this code
+in it:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Room</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paths</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">go</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paths</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>Once you have that file, change unit test skeleton to this:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nose.tools</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">ex47.game</span> <span class="kn">import</span> <span class="n">Room</span>
+
+
+<span class="k">def</span> <span class="nf">test_room</span><span class="p">():</span>
+    <span class="n">gold</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;GoldRoom&quot;</span><span class="p">,</span> 
+                <span class="sd">&quot;&quot;&quot;This room has gold in it you can grab. There&#39;s a</span>
+<span class="sd">                door to the north.&quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">gold</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s">&quot;GoldRoom&quot;</span><span class="p">)</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">gold</span><span class="o">.</span><span class="n">paths</span><span class="p">,</span> <span class="p">{})</span>
+
+<span class="k">def</span> <span class="nf">test_room_paths</span><span class="p">():</span>
+    <span class="n">center</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;Center&quot;</span><span class="p">,</span> <span class="s">&quot;Test room in the center.&quot;</span><span class="p">)</span>
+    <span class="n">north</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;North&quot;</span><span class="p">,</span> <span class="s">&quot;Test room in the north.&quot;</span><span class="p">)</span>
+    <span class="n">south</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;South&quot;</span><span class="p">,</span> <span class="s">&quot;Test room in the south.&quot;</span><span class="p">)</span>
+
+    <span class="n">center</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span><span class="s">&#39;north&#39;</span><span class="p">:</span> <span class="n">north</span><span class="p">,</span> <span class="s">&#39;south&#39;</span><span class="p">:</span> <span class="n">south</span><span class="p">})</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">center</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s">&#39;north&#39;</span><span class="p">),</span> <span class="n">north</span><span class="p">)</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">center</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s">&#39;south&#39;</span><span class="p">),</span> <span class="n">south</span><span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">test_map</span><span class="p">():</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;Start&quot;</span><span class="p">,</span> <span class="s">&quot;You can go west and down a hole.&quot;</span><span class="p">)</span>
+    <span class="n">west</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;Trees&quot;</span><span class="p">,</span> <span class="s">&quot;There are trees here, you can go east.&quot;</span><span class="p">)</span>
+    <span class="n">down</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;Dungeon&quot;</span><span class="p">,</span> <span class="s">&quot;It&#39;s dark down here, you can go up.&quot;</span><span class="p">)</span>
+
+    <span class="n">start</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span><span class="s">&#39;west&#39;</span><span class="p">:</span> <span class="n">west</span><span class="p">,</span> <span class="s">&#39;down&#39;</span><span class="p">:</span> <span class="n">down</span><span class="p">})</span>
+    <span class="n">west</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span><span class="s">&#39;east&#39;</span><span class="p">:</span> <span class="n">start</span><span class="p">})</span>
+    <span class="n">down</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span><span class="s">&#39;up&#39;</span><span class="p">:</span> <span class="n">start</span><span class="p">})</span>
+
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s">&#39;west&#39;</span><span class="p">),</span> <span class="n">west</span><span class="p">)</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s">&#39;west&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s">&#39;east&#39;</span><span class="p">),</span> <span class="n">start</span><span class="p">)</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s">&#39;down&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s">&#39;up&#39;</span><span class="p">),</span> <span class="n">start</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>This file imports the <tt class="docutils literal"><span class="pre">Room</span></tt> class you made in the <tt class="docutils literal"><span class="pre">ex47.game</span></tt>
+module so that you can do tests on it.  There are then a set of tests that are functions
+starting with <tt class="docutils literal"><span class="pre">test_</span></tt>.  Inside each test case there's a bit of code that makes
+a Room or a set of Rooms, and then makes sure the rooms work the way you expect them
+to work.  It tests out the basic room features, then the paths, then tries out a whole
+map.</p>
+<p>The important functions here are <tt class="docutils literal"><span class="pre">assert_equal</span></tt> which makes sure that variables
+you have set or paths you have built in a <tt class="docutils literal"><span class="pre">Room</span></tt> are actually what you think they are.
+If you get the wrong result, then <tt class="docutils literal"><span class="pre">nosetests</span></tt> will print out an error message
+so you can go figure it out.</p>
+</div>
+<div class="section" id="testing-guidelines">
+<h2>Testing Guidelines<a class="headerlink" href="#testing-guidelines" title="Permalink to this headline">¶</a></h2>
+<p>Follow these general loose set of guidelines when making your tests:</p>
+<ol class="arabic simple">
+<li>Test files go in <tt class="docutils literal"><span class="pre">tests/</span></tt> and are named <tt class="docutils literal"><span class="pre">BLAH_tests.py</span></tt> otherwise <tt class="docutils literal"><span class="pre">nosetests</span></tt>
+won't run them.  This also keeps your tests from clashing with your other code.</li>
+<li>Write one test file for each module you make.</li>
+<li>Keep your test cases (functions) short, but do not worry if they are a bit
+messy.  Test cases are usually kind of messy.</li>
+<li>Even though test cases are messy, try to keep them clean and remove any repetitive
+code you can.  Create helper functions that get rid of duplicate code.  You will thank
+me later when you make a change and then have to change your tests.  Duplicated
+code will make changing your tests more difficult.</li>
+<li>Finally, do not get too attached to your tests.  Sometimes, the best way to redesign
+something is to just delete it, the tests, and start over.</li>
+</ol>
+</div>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">~/projects/simplegame $ nosetests</span>
+<span class="go">...</span>
+<span class="go">----------------------------------------------------------------------</span>
+<span class="go">Ran 3 tests in 0.007s</span>
+
+<span class="go">OK</span>
+</pre></div>
+</div>
+<p>That's what you should see if everything is working right.  Try causing an error to see what
+that looks like and then fix it.</p>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Go read about nosetests more, and also read about alternatives.</li>
+<li>Learn about Python's &quot;doc tests&quot; and see if you like them better.</li>
+<li>Make your Room more advanced, and then use it to rebuild your game yet again
+but this time, unit test as you go.</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex48.html" title="Exercise 48: Advanced User Input"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex46.html" title="Exercise 46: A Project Skeleton"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex47.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+</html>

@@ -1,0 +1,607 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex44.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 44: Inheritance Vs. Composition &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 45: You Make A Game" href="ex45.html" />
+    <link rel="prev" title="Exercise 43: Gothons From Planet Percal #25" href="ex43.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex45.html" title="Exercise 45: You Make A Game"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex43.html" title="Exercise 43: Gothons From Planet Percal #25"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-44-inheritance-vs-composition">
+<h1>Exercise 44: Inheritance Vs. Composition<a class="headerlink" href="#exercise-44-inheritance-vs-composition" title="Permalink to this headline">¶</a></h1>
+<p>In the fairy tales about heroes defeating evil villains there's always a dark
+forest of some kind.  It could be a cave, a forest, another planet, just some
+place that everyone knows the hero shouldn't go.  Of course, shortly after the
+villain is introduced you find out, yes, the hero has to go to that stupid
+forest to kill the bad guy.  It seems the hero just keeps getting into
+situations that require him to risk his life in this evil forest.</p>
+<p>You rarely read fairy tales about the heroes who are smart enough to just avoid
+the whole situation entirely.  You never hear a hero say, &quot;Wait a minute, if I
+leave to make my fortunes on the high seas leaving Buttercup behind I could die
+and then she'd have to marry some ugly prince named Humperdink.  Humperdink!  I
+think I'll stay here and start a Farm Boy For Rent business.&quot;  If he did that
+there'd be no fire swamp, dying, reanimation, sword fights, giants, or any kind
+of story really.  Because of this, the forest in these stories seems to exist
+like a black hole that drags the hero in no matter what they do.</p>
+<p>In object oriented programming, Inheritance is the evil forest.  Experienced
+programmers know to avoid this evil because they know that deep inside the Dark
+Forest Inheritance is the Evil Queen Multiple Inheritance. She  likes to eat
+software and programmers with her massive complexity teeth, chewing on the
+flesh of the fallen. But, the forest is so powerful and so tempting that nearly
+every programmer has to go into it, and try to make it out alive with the Evil
+Queen's head before they can call themselves real programmers.  You just can't
+resist the Inheritance Forest's pull, so you go in.  After the adventure you
+learn to just stay out of that stupid forest and bring and army if you are ever
+forced to go in again.</p>
+<p>This is basically a funny way to say that I'm going to teach you something you
+should avoid called Inheritance.  Programmers who are currently in the forest
+battling the Queen will probably tell you that you have to go in.  They say
+this because they need your help since what they've created is probably too
+much for them to handle.  But, you should always remember this:</p>
+<p>Most of the uses of inheritance can be simplified or replaced with composition,
+and multiple-inheritance should be avoided at all costs.</p>
+<div class="section" id="what-is-inheritance">
+<h2>What Is Inheritance?<a class="headerlink" href="#what-is-inheritance" title="Permalink to this headline">¶</a></h2>
+<p>Inheritance is used to indicate that one class will get most or all of its
+features from a parent class.  This happens implicitly whenever you write
+<tt class="docutils literal"><span class="pre">class</span> <span class="pre">Foo(Bar)</span></tt> which says &quot;Make a class Foo that inherits from Bar.&quot; When
+you do this, the language makes any action that you do on instances of <cite>Foo</cite>
+also work as if they were done to an instance of <cite>Bar</cite>.  Doing this lets you
+put common functionality in the <cite>Bar</cite> class, then specialize that functionality
+in the <cite>Foo</cite> class as needed.</p>
+<p>When you are doing this kind of specialization, there's three ways that the
+parent and child classes can interact:</p>
+<ol class="arabic simple">
+<li>Actions on the child imply an action on the parent.</li>
+<li>Actions on the child override the action on the parent.</li>
+<li>Actions on the child alter the action on the parent.</li>
+</ol>
+<p>I will now demonstrate each of these in order and show you code for them.</p>
+<div class="section" id="implicit-inheritance">
+<h3>Implicit Inheritance<a class="headerlink" href="#implicit-inheritance" title="Permalink to this headline">¶</a></h3>
+<p>First I will show you the implicit actions that happen when you define
+a function in the parent, but <em>not</em> in the child.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Parent</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">implicit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;PARENT implicit()&quot;</span>
+
+<span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Parent</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="n">dad</span> <span class="o">=</span> <span class="n">Parent</span><span class="p">()</span>
+<span class="n">son</span> <span class="o">=</span> <span class="n">Child</span><span class="p">()</span>
+
+<span class="n">dad</span><span class="o">.</span><span class="n">implicit</span><span class="p">()</span>
+<span class="n">son</span><span class="o">.</span><span class="n">implicit</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p>The use of <cite>pass</cite> under the <tt class="docutils literal"><span class="pre">class</span> <span class="pre">Child:</span></tt> is how you tell Python that
+you want an empty block.  This creates a class named <cite>Child</cite> but says that
+there's nothing new to define in it.  Instead it will inherit all of its
+behavior from <cite>Parent</cite>.  When you run this code you get the following:</p>
+<div class="highlight-python"><pre>PARENT implicit()
+PARENT implicit()
+</pre>
+</div>
+<p>Notice how even though I'm calling <tt class="docutils literal"><span class="pre">son.implicit()</span></tt> on line 16, and even
+though <cite>Child</cite> does <em>not</em> have a <cite>implicit</cite> function defined, it still works
+and it calls the one defined in <cite>Parent</cite>.  This shows you that, if you put
+functions in a base class (i.e. <cite>Parent</cite>) then all subclasses (i.e. <cite>Child</cite>)
+will automatically get those features.  Very handy for repetitive code
+you need in many classes.</p>
+</div>
+<div class="section" id="override-explicitly">
+<h3>Override Explicitly<a class="headerlink" href="#override-explicitly" title="Permalink to this headline">¶</a></h3>
+<p>The problem with implicitly having functions called is sometimes you want
+the child to behave differently.  In this case you want to override the
+function in the child, effectively replacing the functionality.  To do
+this just define a function with the same name in <cite>Child</cite>.  Here's
+an example:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Parent</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">override</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;PARENT override()&quot;</span>
+
+<span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Parent</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">override</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;CHILD override()&quot;</span>
+
+<span class="n">dad</span> <span class="o">=</span> <span class="n">Parent</span><span class="p">()</span>
+<span class="n">son</span> <span class="o">=</span> <span class="n">Child</span><span class="p">()</span>
+
+<span class="n">dad</span><span class="o">.</span><span class="n">override</span><span class="p">()</span>
+<span class="n">son</span><span class="o">.</span><span class="n">override</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p>In this example example I have a function named <cite>override</cite> in both classes,
+so let's see what happens when you run it.</p>
+<div class="highlight-python"><pre>PARENT override()
+CHILD override()
+</pre>
+</div>
+<p>As you can see, when line 14 runs, it runs the <cite>Parent.override</cite> function
+because that variabe (<cite>dad</cite>) is a <cite>Parent</cite>.  But, when line 15 runs it
+prints out the <cite>Child.override</cite> messages because <cite>son</cite> is an instance
+of <cite>Child</cite> and child overrides that function by defining it's own version.</p>
+<p>Take a break right now and try playing with these two concepts before continuing.</p>
+</div>
+<div class="section" id="alter-before-or-after">
+<h3>Alter Before Or After<a class="headerlink" href="#alter-before-or-after" title="Permalink to this headline">¶</a></h3>
+<p>The third way to use inheritance is a special case of overriding where you
+want to alter the behavior before or after you the parent class's version
+runs.  You first override the function just like in the last example, but
+then you use a Python built-in function named <cite>super</cite> to get the <cite>Parent</cite>
+version to call.  Here's the example of doing that so you can make sense
+of this description:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Parent</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">altered</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;PARENT altered()&quot;</span>
+
+<span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Parent</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">altered</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;CHILD, BEFORE PARENT altered()&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Child</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">altered</span><span class="p">()</span>
+        <span class="k">print</span> <span class="s">&quot;CHILD, AFTER PARENT altered()&quot;</span>
+
+<span class="n">dad</span> <span class="o">=</span> <span class="n">Parent</span><span class="p">()</span>
+<span class="n">son</span> <span class="o">=</span> <span class="n">Child</span><span class="p">()</span>
+
+<span class="n">dad</span><span class="o">.</span><span class="n">altered</span><span class="p">()</span>
+<span class="n">son</span><span class="o">.</span><span class="n">altered</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p>The important lines here are 9-11, where in the child I do the following when
+<tt class="docutils literal"><span class="pre">son.altered()</span></tt> is called:</p>
+<ol class="arabic simple">
+<li>Because I've overridden <cite>Parent.altered</cite> the <cite>Child.altered</cite> version runs,
+and line 9 executes like you'd expect.</li>
+<li>In this case I want to do a before and after so after line 9, I want to
+use <cite>super</cite> to get the <cite>Parent.altered</cite> version.</li>
+<li>On line 10 I call <tt class="docutils literal"><span class="pre">super(Child,</span> <span class="pre">self).altered()</span></tt>, which is a lot like
+the <cite>getattr</cite> function you've used in the past, but it's aware of inheritance
+and will get the <cite>Parent</cite> class for you.  You should be able to read this
+as &quot;call <cite>super</cite> with arguments <cite>Child</cite> and <cite>self</cite>, then call the function
+<cite>altered</cite> on whatever it returns&quot;.</li>
+<li>At this point, the <cite>Parent.altered</cite> version of the function runs, and that
+prints out the parent message.</li>
+<li>Finally, this returns from the <cite>Parent.altered</cite> and the <cite>Child.altered</cite>
+function continues to print out the after message.</li>
+</ol>
+<p>If you then run this you should see this:</p>
+<div class="highlight-python"><pre>PARENT altered()
+CHILD, BEFORE PARENT altered()
+PARENT altered()
+CHILD, AFTER PARENT altered()
+</pre>
+</div>
+</div>
+<div class="section" id="all-three-combined">
+<h3>All Three Combined<a class="headerlink" href="#all-three-combined" title="Permalink to this headline">¶</a></h3>
+<p>To demonstrate all of these, I have a final version that shows each kind of
+interaction from inheritance in one file:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Parent</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">override</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;PARENT override()&quot;</span>
+
+    <span class="k">def</span> <span class="nf">implicit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;PARENT implicit()&quot;</span>
+
+    <span class="k">def</span> <span class="nf">altered</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;PARENT altered()&quot;</span>
+
+<span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Parent</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">override</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;CHILD override()&quot;</span>
+
+    <span class="k">def</span> <span class="nf">altered</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;CHILD, BEFORE PARENT altered()&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Child</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">altered</span><span class="p">()</span>
+        <span class="k">print</span> <span class="s">&quot;CHILD, AFTER PARENT altered()&quot;</span>
+
+<span class="n">dad</span> <span class="o">=</span> <span class="n">Parent</span><span class="p">()</span>
+<span class="n">son</span> <span class="o">=</span> <span class="n">Child</span><span class="p">()</span>
+
+<span class="n">dad</span><span class="o">.</span><span class="n">implicit</span><span class="p">()</span>
+<span class="n">son</span><span class="o">.</span><span class="n">implicit</span><span class="p">()</span>
+
+<span class="n">dad</span><span class="o">.</span><span class="n">override</span><span class="p">()</span>
+<span class="n">son</span><span class="o">.</span><span class="n">override</span><span class="p">()</span>
+
+<span class="n">dad</span><span class="o">.</span><span class="n">altered</span><span class="p">()</span>
+<span class="n">son</span><span class="o">.</span><span class="n">altered</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p>Go through each line of this code, and write a comment explaining what that
+line does and whether it's an override or not.  Then, run it and see that
+you get what you expected:</p>
+<div class="highlight-python"><pre>PARENT implicit()
+PARENT implicit()
+PARENT override()
+CHILD override()
+PARENT altered()
+CHILD, BEFORE PARENT altered()
+PARENT altered()
+CHILD, AFTER PARENT altered()
+</pre>
+</div>
+</div>
+</div>
+<div class="section" id="the-reason-for-super">
+<h2>The Reason For super()<a class="headerlink" href="#the-reason-for-super" title="Permalink to this headline">¶</a></h2>
+<p>This should seem like commons sense, but then we get into trouble with a thing
+called Multiple Inheritance.  Multiple Inheritance is when you define a class
+that inherits from one or <em>more</em> classes, like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">SuperFun</span><span class="p">(</span><span class="n">Child</span><span class="p">,</span> <span class="n">BadStuff</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>This is like saying, &quot;Make a class named <cite>SuperFun</cite> that inherits from
+the classes <cite>Child</cite> and <cite>BadStuff</cite> at the same time.&quot;</p>
+<p>In this case, whenever you have implicit actions on any <cite>SuperFun</cite> instance,
+Python has to lookup the possible function in the class hierarchy for both
+<cite>Child</cite> and <cite>BadStuff</cite>, but it needs to do this in a consistent order.  To
+do this Python uses something called &quot;Method Resolution Order&quot; (MRO) and an algorithm
+called C3 to get it straight.</p>
+<p>Because the MRO is complex, and a well defined algorithm is used, Python can't leave
+it to you to get it right.  That'd be annoying wouldn't it?  Instead, Python gives
+you the <cite>super()</cite> function which handles all of this for you in the places that
+you need the altering type of actions as I did in <cite>Child.altered</cite> above.
+With <cite>super()</cite> you don't have to worry about getting this right, and Python will
+find the right function for you.</p>
+<div class="section" id="using-super-with-init">
+<h3>Using super() With __init__<a class="headerlink" href="#using-super-with-init" title="Permalink to this headline">¶</a></h3>
+<p>The most common use of <cite>super()</cite> is actually in <cite>__init__</cite> functions in
+base classes.  This is usually the only place where you need to do some
+things in a child, then complete the initialization in the parent.  Here's
+a quick example of doing that in the <cite>Child</cite> from these examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Parent</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stuff</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stuff</span> <span class="o">=</span> <span class="n">stuff</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Child</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This is pretty much the same as the <cite>Child.altered</cite> example above, except
+I'm setting some variables in the <cite>__init__</cite> before having the <cite>Parent</cite>
+initialize with its <cite>Parent.__init__</cite>.</p>
+</div>
+</div>
+<div class="section" id="composition">
+<h2>Composition<a class="headerlink" href="#composition" title="Permalink to this headline">¶</a></h2>
+<p>Inheritance is useful, but another way to do the exact same thing is just to
+<em>use</em> other classes and modules, rather than rely on implicit inheritance.  If
+you look at the three ways to exploit inheritance, two of the three involve
+writing new code to replace or alter functionality.  This can easily be
+replicated by just calling functions in a module.  Here's an example of doing
+this:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Other</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">override</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;OTHER override()&quot;</span>
+
+    <span class="k">def</span> <span class="nf">implicit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;OTHER implicit()&quot;</span>
+
+    <span class="k">def</span> <span class="nf">altered</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;OTHER altered()&quot;</span>
+
+<span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">other</span> <span class="o">=</span> <span class="n">Other</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">implicit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">other</span><span class="o">.</span><span class="n">implicit</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">override</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;CHILD override()&quot;</span>
+
+    <span class="k">def</span> <span class="nf">altered</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;CHILD, BEFORE OTHER altered()&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">other</span><span class="o">.</span><span class="n">altered</span><span class="p">()</span>
+        <span class="k">print</span> <span class="s">&quot;CHILD, AFTER OTHER altered()&quot;</span>
+
+<span class="n">son</span> <span class="o">=</span> <span class="n">Child</span><span class="p">()</span>
+
+<span class="n">son</span><span class="o">.</span><span class="n">implicit</span><span class="p">()</span>
+<span class="n">son</span><span class="o">.</span><span class="n">override</span><span class="p">()</span>
+<span class="n">son</span><span class="o">.</span><span class="n">altered</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p>In this code I'm not using the name <cite>Parent</cite>, since there is <em>not</em> a parent-child is-a relationship.  This is a has-a relationship, where <cite>Child</cite> has-a <cite>Other</cite> that it
+uses to get its work done. When I run this I get the following output:</p>
+<div class="highlight-python"><pre>OTHER implicit()
+CHILD override()
+CHILD, BEFORE OTHER altered()
+OTHER altered()
+CHILD, AFTER OTHER altered()
+</pre>
+</div>
+<p>You can see that most of the code in <cite>Child</cite> and <cite>Other</cite> is the same to accomplish
+the same thing.  The only difference is that I had to define a <cite>Child.implicit</cite>
+function to do that one action.  I could then ask myself if I need this <cite>Other</cite>
+to be a class, and could I just make it into a module named <cite>other.py</cite>?</p>
+</div>
+<div class="section" id="when-to-use-inheritance-or-composition">
+<h2>When To Use Inheritance Or Composition<a class="headerlink" href="#when-to-use-inheritance-or-composition" title="Permalink to this headline">¶</a></h2>
+<p>The question of &quot;inheritance vs. composition&quot; comes down to an attempt to solve
+the problem of reusable code.  You don't want to have duplicated code all over
+your code, since that's not clean and efficient.  Inheritance solves this problem
+by creating a mechanism for you to have implied features in base classes.
+Composition solves this by giving you modules and the ability to simply call
+functions in other classes.</p>
+<p>If both solutions solve the problem of reuse, then which one is appropriate in
+which situations?  The answer is incredibly subjective, but I'll give you
+my three guidelines for when to do which:</p>
+<ol class="arabic simple">
+<li>Avoid multiple inheritance at all costs, as it's too complex to be useful reliably.  If you're stuck with it, then be prepared to know the class hierarchy and spend
+time finding where everything is coming from.</li>
+<li>Use composition to package up code into modules that is used in many different
+unrelated places and situations.</li>
+<li>Use inheritance only when there are clearly related reusable pieces of code
+that fit under a single common concept, or if you have to because of something
+you're using.</li>
+</ol>
+<p>However, do not be a slave to these rules.  The thing to remember about object
+oriented programming is that it is entirely a social convention programmers have
+created to package and share code.  Because it's a social convention, but one
+that's codified in Python, you may be forced to avoid these rules because of
+the people you work with.  In that case, find out how they use things and then
+just adapt to the situation.</p>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<p>There is only one extra credit for this exercise because it is a big exercise.
+Go and read this <a class="reference external" href="http://www.python.org/dev/peps/pep-0008/">http://www.python.org/dev/peps/pep-0008/</a> and start trying to use it
+in your code.  You'll notice that some of it is different from what you've been
+learning in this book, but now you should be able to understand their recommendations
+and use them in your own code.  The rest of the code in this book may or may
+not follow these guidelines depending on if it makes the code more confusing.  I
+suggest you also do this, as comprehension is more important than impressing everyone
+with you knowledge of esoteric style rules.</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex45.html" title="Exercise 45: You Make A Game"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex43.html" title="Exercise 43: Gothons From Planet Percal #25"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex44.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+</html>
