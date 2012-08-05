@@ -1,0 +1,117 @@
+Numbers - Types: Integers, Floats
+
+Strings
+
+Booleans
+All data structures are made up of these 3 basic ones
+
+Combine in expressions: formed of operands and operators
+Interpretor: evaluates and prints
+Script: no print unless explict
+
+>>> 3*4
+12
+>>> 3*"ab"
+'ababab'
+>>> 'a'+'bcd'
+'abcd'
+>>>
+Type conversion
+>>> 3+'ab'
+
+Traceback (most recent call last):
+  File "<pyshell#0>", line 1, in <module>
+    3+'ab'
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+>>> str(3)+'ab'
+'3ab'
+>>> 
+type checking
+	if python compares things badly it will end us as weird output later down the line
+	weak vs strong typing
+		how much it checks the type of variables
+		python is more strong (than things like LISP)
+	Excersise type disipline
+>>> 'a'<3
+False
+>>> 4<'4'
+True
+>>> '4'<'3'
+False
+	It is actually comparing the ASCII encoding
+>>> 9/5
+1
+>>> 9%5
+4
+>>> 3+4*5
+23
+	Follows order of operations
+	aka operator precedence
+	when in doubt use parenthesis
+
+Variables
+	done using Assignment statements
+	x=}*5
+	links the thing (x) to a value
+	z=x links z to x
+	Dynamic type
+		type of variable depends on what it is linked to
+		don't change types arbitrarily
+	You can use a variable anywhere you could use the value
+Statements
+	legal commands that python can interpret
+	ex: print, assignment
+	
+lecture 2 example
+x = 3 # Create variable x and assign value 3 to it
+x = x*x # bind x to value 9
+print x
+n = raw_input('Enter a number:')
+#Raw input takes input as a string (not a number)
+print x
+# print n/n
+
+Comments
+	If you can read and understand your code a year later then it is well commented
+	choice of variable names and an important way to comment your code
+		can't use keywords aa variable names
+			28 keywords
+
+Branching programs
+	can change the order of instructions based on some test
+	conditional
+x=15
+if (x/2)*2 == x:
+	print 'Even'
+else: print 'Odd'
+
+x=15
+if (x/2)*2 == x:print 'Even'
+else: print 'Odd'
+
+colon defines the beginning of a block of instructions
+If identifies the block
+Else instruction that is excecuted in the case that it is false
+
+if <some test>:
+	block of instructions
+else:
+	block of instructions
+also Ifs can be nested
+ex:
+x = 15
+y = 5
+z = 11
+print x,y,z
+#Is this right?
+if x < y:
+	if x < z: print 'x is least"
+	else: print 'z is least'
+else: print 'y is least'
+
+Have a test case for each possible 
+
+Boolian combination
+and, or, not
+type = boolian
+	true, false
