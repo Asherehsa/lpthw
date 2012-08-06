@@ -1,0 +1,343 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex49.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 49: Making Sentences &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 50: Your First Website" href="ex50.html" />
+    <link rel="prev" title="Exercise 48: Advanced User Input" href="ex48.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex50.html" title="Exercise 50: Your First Website"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex48.html" title="Exercise 48: Advanced User Input"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-49-making-sentences">
+<h1>Exercise 49: Making Sentences<a class="headerlink" href="#exercise-49-making-sentences" title="Permalink to this headline">¶</a></h1>
+<p>What we should be able to get from our little game lexicon scanner is a list that
+looks like this:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ex48</span> <span class="kn">import</span> <span class="n">lexicon</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">lexicon</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="s">&quot;go north&quot;</span><span class="p">)</span>
+<span class="go">[(&#39;verb&#39;, &#39;go&#39;), (&#39;direction&#39;, &#39;north&#39;)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">lexicon</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="s">&quot;kill the princess&quot;</span><span class="p">)</span>
+<span class="go">[(&#39;verb&#39;, &#39;kill&#39;), (&#39;stop&#39;, &#39;the&#39;), (&#39;noun&#39;, &#39;princess&#39;)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">lexicon</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="s">&quot;eat the bear&quot;</span><span class="p">)</span>
+<span class="go">[(&#39;verb&#39;, &#39;eat&#39;), (&#39;stop&#39;, &#39;the&#39;), (&#39;noun&#39;, &#39;bear&#39;)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">lexicon</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="s">&quot;open the door and smack the bear in the nose&quot;</span><span class="p">)</span>
+<span class="go">[(&#39;error&#39;, &#39;open&#39;), (&#39;stop&#39;, &#39;the&#39;), (&#39;noun&#39;, &#39;door&#39;), (&#39;error&#39;, &#39;and&#39;),</span>
+<span class="go">(&#39;error&#39;, &#39;smack&#39;), (&#39;stop&#39;, &#39;the&#39;), (&#39;noun&#39;, &#39;bear&#39;), (&#39;stop&#39;, &#39;in&#39;),</span>
+<span class="go">(&#39;stop&#39;, &#39;the&#39;), (&#39;error&#39;, &#39;nose&#39;)]</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Now let us turn this into something the game can work with, which
+would be some kind of Sentence class.</p>
+<p>If you remember grade school, a sentence can be a simple structure like:</p>
+<blockquote>
+<div>Subject Verb Object</div></blockquote>
+<p>Obviously it gets more complex than that, and you probably did many days of annoying
+sentence graphs for English class.  What we want is to turn the above lists of
+tuples into a nice Sentence object that has subject, verb, and object.</p>
+<div class="section" id="match-and-peek">
+<h2>Match And Peek<a class="headerlink" href="#match-and-peek" title="Permalink to this headline">¶</a></h2>
+<p>To do this we need four tools:</p>
+<ol class="arabic simple">
+<li>A way to loop through the list of tuples.  That's easy.</li>
+<li>A way to &quot;match&quot; different types of tuples that we expect in our Subject Verb Object setup.</li>
+<li>A way to &quot;peek&quot; at a potential tuple so we can make some decisions.</li>
+<li>A way to &quot;skip&quot; things we do not care about, like stop words.</li>
+</ol>
+<p>We use the peek function to say look at the next element in our tuple list, and then
+match to take one off and work with it.  Let's take a look at a first peek function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="n">word_list</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">word_list</span><span class="p">:</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+</pre></div>
+</div>
+<p>Very easy.  Now for the match function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">match</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="n">expecting</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">word_list</span><span class="p">:</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">word_list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">expecting</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">word</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+</pre></div>
+</div>
+<p>Again, very easy, and finally our skip function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="n">word_type</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">peek</span><span class="p">(</span><span class="n">word_list</span><span class="p">)</span> <span class="o">==</span> <span class="n">word_type</span><span class="p">:</span>
+        <span class="n">match</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="n">word_type</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>By now you should be able to figure out what these do.  Make sure you understand them.</p>
+</div>
+<div class="section" id="the-sentence-grammar">
+<h2>The Sentence Grammar<a class="headerlink" href="#the-sentence-grammar" title="Permalink to this headline">¶</a></h2>
+<p>With our tools we can now begin to build Sentence objects from our list of tuples.
+What we do is a process of:</p>
+<ol class="arabic simple">
+<li>Identify the next word with <tt class="docutils literal"><span class="pre">peek</span></tt>.</li>
+<li>If that word fits in our grammar, we call a function to handle that part
+of the grammar, say <tt class="docutils literal"><span class="pre">parse_subject</span></tt>.</li>
+<li>If it doesn't, we <tt class="docutils literal"><span class="pre">raise</span></tt> an error, which you will learn about in this lesson.</li>
+<li>When we're all done, we should have a Sentence object to work with in our game.</li>
+</ol>
+<p>The best way to demonstrate this is to give you the code to read, but here's where
+this exercise is different from the previous one:  You will write the test for the
+parser code I give you.  Rather than giving you the test so you can write the code,
+I will give you the code, and you have to write the test.</p>
+<p>Here's the code that I wrote for parsing simple sentences using the <tt class="docutils literal"><span class="pre">ex48.lexicon</span></tt>
+module:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">ParserError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">Sentence</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">verb</span><span class="p">,</span> <span class="nb">object</span><span class="p">):</span>
+        <span class="c"># remember we take (&#39;noun&#39;,&#39;princess&#39;) tuples and convert them</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subject</span> <span class="o">=</span> <span class="n">subject</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verb</span> <span class="o">=</span> <span class="n">verb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">object</span> <span class="o">=</span> <span class="nb">object</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="n">word_list</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">word_list</span><span class="p">:</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">match</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="n">expecting</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">word_list</span><span class="p">:</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">word_list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">expecting</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">word</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="n">word_type</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">peek</span><span class="p">(</span><span class="n">word_list</span><span class="p">)</span> <span class="o">==</span> <span class="n">word_type</span><span class="p">:</span>
+        <span class="n">match</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="n">word_type</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">parse_verb</span><span class="p">(</span><span class="n">word_list</span><span class="p">):</span>
+    <span class="n">skip</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="s">&#39;stop&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">peek</span><span class="p">(</span><span class="n">word_list</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#39;verb&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">match</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="s">&#39;verb&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ParserError</span><span class="p">(</span><span class="s">&quot;Expected a verb next.&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">parse_object</span><span class="p">(</span><span class="n">word_list</span><span class="p">):</span>
+    <span class="n">skip</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="s">&#39;stop&#39;</span><span class="p">)</span>
+    <span class="nb">next</span> <span class="o">=</span> <span class="n">peek</span><span class="p">(</span><span class="n">word_list</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">next</span> <span class="o">==</span> <span class="s">&#39;noun&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">match</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="s">&#39;noun&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">next</span> <span class="o">==</span> <span class="s">&#39;direction&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">match</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="s">&#39;direction&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ParserError</span><span class="p">(</span><span class="s">&quot;Expected a noun or direction next.&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">parse_subject</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="n">subj</span><span class="p">):</span>
+    <span class="n">verb</span> <span class="o">=</span> <span class="n">parse_verb</span><span class="p">(</span><span class="n">word_list</span><span class="p">)</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">parse_object</span><span class="p">(</span><span class="n">word_list</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Sentence</span><span class="p">(</span><span class="n">subj</span><span class="p">,</span> <span class="n">verb</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">parse_sentence</span><span class="p">(</span><span class="n">word_list</span><span class="p">):</span>
+    <span class="n">skip</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="s">&#39;stop&#39;</span><span class="p">)</span>
+
+    <span class="n">start</span> <span class="o">=</span> <span class="n">peek</span><span class="p">(</span><span class="n">word_list</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="s">&#39;noun&#39;</span><span class="p">:</span>
+        <span class="n">subj</span> <span class="o">=</span> <span class="n">match</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="s">&#39;noun&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">parse_subject</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="n">subj</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">start</span> <span class="o">==</span> <span class="s">&#39;verb&#39;</span><span class="p">:</span>
+        <span class="c"># assume the subject is the player then</span>
+        <span class="k">return</span> <span class="n">parse_subject</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;noun&#39;</span><span class="p">,</span> <span class="s">&#39;player&#39;</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ParserError</span><span class="p">(</span><span class="s">&quot;Must start with subject, object, or verb not: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">start</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="a-word-on-exceptions">
+<h2>A Word On Exceptions<a class="headerlink" href="#a-word-on-exceptions" title="Permalink to this headline">¶</a></h2>
+<p>You briefly learned about exceptions, but not how to raise them.  This code
+demonstrates how to do that with the <tt class="docutils literal"><span class="pre">ParserError</span></tt> at the top.  Notice
+that it uses classes to give it the type of <tt class="docutils literal"><span class="pre">Exception</span></tt>.  Also notice the use
+of <tt class="docutils literal"><span class="pre">raise</span></tt> keyword to raise the exception.</p>
+<p>In your tests, you will want to work with these exceptions, which I'll show you how
+to do.</p>
+</div>
+<div class="section" id="what-you-should-test">
+<h2>What You Should Test<a class="headerlink" href="#what-you-should-test" title="Permalink to this headline">¶</a></h2>
+<p>For Exercise 49 is write a complete test that confirms everything
+in this code is working.  That includes making exceptions happen by giving it
+bad sentences.</p>
+<p>Check for an exception by using the function <tt class="docutils literal"><span class="pre">assert_raises</span></tt> from the nose
+documentation.  Learn how to use this so you can write a test that is
+<em>expected</em> to fail, which is very important in testing.  Learn about this
+function (and others) by reading the nose documentation.</p>
+<p>When you are done, you should know how this bit of code works, and how
+to write a test for other people's code even if they do not want you to.  Trust me,
+it's a very handy skill to have.</p>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Change the <tt class="docutils literal"><span class="pre">parse_</span></tt> methods and try to put them into a class rather than
+be just methods.  Which design do you like better?</li>
+<li>Make the parser more error resistant so that you can avoid annoying your
+users if they type words your lexicon doesn't understand.</li>
+<li>Improve the grammar by handling more things like numbers.</li>
+<li>Think about how you might use this Sentence class in your game to do more fun
+things with a user's input.</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex50.html" title="Exercise 50: Your First Website"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex48.html" title="Exercise 48: Advanced User Input"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex49.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:17 GMT -->
+</html>

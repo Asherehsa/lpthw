@@ -1,0 +1,225 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex36.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 36: Designing and Debugging &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 37: Symbol Review" href="ex37.html" />
+    <link rel="prev" title="Exercise 35: Branches and Functions" href="ex35.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex37.html" title="Exercise 37: Symbol Review"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex35.html" title="Exercise 35: Branches and Functions"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-36-designing-and-debugging">
+<h1>Exercise 36: Designing and Debugging<a class="headerlink" href="#exercise-36-designing-and-debugging" title="Permalink to this headline">¶</a></h1>
+<p>Now that you know <tt class="docutils literal"><span class="pre">if-statements</span></tt>, I'm going to give you some rules for
+<tt class="docutils literal"><span class="pre">for-loops</span></tt> and <tt class="docutils literal"><span class="pre">while-loops</span></tt> that will keep you out of trouble.  I'm
+also going to give you some tips on debugging so that you can figure out
+problems with your program.  Finally, you are going to design a similar
+little game as in the last exercise but with a slight twist.</p>
+<div class="section" id="rules-for-if-statements">
+<h2>Rules For If-Statements<a class="headerlink" href="#rules-for-if-statements" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Every <tt class="docutils literal"><span class="pre">if-statement</span></tt> must have an <tt class="docutils literal"><span class="pre">else</span></tt>.</li>
+<li>If this <tt class="docutils literal"><span class="pre">else</span></tt> should never be run because it doesn't
+make sense, then you must use a <tt class="docutils literal"><span class="pre">die</span></tt> function in the <tt class="docutils literal"><span class="pre">else</span></tt> that
+prints out an error message and dies, just like we did in
+the last exercise.  This will find <em>many</em> errors.</li>
+<li>Never nest <tt class="docutils literal"><span class="pre">if-statements</span></tt> more than 2 deep and always try
+to do them 1 deep.  This means if you put an <tt class="docutils literal"><span class="pre">if</span></tt> in an <tt class="docutils literal"><span class="pre">if</span></tt>
+then you should be looking to move that second <tt class="docutils literal"><span class="pre">if</span></tt> into
+another function.</li>
+<li>Treat <tt class="docutils literal"><span class="pre">if-statements</span></tt> like paragraphs, where each <tt class="docutils literal"><span class="pre">if,elif,else</span></tt>
+grouping is like a set of sentences.  Put blank lines before and
+after.</li>
+<li>Your boolean tests should be simple.  If they are complex, move
+their calculations to variables earlier in your function and use
+a good name for the variable.</li>
+</ol>
+<p>If you follow these simple rules, you will start writing better code than most
+programmers.  Go back to the last exercise and see if I followed all of these
+rules.  If not, fix it.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Never be a slave to the rules in real life.  For training purposes
+you need to follow these rules to make your mind strong, but in
+real life sometimes these rules are just stupid.  If you think a
+rule is stupid, try not using it.</p>
+</div>
+</div>
+<div class="section" id="rules-for-loops">
+<h2>Rules For Loops<a class="headerlink" href="#rules-for-loops" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Use a <tt class="docutils literal"><span class="pre">while-loop</span></tt> only to loop forever, and that means probably
+never.  This only applies to Python, other languages are different.</li>
+<li>Use a <tt class="docutils literal"><span class="pre">for-loop</span></tt> for all other kinds of looping, especially if
+there is a fixed or limited number of things to loop over.</li>
+</ol>
+</div>
+<div class="section" id="tips-for-debugging">
+<h2>Tips For Debugging<a class="headerlink" href="#tips-for-debugging" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Do not use a &quot;debugger&quot;.  A debugger is like doing a full-body
+scan on a sick person.  You do not get any specific useful information,
+and you find a whole lot of information that doesn't help and is just
+confusing.</li>
+<li>The best way to debug a program is to use <tt class="docutils literal"><span class="pre">print</span></tt> to print
+out the values of variables at points in the program to see
+where they go wrong.</li>
+<li>Make sure parts of your programs work as you work on them.  Do
+not write massive files of code before you try to run them.
+Code a little, run a little, fix a little.</li>
+</ol>
+</div>
+<div class="section" id="homework">
+<h2>Homework<a class="headerlink" href="#homework" title="Permalink to this headline">¶</a></h2>
+<p>Now write a similar game to the one that I created in the last exercise.  It
+can be any kind of game you want in the same flavor. Spend a week on it making
+it as interesting as possible.  For extra credit, use lists, functions, and
+modules (remember those from Ex. 13?) as much as possible, and find as many new
+pieces of Python as you can to make the game work.</p>
+<p>There is one catch though, write up your idea for the game first.  Before you
+start coding you must write up a map for your game.  Create the rooms,
+monsters, and traps that the player must go through on paper before you code.</p>
+<p>Once you have your map, try to code it up.  If you find problems with the map
+then adjust it and make the code match.</p>
+<p>One final word of advice:  Every programmer becomes paralyzed by irrational
+fear starting a new large project.  They then use procrastination to avoid
+confronting this fear and end up not getting their program working or even
+started.  I do this.  Everyone does this.  The best way to avoid this is
+to make a list of things you should do, and then do them one at a time.</p>
+<p>Just start doing it, do a small version, make it bigger,
+keep a list of things to do, and do them.</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex37.html" title="Exercise 37: Symbol Review"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex35.html" title="Exercise 35: Branches and Functions"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex36.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+</html>

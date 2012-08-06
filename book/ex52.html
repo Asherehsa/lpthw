@@ -1,0 +1,838 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex52.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:17 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 52: The Start Of Your Web Game &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Next Steps" href="next.html" />
+    <link rel="prev" title="Exercise 51: Getting Input From A Browser" href="ex51.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="next.html" title="Next Steps"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex51.html" title="Exercise 51: Getting Input From A Browser"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-52-the-start-of-your-web-game">
+<h1>Exercise 52: The Start Of Your Web Game<a class="headerlink" href="#exercise-52-the-start-of-your-web-game" title="Permalink to this headline">¶</a></h1>
+<p>We're coming to the end of the book, and in this exercise I'm going to
+really challenge you.  When you're done, you'll be a reasonably
+competent Python beginner.  You'll still need to go through a few more
+books and write a couple more projects, but you'll have the skills to complete them.
+The only thing in your way will be time, motivation, and resources.</p>
+<p>In this exercise, we won't make a complete game, but instead we'll make an
+&quot;engine&quot; that can run the game from Exercise 42 in the browser.  This will
+involve <tt class="docutils literal"><span class="pre">refactoring</span></tt> Exercise 42, mixing in the structure from Exercise 47,
+adding automated tests, and finally creating a web engine that can run the
+games.</p>
+<p>This exercise will be <em>huge</em>, and I predict you could spend anywhere from a week to months on it before moving on.  It's best to attack it in little chunks and
+do a bit a night, taking your time to make everything work before moving on.</p>
+<div class="section" id="refactoring-the-exercise-42-game">
+<h2>Refactoring The Exercise 42 Game<a class="headerlink" href="#refactoring-the-exercise-42-game" title="Permalink to this headline">¶</a></h2>
+<p>You've been altering the <tt class="docutils literal"><span class="pre">gothonweb</span></tt> project for two exercises and you'll
+do it one more time in this exercise.  The skill you're learning is called
+&quot;refactoring&quot;, or as I like to call it, &quot;fixing stuff&quot;.  Refactoring is
+a term programmers use to describe the process of taking old code, and changing
+it to have new features or just to clean it up.  You've been doing this
+without even knowing it, as it's second nature to building software.</p>
+<p>What you'll do in this part is take the ideas from Exercise 47 of a testable
+&quot;map&quot; of Rooms, and the game from Exercise 42, and combine them together to
+create a new game structure.  It will have the same content, just &quot;refactored&quot;
+to have a better structure.</p>
+<p>First step is to grab the code from <tt class="docutils literal"><span class="pre">ex47/game.py</span></tt> and copy it to
+<tt class="docutils literal"><span class="pre">gothonweb/map.py</span></tt> and copy <tt class="docutils literal"><span class="pre">tests/ex47_tests.py</span></tt> file to <tt class="docutils literal"><span class="pre">tests/map_tests.py</span></tt>
+and run <tt class="docutils literal"><span class="pre">nosetests</span></tt> again to make sure it keeps working.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">From now on I won't show you the output of a test run, just assume that you should
+be doing it and it'll look like the above unless you have an error.</p>
+</div>
+<p>Once you have the code from Exercise 47 copied over, it's time to refactor it to
+have the Exercise <em>42</em> map in it.  I'm going to start off by laying down the basic
+structure, and then you'll have an assignment to make the <tt class="docutils literal"><span class="pre">map.py</span></tt> file and the
+<tt class="docutils literal"><span class="pre">map_tests.py</span></tt> file complete.</p>
+<p>First thing to do is lay out the basic structure of the map using the <tt class="docutils literal"><span class="pre">Room</span></tt> class
+as it is now:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Room</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paths</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">go</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paths</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+
+
+<span class="n">central_corridor</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;Central Corridor&quot;</span><span class="p">,</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The Gothons of Planet Percal #25 have invaded your ship and destroyed</span>
+<span class="sd">your entire crew.  You are the last surviving member and your last</span>
+<span class="sd">mission is to get the neutron destruct bomb from the Weapons Armory,</span>
+<span class="sd">put it in the bridge, and blow the ship up after getting into an </span>
+<span class="sd">escape pod.</span>
+
+<span class="sd">You&#39;re running down the central corridor to the Weapons Armory when</span>
+<span class="sd">a Gothon jumps out, red scaly skin, dark grimy teeth, and evil clown costume</span>
+<span class="sd">flowing around his hate filled body.  He&#39;s blocking the door to the</span>
+<span class="sd">Armory and about to pull a weapon to blast you.</span>
+<span class="sd">&quot;&quot;&quot;</span><span class="p">)</span>
+
+
+<span class="n">laser_weapon_armory</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;Laser Weapon Armory&quot;</span><span class="p">,</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Lucky for you they made you learn Gothon insults in the academy.</span>
+<span class="sd">You tell the one Gothon joke you know:</span>
+<span class="sd">Lbhe zbgure vf fb sng, jura fur fvgf nebhaq gur ubhfr, fur fvgf nebhaq gur ubhfr.</span>
+<span class="sd">The Gothon stops, tries not to laugh, then busts out laughing and can&#39;t move.</span>
+<span class="sd">While he&#39;s laughing you run up and shoot him square in the head</span>
+<span class="sd">putting him down, then jump through the Weapon Armory door.</span>
+
+<span class="sd">You do a dive roll into the Weapon Armory, crouch and scan the room</span>
+<span class="sd">for more Gothons that might be hiding.  It&#39;s dead quiet, too quiet.</span>
+<span class="sd">You stand up and run to the far side of the room and find the</span>
+<span class="sd">neutron bomb in its container.  There&#39;s a keypad lock on the box</span>
+<span class="sd">and you need the code to get the bomb out.  If you get the code</span>
+<span class="sd">wrong 10 times then the lock closes forever and you can&#39;t</span>
+<span class="sd">get the bomb.  The code is 3 digits.</span>
+<span class="sd">&quot;&quot;&quot;</span><span class="p">)</span>
+
+
+<span class="n">the_bridge</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;The Bridge&quot;</span><span class="p">,</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The container clicks open and the seal breaks, letting gas out.</span>
+<span class="sd">You grab the neutron bomb and run as fast as you can to the</span>
+<span class="sd">bridge where you must place it in the right spot.</span>
+
+<span class="sd">You burst onto the Bridge with the netron destruct bomb</span>
+<span class="sd">under your arm and surprise 5 Gothons who are trying to</span>
+<span class="sd">take control of the ship.  Each of them has an even uglier</span>
+<span class="sd">clown costume than the last.  They haven&#39;t pulled their</span>
+<span class="sd">weapons out yet, as they see the active bomb under your</span>
+<span class="sd">arm and don&#39;t want to set it off.</span>
+<span class="sd">&quot;&quot;&quot;</span><span class="p">)</span>
+
+
+<span class="n">escape_pod</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;Escape Pod&quot;</span><span class="p">,</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">You point your blaster at the bomb under your arm</span>
+<span class="sd">and the Gothons put their hands up and start to sweat.</span>
+<span class="sd">You inch backward to the door, open it, and then carefully</span>
+<span class="sd">place the bomb on the floor, pointing your blaster at it.</span>
+<span class="sd">You then jump back through the door, punch the close button</span>
+<span class="sd">and blast the lock so the Gothons can&#39;t get out.</span>
+<span class="sd">Now that the bomb is placed you run to the escape pod to</span>
+<span class="sd">get off this tin can.</span>
+
+<span class="sd">You rush through the ship desperately trying to make it to</span>
+<span class="sd">the escape pod before the whole ship explodes.  It seems like</span>
+<span class="sd">hardly any Gothons are on the ship, so your run is clear of</span>
+<span class="sd">interference.  You get to the chamber with the escape pods, and</span>
+<span class="sd">now need to pick one to take.  Some of them could be damaged</span>
+<span class="sd">but you don&#39;t have time to look.  There&#39;s 5 pods, which one</span>
+<span class="sd">do you take?</span>
+<span class="sd">&quot;&quot;&quot;</span><span class="p">)</span>
+
+
+<span class="n">the_end_winner</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;The End&quot;</span><span class="p">,</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">You jump into pod 2 and hit the eject button.</span>
+<span class="sd">The pod easily slides out into space heading to</span>
+<span class="sd">the planet below.  As it flies to the planet, you look</span>
+<span class="sd">back and see your ship implode then explode like a</span>
+<span class="sd">bright star, taking out the Gothon ship at the same</span>
+<span class="sd">time.  You won!</span>
+<span class="sd">&quot;&quot;&quot;</span><span class="p">)</span>
+
+
+<span class="n">the_end_loser</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;The End&quot;</span><span class="p">,</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">You jump into a random pod and hit the eject button.</span>
+<span class="sd">The pod escapes out into the void of space, then</span>
+<span class="sd">implodes as the hull ruptures, crushing your body</span>
+<span class="sd">into jam jelly.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+
+<span class="n">escape_pod</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span>
+    <span class="s">&#39;2&#39;</span><span class="p">:</span> <span class="n">the_end_winner</span><span class="p">,</span>
+    <span class="s">&#39;*&#39;</span><span class="p">:</span> <span class="n">the_end_loser</span>
+<span class="p">})</span>
+
+<span class="n">generic_death</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;death&quot;</span><span class="p">,</span> <span class="s">&quot;You died.&quot;</span><span class="p">)</span>
+
+<span class="n">the_bridge</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span>
+    <span class="s">&#39;throw the bomb&#39;</span><span class="p">:</span> <span class="n">generic_death</span><span class="p">,</span>
+    <span class="s">&#39;slowly place the bomb&#39;</span><span class="p">:</span> <span class="n">escape_pod</span>
+<span class="p">})</span>
+
+<span class="n">laser_weapon_armory</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span>
+    <span class="s">&#39;0132&#39;</span><span class="p">:</span> <span class="n">the_bridge</span><span class="p">,</span>
+    <span class="s">&#39;*&#39;</span><span class="p">:</span> <span class="n">generic_death</span>
+<span class="p">})</span>
+
+<span class="n">central_corridor</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span>
+    <span class="s">&#39;shoot!&#39;</span><span class="p">:</span> <span class="n">generic_death</span><span class="p">,</span>
+    <span class="s">&#39;dodge!&#39;</span><span class="p">:</span> <span class="n">generic_death</span><span class="p">,</span>
+    <span class="s">&#39;tell a joke&#39;</span><span class="p">:</span> <span class="n">laser_weapon_armory</span>
+<span class="p">})</span>
+
+<span class="n">START</span> <span class="o">=</span> <span class="n">central_corridor</span>
+</pre></div>
+</td></tr></table></div>
+<p>You'll notice that there are a couple of problems with our <tt class="docutils literal"><span class="pre">Room</span></tt> class and this
+map:</p>
+<ol class="arabic simple">
+<li>We have to put the text that was in the <tt class="docutils literal"><span class="pre">if-else</span></tt> clauses that got
+printed <em>before</em> entering a room as part of each room.  This means you can't
+shuffle the map around which would be nice.  You'll be fixing that up
+in this exercise.</li>
+<li>There are parts in the original game where we ran code that determined
+things like the bomb's keypad code, or the right pod.  In this game
+we just pick some defaults and go with it, but later you'll be
+given extra credit to make this work again.</li>
+<li>I've just made a <tt class="docutils literal"><span class="pre">generic_death</span></tt> ending for all of the bad decisions, which
+you'll have to finish for me.  You'll need to go back through and add in all
+the original endings and make sure they work.</li>
+<li>I've got a new kind of transition labeled <tt class="docutils literal"><span class="pre">&quot;*&quot;</span></tt> that will be used for
+a &quot;catch-all&quot; action in the engine.</li>
+</ol>
+<p>Once you've got that basically written out, here's the new automated test
+<tt class="docutils literal"><span class="pre">tests/map_test.py</span></tt> that you should have to get yourself started:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nose.tools</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">gothonweb.map</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">def</span> <span class="nf">test_room</span><span class="p">():</span>
+    <span class="n">gold</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;GoldRoom&quot;</span><span class="p">,</span> 
+                <span class="sd">&quot;&quot;&quot;This room has gold in it you can grab. There&#39;s a</span>
+<span class="sd">                door to the north.&quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">gold</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s">&quot;GoldRoom&quot;</span><span class="p">)</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">gold</span><span class="o">.</span><span class="n">paths</span><span class="p">,</span> <span class="p">{})</span>
+
+<span class="k">def</span> <span class="nf">test_room_paths</span><span class="p">():</span>
+    <span class="n">center</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;Center&quot;</span><span class="p">,</span> <span class="s">&quot;Test room in the center.&quot;</span><span class="p">)</span>
+    <span class="n">north</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;North&quot;</span><span class="p">,</span> <span class="s">&quot;Test room in the north.&quot;</span><span class="p">)</span>
+    <span class="n">south</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;South&quot;</span><span class="p">,</span> <span class="s">&quot;Test room in the south.&quot;</span><span class="p">)</span>
+
+    <span class="n">center</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span><span class="s">&#39;north&#39;</span><span class="p">:</span> <span class="n">north</span><span class="p">,</span> <span class="s">&#39;south&#39;</span><span class="p">:</span> <span class="n">south</span><span class="p">})</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">center</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s">&#39;north&#39;</span><span class="p">),</span> <span class="n">north</span><span class="p">)</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">center</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s">&#39;south&#39;</span><span class="p">),</span> <span class="n">south</span><span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">test_map</span><span class="p">():</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;Start&quot;</span><span class="p">,</span> <span class="s">&quot;You can go west and down a hole.&quot;</span><span class="p">)</span>
+    <span class="n">west</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;Trees&quot;</span><span class="p">,</span> <span class="s">&quot;There are trees here, you can go east.&quot;</span><span class="p">)</span>
+    <span class="n">down</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s">&quot;Dungeon&quot;</span><span class="p">,</span> <span class="s">&quot;It&#39;s dark down here, you can go up.&quot;</span><span class="p">)</span>
+
+    <span class="n">start</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span><span class="s">&#39;west&#39;</span><span class="p">:</span> <span class="n">west</span><span class="p">,</span> <span class="s">&#39;down&#39;</span><span class="p">:</span> <span class="n">down</span><span class="p">})</span>
+    <span class="n">west</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span><span class="s">&#39;east&#39;</span><span class="p">:</span> <span class="n">start</span><span class="p">})</span>
+    <span class="n">down</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span><span class="s">&#39;up&#39;</span><span class="p">:</span> <span class="n">start</span><span class="p">})</span>
+
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s">&#39;west&#39;</span><span class="p">),</span> <span class="n">west</span><span class="p">)</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s">&#39;west&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s">&#39;east&#39;</span><span class="p">),</span> <span class="n">start</span><span class="p">)</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s">&#39;down&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s">&#39;up&#39;</span><span class="p">),</span> <span class="n">start</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">test_gothon_game_map</span><span class="p">():</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">START</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s">&#39;shoot!&#39;</span><span class="p">),</span> <span class="n">generic_death</span><span class="p">)</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">START</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s">&#39;dodge!&#39;</span><span class="p">),</span> <span class="n">generic_death</span><span class="p">)</span>
+
+    <span class="n">room</span> <span class="o">=</span> <span class="n">START</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s">&#39;tell a joke&#39;</span><span class="p">)</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">laser_weapon_armory</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>Your task in this part of the exercise is to complete the map, and make the
+automated test completely validate the whole map.  This includes fixing all
+the <tt class="docutils literal"><span class="pre">generic_death</span></tt> objects to be real endings.  Make sure this works
+really well and that your test is as complete as possible because we'll be
+changing this map later and you'll use the tests to make sure it keeps working.</p>
+</div>
+<div class="section" id="sessions-and-tracking-users">
+<h2>Sessions And Tracking Users<a class="headerlink" href="#sessions-and-tracking-users" title="Permalink to this headline">¶</a></h2>
+<p>At a certain point in your web application you'll need to keep track of some information
+and associate it with the user's browser.  The web (because of HTTP) is what we like
+to call &quot;stateless&quot;, which means each request you make is independent of any other requests
+being made.  If you request page A, put in some data, and click a link to page B, all
+the data you sent to page A just disappears.</p>
+<p>The solution to this is to create a little data store (usually in a database or on
+the disk) that uses a number unique to each browser to keep track of what that
+browser was doing.  In the little <tt class="docutils literal"><span class="pre">lpthw.web</span></tt> framework it's fairly easy, and there's
+an example showing how it's done:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">web</span>
+
+<span class="n">web</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="n">urls</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">&quot;/count&quot;</span><span class="p">,</span> <span class="s">&quot;count&quot;</span><span class="p">,</span>
+    <span class="s">&quot;/reset&quot;</span><span class="p">,</span> <span class="s">&quot;reset&quot;</span>
+<span class="p">)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">application</span><span class="p">(</span><span class="n">urls</span><span class="p">,</span> <span class="nb">locals</span><span class="p">())</span>
+<span class="n">store</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">DiskStore</span><span class="p">(</span><span class="s">&#39;sessions&#39;</span><span class="p">)</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">store</span><span class="p">,</span> <span class="n">initializer</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;count&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+
+<span class="k">class</span> <span class="nc">count</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">reset</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">kill</span><span class="p">()</span>
+        <span class="k">return</span> <span class="s">&quot;&quot;</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p>To make this work, you need to create a <tt class="docutils literal"><span class="pre">sessions/</span></tt> directory where the
+application can put session storage.  Do that,  run this application and
+go to <tt class="docutils literal"><span class="pre">/count</span></tt>. Hit refresh and watch the counter go up.  Close
+the browser and it <em>forgets</em> who you are, which is what we want for the game.
+There's a way to make the browser remember forever, but that makes testing
+and development harder.  If you then go to <tt class="docutils literal"><span class="pre">/reset</span></tt>, and back to <tt class="docutils literal"><span class="pre">/count</span></tt>
+you can see your counter reset because you've killed the session.</p>
+<p>Take the time to understand this code so you can see how the session starts
+off with the <tt class="docutils literal"><span class="pre">count</span></tt> equal to 0.  Also try looking at the files in
+<tt class="docutils literal"><span class="pre">sessions/</span></tt> to see if you can open them up.  Here's a Python session where I
+open up one and decode it:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">base64</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;sessions/XXXXX&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="go">&quot;(dp1\nS&#39;count&#39;\np2\nI1\nsS&#39;ip&#39;\np3\nV127.0.0.1\np4\nsS&#39;session_id&#39;\np5\nS&#39;XXXX&#39;\np6\ns.&quot;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;sessions/XXXXX&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">{&#39;count&#39;: 1, &#39;ip&#39;: u&#39;127.0.0.1&#39;, &#39;session_id&#39;: &#39;XXXXX&#39;}</span>
+</pre></div>
+</div>
+<p>The sessions are really just dictionaries that get written to disk using <tt class="docutils literal"><span class="pre">pickle</span></tt> and
+<tt class="docutils literal"><span class="pre">base64</span></tt> libraries.  There are probably as many ways to store and manage sessions as
+there are web frameworks, so it's not too important to know how these work.  It does
+help if you need to debug the session or potentially clean them out.</p>
+</div>
+<div class="section" id="creating-an-engine">
+<h2>Creating An Engine<a class="headerlink" href="#creating-an-engine" title="Permalink to this headline">¶</a></h2>
+<p>You should have your game map working and a good unit test for it.  I now want
+to make a simple little game engine that will run the rooms, collect input from
+the player, and keep track of where a play is in the game.  We'll be using the
+sessions you just learned to make a simple game engine that will:</p>
+<ol class="arabic simple">
+<li>Start a new game for new users.</li>
+<li>Present the room to the user.</li>
+<li>Take input from the user.</li>
+<li>Run their input through the game.</li>
+<li>Display the results and keep going until they die.</li>
+</ol>
+<p>To do this, you're going to take the trusty <tt class="docutils literal"><span class="pre">bin/app.py</span></tt> you've been hacking on
+and create a fully working, session based, game engine.  The catch is I'm
+going to make a very simple one with <em>basic HTML</em> files, and it'll be up to you to
+complete it.   Here's the base engine:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">web</span>
+<span class="kn">from</span> <span class="nn">gothonweb</span> <span class="kn">import</span> <span class="nb">map</span>
+
+<span class="n">urls</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="s">&#39;/game&#39;</span><span class="p">,</span> <span class="s">&#39;GameEngine&#39;</span><span class="p">,</span>
+  <span class="s">&#39;/&#39;</span><span class="p">,</span> <span class="s">&#39;Index&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">application</span><span class="p">(</span><span class="n">urls</span><span class="p">,</span> <span class="nb">globals</span><span class="p">())</span>
+
+<span class="c"># little hack so that debug mode works with sessions</span>
+<span class="k">if</span> <span class="n">web</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;_session&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="n">store</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">DiskStore</span><span class="p">(</span><span class="s">&#39;sessions&#39;</span><span class="p">)</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">store</span><span class="p">,</span>
+                                  <span class="n">initializer</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;room&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">})</span>
+    <span class="n">web</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="n">session</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">_session</span>
+
+<span class="n">render</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s">&#39;templates/&#39;</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="s">&quot;layout&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Index</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># this is used to &quot;setup&quot; the session with starting values</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">room</span> <span class="o">=</span> <span class="nb">map</span><span class="o">.</span><span class="n">START</span>
+        <span class="n">web</span><span class="o">.</span><span class="n">seeother</span><span class="p">(</span><span class="s">&quot;/game&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">GameEngine</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">session</span><span class="o">.</span><span class="n">room</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">render</span><span class="o">.</span><span class="n">show_room</span><span class="p">(</span><span class="n">room</span><span class="o">=</span><span class="n">session</span><span class="o">.</span><span class="n">room</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># why is there here? do you need it?</span>
+            <span class="k">return</span> <span class="n">render</span><span class="o">.</span><span class="n">you_died</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">POST</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+
+        <span class="c"># there is a bug here, can you fix it?</span>
+        <span class="k">if</span> <span class="n">session</span><span class="o">.</span><span class="n">room</span> <span class="ow">and</span> <span class="n">form</span><span class="o">.</span><span class="n">action</span><span class="p">:</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">room</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">room</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">action</span><span class="p">)</span>
+
+        <span class="n">web</span><span class="o">.</span><span class="n">seeother</span><span class="p">(</span><span class="s">&quot;/game&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p>There are even more new things in this script, but amazingly it's an entire
+web based game engine in a small file.  The biggest &quot;hack&quot; in the script are
+the lines that bring the sessions back, which is needed so that debug mode
+reloading works.  Otherwise, each time you hit refresh the sessions will
+disappear and the game won't work.</p>
+<p>Before you run bin/app.py you need to change your PYTHONPATH environment variable.
+Don't know what that is?  I know, it's kind of dumb you have to learn what this
+is to run even basic Python programs, but that's how Python people like things.</p>
+<p>In your terminal, type:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">export PYTHONPATH=$PYTHONPATH:.</span>
+</pre></div>
+</div>
+<p>On Windows PowerShell do:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span>env:PYTHONPATH <span class="o">=</span> <span class="s2">&quot;$env:PYTHONPATH;.&quot;</span>
+</pre></div>
+</div>
+<p>You should only have to do it once per shell session, but if you get an import error,
+then you probably need to do this or you did it wrong.</p>
+<p>You should next delete <tt class="docutils literal"><span class="pre">templates/hello_form.html</span></tt> and <tt class="docutils literal"><span class="pre">templates/index.html</span></tt> and
+create the two templates mentioned in the above code.  Here's a <em>very</em> simple
+<tt class="docutils literal"><span class="pre">templates/show_room.html</span></tt>:</p>
+<div class="highlight-python"><pre>$def with (room)
+
+&lt;h1&gt; $room.name &lt;/h1&gt;
+
+&lt;pre&gt;
+$room.description
+&lt;/pre&gt;
+
+$if room.name == "death":
+    &lt;p&gt;&lt;a href="/"&gt;Play Again?&lt;/a&gt;&lt;/p&gt;
+$else:
+    &lt;p&gt;
+    &lt;form action="/game" method="POST"&gt;
+        - &lt;input type="text" name="action"&gt; &lt;input type="SUBMIT"&gt;
+    &lt;/form&gt;
+    &lt;/p&gt;
+
+
+</pre>
+</div>
+<p>That is the template to show a room as you travel through the game. Next
+you need one to tell someone they died in the case that they got to the end
+of the map on accident, which is <tt class="docutils literal"><span class="pre">templates/you_died.html</span></tt>:</p>
+<div class="highlight-python"><pre>&lt;h1&gt;You Died!&lt;/h1&gt;
+
+&lt;p&gt;Looks like you bit the dust.&lt;/p&gt;
+&lt;p&gt;&lt;a href="/"&gt;Play Again&lt;/a&gt;&lt;/p&gt;
+
+</pre>
+</div>
+<p>With those in place, you should now be able to do the following:</p>
+<ol class="arabic simple">
+<li>Get the test <tt class="docutils literal"><span class="pre">tests/app_tests.py</span></tt> working again so that you are testing
+the game.  You won't be able to do much more than a few clicks in the
+game because of sessions, but you should be able to do some basics.</li>
+<li>Remove the <tt class="docutils literal"><span class="pre">sessions/*</span></tt> files and make sure you've started over.</li>
+<li>Run the <tt class="docutils literal"><span class="pre">python</span> <span class="pre">bin/app.py</span></tt> script and test out the game.</li>
+</ol>
+<p>You should be able to refresh and fix the game like normal, and work with
+the game HTML and engine until it does all the things you want it to do.</p>
+</div>
+<div class="section" id="your-final-exam">
+<h2>Your Final Exam<a class="headerlink" href="#your-final-exam" title="Permalink to this headline">¶</a></h2>
+<p>Do you feel like this was a huge amount of information thrown at you all at once?
+Good, I want you to have something to tinker with while you build your skills.
+To complete this exercise, I'm going to give you a final set of exercises for
+you to complete on your own.  You'll notice that what you've written so far
+isn't very well built, it is just a first version of the code.  Your task now
+is to make the game more complete by doing these things:</p>
+<ol class="arabic simple">
+<li>Fix all the bugs I mention in the code, and any that I didn't mention.
+If you find new bugs, let me know.</li>
+<li>Improve all of the automated tests so that you test more of the application
+and get to a point where you use a test rather than your browser to check
+the application while you work.</li>
+<li>Make the HTML look better.</li>
+<li>Research logins and create a signup system for the application, so people
+can have logins and high scores.</li>
+<li>Complete the game map, making it as large and feature complete as possible.</li>
+<li>Give people a &quot;help&quot; system that lets them ask what they can do at each
+room in the game.</li>
+<li>Add any other features you can think of to the game.</li>
+<li>Create several &quot;maps&quot; and let people choose a game they want
+to run.  Your <tt class="docutils literal"><span class="pre">bin/app.py</span></tt> engine should be able to run any map of
+rooms you give it, so you can support multiple games.</li>
+<li>Finally, use what you learned in Exercises 48 and 49 to create a better
+input processor. You have most of the code necessary, you just need to
+improve the grammar and hook it up to your input form and the <tt class="docutils literal"><span class="pre">GameEngine</span></tt>.</li>
+</ol>
+<p>Good luck!</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="next.html" title="Next Steps"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex51.html" title="Exercise 51: Getting Input From A Browser"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex52.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:17 GMT -->
+</html>

@@ -1,0 +1,282 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex1.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:08 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 1: A Good First Program &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 2: Comments And Pound Characters" href="ex2.html" />
+    <link rel="prev" title="Exercise 0: The Setup" href="ex0.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex2.html" title="Exercise 2: Comments And Pound Characters"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex0.html" title="Exercise 0: The Setup"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-1-a-good-first-program">
+<h1>Exercise 1: A Good First Program<a class="headerlink" href="#exercise-1-a-good-first-program" title="Permalink to this headline">¶</a></h1>
+<p>Remember, you should have spent a good amount of time in Exercise 0 learning
+how to install a text editor, run the text editor, run the Terminal, and
+work with both of them.  If you haven't done that then do not go on. You will
+not have a good time.  This is the only time I'll start an exercise with a
+warning that you should not skip or get ahead of yourself.</p>
+<p>Type the above into a single file named <tt class="docutils literal"><span class="pre">ex1.py</span></tt>.  This is important
+as python works best with files ending in <tt class="docutils literal"><span class="pre">.py</span></tt>.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">print</span> <span class="s">&quot;Hello World!&quot;</span>
+<span class="k">print</span> <span class="s">&quot;Hello Again&quot;</span>
+<span class="k">print</span> <span class="s">&quot;I like typing this.&quot;</span>
+<span class="k">print</span> <span class="s">&quot;This is fun.&quot;</span>
+<span class="k">print</span> <span class="s">&#39;Yay! Printing.&#39;</span>
+<span class="k">print</span> <span class="s">&quot;I&#39;d much rather you &#39;not&#39;.&quot;</span>
+<span class="k">print</span> <span class="s">&#39;I &quot;said&quot; do not touch this.&#39;</span>
+</pre></div>
+</td></tr></table></div>
+<p>If you are on Mac OSX then this is what your text editor might look like if you use TextWrangler:</p>
+<div class="figure align-center">
+<img alt="_images/osx_textwrangler.png" src="_images/osx_textwrangler.png" />
+</div>
+<p>If you are on Windows using Notepad++ then this is what it would look like:</p>
+<div class="figure align-center">
+<img alt="_images/win_notepadpp_ex1.png" src="_images/win_notepadpp_ex1.png" />
+</div>
+<p>Don't worry if your editor doesn't look exactly the same, the key points are:</p>
+<ol class="arabic simple">
+<li>Notice I did not type the line numbers on the left (1-7). Those are printed in the book so I
+can talk about specific lines by saying, &quot;See line 5...&quot;  You do not type those into python scripts.</li>
+<li>Notice I have the <tt class="docutils literal"><span class="pre">print</span></tt> at the beginning of the line and how it looks exactly the same as what
+I have above.  Exactly means exactly, not kind of sort of the same.  Every single character has to
+match for it to work. But, the colors are all different. Color doesn't matter, only the characters
+you type.</li>
+</ol>
+<p>Then in Terminal <em>run</em> the file by typing:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">python ex1.py</span>
+</pre></div>
+</div>
+<p>If you did it right then you should see the same output I have below.  If not,
+you have done something wrong.  No, the computer is not wrong.</p>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<p>On Max OSX in Terminal you should see this:</p>
+<div class="figure align-center">
+<img alt="_images/osx_terminal_ex1.png" src="_images/osx_terminal_ex1.png" />
+</div>
+<p>On Windows in PowerShell you should see this:</p>
+<div class="figure align-center">
+<img alt="_images/win_powershell_ex1.png" src="_images/win_powershell_ex1.png" />
+</div>
+<p>You may see different names, the name of your computer or other things before the <tt class="docutils literal"><span class="pre">python</span> <span class="pre">ex1.py</span></tt> but
+the important part is that you type the command, and you saw the output the same as I have.</p>
+<p>If you have an error it will look like this:</p>
+<div class="highlight-console"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="gp">$</span> python ex/ex1.py 
+<span class="go">  File &quot;ex/ex1.py&quot;, line 3</span>
+<span class="go">    print &quot;I like typing this.</span>
+<span class="go">                             ^</span>
+<span class="go">SyntaxError: EOL while scanning string literal</span>
+</pre></div>
+</td></tr></table></div>
+<p>It's important that you can read these since you will be making many of
+these mistakes.  Even I make many of these mistakes.  Let's look at this
+line-by-line.</p>
+<ol class="arabic simple">
+<li>Here we ran our command in the terminal to run the <tt class="docutils literal"><span class="pre">ex1.py</span></tt> script.</li>
+<li>Python then tells us that the file <tt class="docutils literal"><span class="pre">ex1.py</span></tt> has an error on line 3.</li>
+<li>It then prints this line for us.</li>
+<li>Then it puts a <tt class="docutils literal"><span class="pre">^</span></tt> (caret) character to point at where the problem is.
+Notice the missing <tt class="docutils literal"><span class="pre">&quot;</span></tt> (double-quote) character?</li>
+<li>Finally, it prints out a &quot;SyntaxError&quot; and tells us something about what might
+be the error.  Usually these are very cryptic, but if you copy that text into
+a search engine, you will find someone else who's had that error and you can probably
+figure out how to fix it.</li>
+</ol>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>If you are from another country, and you get errors about ASCII encodings, then
+put this at the top of your python scripts:</p>
+<blockquote>
+<div><cite># -*- coding: utf-8 -*-</cite></div></blockquote>
+<p class="last">It will fix them so that you can use unicode UTF-8 in your scripts without a problem.</p>
+</div>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<p>You will also have <tt class="docutils literal"><span class="pre">Extra</span> <span class="pre">Credit</span></tt>. The Extra Credit contains things you
+should <em>try</em> to do.  If you can't, skip it and come back later.</p>
+<p>For this exercise, try these things:</p>
+<ol class="arabic simple">
+<li>Make your script print another line.</li>
+<li>Make your script print only one of the lines.</li>
+<li>Put a '#' (octothorpe) character at the beginning of a line.  What did it do?
+Try to find out what this character does.</li>
+</ol>
+<p>From now on, I won't explain how each exercise works unless an exercise is
+different.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">An 'octothorpe' is also called a 'pound', 'hash', 'mesh', or any number of names.  Pick the one that makes you chill out.</p>
+</div>
+</div>
+<div class="section" id="frequently-asked-questions">
+<h2>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Can I use IDLE?</dt>
+<dd>No, you should use Terminal on OSX and PowerShell on Windows, just like I have here.  If you don't know how to use those then
+you can go read the Command Line Crash Course at <a class="reference external" href="http://cli.learncodethehardway.org/book/">http://cli.learncodethehardway.org/book/</a></dd>
+<dt>How do you get colors in your editor?</dt>
+<dd>Save your file first as a .py file, such as ex1.py.  Then you'll have color when you type.</dd>
+<dt>I get <cite>SyntaxError: invalid syntax</cite> when I run ex1.py.</dt>
+<dd>You are probably trying to run python, then trying to type python again.  Close your terminal, start it again, and right away type only <cite>python ex1.py</cite>.</dd>
+<dt>I still can't get python in my PowerShell.</dt>
+<dd>You may need to watch a video that tells you how to do it visually <a class="reference external" href="http://www.youtube.com/watch?v=ndNlFy-5GKA">http://www.youtube.com/watch?v=ndNlFy-5GKA</a></dd>
+<dt>I get <cite>can't open file 'ex1.py': [Errno 2] No such file or directory</cite>.</dt>
+<dd>You need to be in the same directory as the file you created.  Make sure you use the <cite>cd</cite> command to go there first.  For example, if you saved
+your file in <cite>lpthw/ex1.py</cite>, then you would do <cite>cd lpthw/</cite> before trying to run <cite>python ex1.py</cite>.  If you don't know what any of that means,
+then go through the Command Line Crash Course (CLI-CC) mentioned in question #1.</dd>
+<dt>How do I get my country's language characters into my file?</dt>
+<dd>Make sure you type this at the top of your file: <tt class="docutils literal"><span class="pre">#</span> <span class="pre">-*-</span> <span class="pre">coding:</span> <span class="pre">utf-8</span> <span class="pre">-*-</span></tt></dd>
+<dt>My file doesn't run, I just get the prompt back with no output.</dt>
+<dd>You most likely took the code in my file above literally, and thought that
+<tt class="docutils literal"><span class="pre">print</span> <span class="pre">&quot;Hello</span> <span class="pre">World!&quot;</span></tt> meant to literally print just <tt class="docutils literal"><span class="pre">&quot;Hello</span> <span class="pre">World!&quot;</span></tt> into the
+file, without the <cite>print</cite>.  Your file has to be <em>exactly</em> like mine, and in
+the code above and all of the screenshots, I have <tt class="docutils literal"><span class="pre">print</span> <span class="pre">&quot;Hello</span> <span class="pre">World!&quot;</span></tt> and
+<cite>print</cite> before every line.  Make sure your code is like mine and it should work.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex2.html" title="Exercise 2: Comments And Pound Characters"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex0.html" title="Exercise 0: The Setup"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex1.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+</html>

@@ -1,0 +1,259 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex14.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:15 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 14: Prompting And Passing &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 15: Reading Files" href="ex15.html" />
+    <link rel="prev" title="Exercise 13: Parameters, Unpacking, Variables" href="ex13.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex15.html" title="Exercise 15: Reading Files"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex13.html" title="Exercise 13: Parameters, Unpacking, Variables"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-14-prompting-and-passing">
+<h1>Exercise 14: Prompting And Passing<a class="headerlink" href="#exercise-14-prompting-and-passing" title="Permalink to this headline">¶</a></h1>
+<p>Let's do one exercise that uses <tt class="docutils literal"><span class="pre">argv</span></tt> and <tt class="docutils literal"><span class="pre">raw_input</span></tt> together to
+ask the user something specific.  You will need this for the next exercise
+where we learn to read and write files.  In this exercise we'll use
+<tt class="docutils literal"><span class="pre">raw_input</span></tt> slightly differently by having it just print a simple <tt class="docutils literal"><span class="pre">&gt;</span></tt>
+prompt.  This is similar to a game like Zork or Adventure.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">argv</span>
+
+<span class="n">script</span><span class="p">,</span> <span class="n">user_name</span> <span class="o">=</span> <span class="n">argv</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s">&#39;&gt; &#39;</span>
+
+<span class="k">print</span> <span class="s">&quot;Hi </span><span class="si">%s</span><span class="s">, I&#39;m the </span><span class="si">%s</span><span class="s"> script.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">user_name</span><span class="p">,</span> <span class="n">script</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&quot;I&#39;d like to ask you a few questions.&quot;</span>
+<span class="k">print</span> <span class="s">&quot;Do you like me </span><span class="si">%s</span><span class="s">?&quot;</span> <span class="o">%</span> <span class="n">user_name</span>
+<span class="n">likes</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s">&quot;Where do you live </span><span class="si">%s</span><span class="s">?&quot;</span> <span class="o">%</span> <span class="n">user_name</span>
+<span class="n">lives</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s">&quot;What kind of computer do you have?&quot;</span>
+<span class="n">computer</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">Alright, so you said </span><span class="si">%r</span><span class="s"> about liking me.</span>
+<span class="s">You live in </span><span class="si">%r</span><span class="s">.  Not sure where that is.</span>
+<span class="s">And you have a </span><span class="si">%r</span><span class="s"> computer.  Nice.</span>
+<span class="s">&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">likes</span><span class="p">,</span> <span class="n">lives</span><span class="p">,</span> <span class="n">computer</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>Notice though that we make a variable <tt class="docutils literal"><span class="pre">prompt</span></tt> that is set to the prompt we
+want, and we give that to <tt class="docutils literal"><span class="pre">raw_input</span></tt> instead of typing it over and
+over.  Now if we want to make the prompt something else, we just
+change it in this one spot and rerun the script.</p>
+<p>Very handy.</p>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<p>When you run this, remember that you have to give the script your
+name for the <tt class="docutils literal"><span class="pre">argv</span></tt> arguments.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python ex14.py Zed
+<span class="go">Hi Zed, I&#39;m the ex14.py script.</span>
+<span class="go">I&#39;d like to ask you a few questions.</span>
+<span class="go">Do you like me Zed?</span>
+<span class="gp">&gt;</span> yes
+<span class="go">Where do you live Zed?</span>
+<span class="gp">&gt;</span> America
+<span class="go">What kind of computer do you have?</span>
+<span class="gp">&gt;</span> Tandy
+
+<span class="go">Alright, so you said &#39;yes&#39; about liking me.</span>
+<span class="go">You live in &#39;America&#39;.  Not sure where that is.</span>
+<span class="go">And you have a &#39;Tandy&#39; computer.  Nice.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Find out what Zork and Adventure were.
+Try to find a copy and play it.</li>
+<li>Change the <tt class="docutils literal"><span class="pre">prompt</span></tt> variable to something else entirely.</li>
+<li>Add another argument and use it in your script.</li>
+<li>Make sure you understand how I combined a <tt class="docutils literal"><span class="pre">&quot;&quot;&quot;</span></tt> style multi-line string
+with the <tt class="docutils literal"><span class="pre">%</span></tt> format activator as the last print.</li>
+</ol>
+</div>
+<div class="section" id="frequently-asked-questions">
+<h2>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>I get <tt class="docutils literal"><span class="pre">SyntaxError:</span> <span class="pre">invalid</span> <span class="pre">syntax</span></tt> when I run this script.</dt>
+<dd>Again, you have to run it right on the command line, not inside python.
+If you type <tt class="docutils literal"><span class="pre">python</span></tt>, and then try to type <tt class="docutils literal"><span class="pre">python</span> <span class="pre">ex14.py</span> <span class="pre">Zed</span></tt> it
+will fail because you are running <em>python inside python</em>.  Close your
+window and then just type <tt class="docutils literal"><span class="pre">python</span> <span class="pre">ex14.py</span> <span class="pre">Zed</span></tt>.</dd>
+<dt>I don't understand what you mean by changing the prompt?</dt>
+<dd>See the variable <tt class="docutils literal"><span class="pre">prompt</span> <span class="pre">=</span> <span class="pre">'&gt;</span> <span class="pre">'</span></tt>.  Change that to have a different
+value. You know this, it's just a string and you've done 13 exerises
+making them, so take the time to figure it out.</dd>
+<dt>I get the error <tt class="docutils literal"><span class="pre">ValueError:</span> <span class="pre">need</span> <span class="pre">more</span> <span class="pre">than</span> <span class="pre">1</span> <span class="pre">value</span> <span class="pre">to</span> <span class="pre">unpack</span></tt>.</dt>
+<dd>Remember when I said you need to look at the WYSS (What You Should See)
+section and replicate what I did? You need to do the same thing here
+and focus on how I type the command in, and why I have a command
+line argument.</dd>
+<dt>Can I use double-quotes for the <tt class="docutils literal"><span class="pre">prompt</span></tt> variable?</dt>
+<dd>You totally can. Go ahead and try that.</dd>
+<dt>You have a Tandy computer?</dt>
+<dd>I did when I was little.</dd>
+<dt>I get <tt class="docutils literal"><span class="pre">NameError:</span> <span class="pre">name</span> <span class="pre">'prompt'</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">defined</span></tt> when I run it.</dt>
+<dd>You either spelled the name of the <tt class="docutils literal"><span class="pre">prompt</span></tt> variable wrong or
+forgot that line.  Go back and compare each line of code to mine, and
+start at the bottom of the script and work your way to the top.</dd>
+<dt>How can I run this from IDLE?</dt>
+<dd>Don't use IDLE.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex15.html" title="Exercise 15: Reading Files"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex13.html" title="Exercise 13: Parameters, Unpacking, Variables"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex14.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:15 GMT -->
+</html>

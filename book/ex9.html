@@ -1,0 +1,223 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex9.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 9: Printing, Printing, Printing &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 10: What Was That?" href="ex10.html" />
+    <link rel="prev" title="Exercise 8: Printing, Printing" href="ex8.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex10.html" title="Exercise 10: What Was That?"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex8.html" title="Exercise 8: Printing, Printing"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-9-printing-printing-printing">
+<h1>Exercise 9: Printing, Printing, Printing<a class="headerlink" href="#exercise-9-printing-printing-printing" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># Here&#39;s some new strange stuff, remember type it exactly.</span>
+
+<span class="n">days</span> <span class="o">=</span> <span class="s">&quot;Mon Tue Wed Thu Fri Sat Sun&quot;</span>
+<span class="n">months</span> <span class="o">=</span> <span class="s">&quot;Jan</span><span class="se">\n</span><span class="s">Feb</span><span class="se">\n</span><span class="s">Mar</span><span class="se">\n</span><span class="s">Apr</span><span class="se">\n</span><span class="s">May</span><span class="se">\n</span><span class="s">Jun</span><span class="se">\n</span><span class="s">Jul</span><span class="se">\n</span><span class="s">Aug&quot;</span>
+
+<span class="k">print</span> <span class="s">&quot;Here are the days: &quot;</span><span class="p">,</span> <span class="n">days</span>
+<span class="k">print</span> <span class="s">&quot;Here are the months: &quot;</span><span class="p">,</span> <span class="n">months</span>
+
+<span class="k">print</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">There&#39;s something going on here.</span>
+<span class="s">With the three double-quotes.</span>
+<span class="s">We&#39;ll be able to type as much as we like.</span>
+<span class="s">Even 4 lines if we want, or 5, or 6.</span>
+<span class="s">&quot;&quot;&quot;</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python ex9.py
+<span class="go">Here are the days:  Mon Tue Wed Thu Fri Sat Sun</span>
+<span class="go">Here are the months:  Jan</span>
+<span class="go">Feb</span>
+<span class="go">Mar</span>
+<span class="go">Apr</span>
+<span class="go">May</span>
+<span class="go">Jun</span>
+<span class="go">Jul</span>
+<span class="go">Aug</span>
+
+<span class="go">There&#39;s something going on here.</span>
+<span class="go">With the three double-quotes.</span>
+<span class="go">We&#39;ll be able to type as much as we like.</span>
+<span class="go">Even 4 lines if we want, or 5, or 6.</span>
+
+<span class="gp">$</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Do your checks of your work, write down your mistakes, try not to make them
+on the next exercise.</li>
+</ol>
+</div>
+<div class="section" id="frequently-asked-questions">
+<h2>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>What if I wanted to start the months on a new line?</dt>
+<dd>You simply start the string with <tt class="docutils literal"><span class="pre">\n</span></tt> like this: <tt class="docutils literal"><span class="pre">&quot;\nJan\nFeb\nMar\nApr\nMay\nJun\nJul\nAug&quot;</span></tt></dd>
+<dt>Why do the <tt class="docutils literal"><span class="pre">\n</span></tt> newlines not work when I use <tt class="docutils literal"><span class="pre">%r</span></tt>?</dt>
+<dd>That's how <tt class="docutils literal"><span class="pre">%r</span></tt> formatting works, it prints it the way you wrote it (or close to it).  It's the &quot;raw&quot; format
+for debugging.</dd>
+<dt>I get an error when I put spaces between the three double-quotes?</dt>
+<dd>You have to type them like <tt class="docutils literal"><span class="pre">&quot;&quot;&quot;</span></tt> and not <tt class="docutils literal"><span class="pre">&quot;</span> <span class="pre">&quot;</span> <span class="pre">&quot;</span></tt>, meaning with <em>no</em> spaces between each one.</dd>
+<dt>Why did you use <tt class="docutils literal"><span class="pre">+</span></tt> instead of the comma to print the strings?</dt>
+<dd>Because I wanted to concatenate the strings together to produce a new string that was
+them added together.  Keep going and you'll find out how the comma is really a way
+to separate out arguments to print.</dd>
+<dt>Is it bad that my errors are always spelling mistakes?</dt>
+<dd>Most programming errors in the beginning (and even later) are simple spelling mistakes, typos, or
+getting simple things out of order.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex10.html" title="Exercise 10: What Was That?"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex8.html" title="Exercise 8: Printing, Printing"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex9.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+</html>

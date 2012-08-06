@@ -1,0 +1,251 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex5.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 5: More Variables And Printing &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 6: Strings And Text" href="ex6.html" />
+    <link rel="prev" title="Exercise 4: Variables And Names" href="ex4.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex6.html" title="Exercise 6: Strings And Text"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex4.html" title="Exercise 4: Variables And Names"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-5-more-variables-and-printing">
+<h1>Exercise 5: More Variables And Printing<a class="headerlink" href="#exercise-5-more-variables-and-printing" title="Permalink to this headline">¶</a></h1>
+<p>Now we'll do even more typing of variables and printing them out.  This time
+we'll use something called a &quot;format string&quot;.  Every time you put <tt class="docutils literal"><span class="pre">&quot;</span></tt>
+(double-quotes) around a piece of text you have been making a <em>string</em>.  A string
+is how you make something that your program might give to a human.  You print
+them, save them to files, send them to web servers, all sorts of things.</p>
+<p>Strings are really handy, so in this exercise you will learn how to
+make strings that have variables embedded in them.  You embed variables
+inside a string by using specialized format sequences and then putting
+the variables at the end with a special syntax that tells Python, &quot;Hey,
+this is a format string, put these variables in there.&quot;</p>
+<p>As usual, just type this in even if you do not understand it and make it
+exactly the same.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">my_name</span> <span class="o">=</span> <span class="s">&#39;Zed A. Shaw&#39;</span>
+<span class="n">my_age</span> <span class="o">=</span> <span class="mi">35</span> <span class="c"># not a lie</span>
+<span class="n">my_height</span> <span class="o">=</span> <span class="mi">74</span> <span class="c"># inches</span>
+<span class="n">my_weight</span> <span class="o">=</span> <span class="mi">180</span> <span class="c"># lbs</span>
+<span class="n">my_eyes</span> <span class="o">=</span> <span class="s">&#39;Blue&#39;</span>
+<span class="n">my_teeth</span> <span class="o">=</span> <span class="s">&#39;White&#39;</span>
+<span class="n">my_hair</span> <span class="o">=</span> <span class="s">&#39;Brown&#39;</span>
+
+<span class="k">print</span> <span class="s">&quot;Let&#39;s talk about </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="n">my_name</span>
+<span class="k">print</span> <span class="s">&quot;He&#39;s </span><span class="si">%d</span><span class="s"> inches tall.&quot;</span> <span class="o">%</span> <span class="n">my_height</span>
+<span class="k">print</span> <span class="s">&quot;He&#39;s </span><span class="si">%d</span><span class="s"> pounds heavy.&quot;</span> <span class="o">%</span> <span class="n">my_weight</span>
+<span class="k">print</span> <span class="s">&quot;Actually that&#39;s not too heavy.&quot;</span>
+<span class="k">print</span> <span class="s">&quot;He&#39;s got </span><span class="si">%s</span><span class="s"> eyes and </span><span class="si">%s</span><span class="s"> hair.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">my_eyes</span><span class="p">,</span> <span class="n">my_hair</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&quot;His teeth are usually </span><span class="si">%s</span><span class="s"> depending on the coffee.&quot;</span> <span class="o">%</span> <span class="n">my_teeth</span>
+
+<span class="c"># this line is tricky, try to get it exactly right</span>
+<span class="k">print</span> <span class="s">&quot;If I add </span><span class="si">%d</span><span class="s">, </span><span class="si">%d</span><span class="s">, and </span><span class="si">%d</span><span class="s"> I get </span><span class="si">%d</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="p">(</span>
+    <span class="n">my_age</span><span class="p">,</span> <span class="n">my_height</span><span class="p">,</span> <span class="n">my_weight</span><span class="p">,</span> <span class="n">my_age</span> <span class="o">+</span> <span class="n">my_height</span> <span class="o">+</span> <span class="n">my_weight</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Remember to put <tt class="docutils literal"><span class="pre">#</span> <span class="pre">--</span> <span class="pre">coding:</span> <span class="pre">utf-8</span> <span class="pre">--</span></tt> at the top if you use non-ASCII
+characters and get an encoding error.</p>
+</div>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python ex5.py
+<span class="go">Let&#39;s talk about Zed A. Shaw.</span>
+<span class="go">He&#39;s 74 inches tall.</span>
+<span class="go">He&#39;s 180 pounds heavy.</span>
+<span class="go">Actually that&#39;s not too heavy.</span>
+<span class="go">He&#39;s got Blue eyes and Brown hair.</span>
+<span class="go">His teeth are usually White depending on the coffee.</span>
+<span class="go">If I add 35, 74, and 180 I get 289.</span>
+<span class="gp">$</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Change all the variables so there isn't the <tt class="docutils literal"><span class="pre">my_</span></tt> in front.
+Make sure you change the name everywhere, not just where you used <tt class="docutils literal"><span class="pre">=</span></tt> to set them.</li>
+<li>Try more format characters.  <tt class="docutils literal"><span class="pre">%r</span></tt> is a very useful one.  It's like saying &quot;print this no matter what&quot;.</li>
+<li>Search online for all of the Python format characters.</li>
+<li>Try to write some variables that convert the inches and pounds to centimeters and kilos.
+Do not just type in the measurements. Work out the math in Python.</li>
+</ol>
+</div>
+<div class="section" id="frequently-asked-questions">
+<h2>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Can I make a variable like this: <tt class="docutils literal"><span class="pre">1</span> <span class="pre">=</span> <span class="pre">'Zed</span> <span class="pre">Shaw'</span></tt>?</dt>
+<dd>No, the <cite>1</cite> is not a valid variable name.  They need to start with a
+character, so <cite>a1</cite> would work, but <cite>1</cite> will not.</dd>
+<dt>What does <cite>%s</cite>, <cite>%r</cite>, and <cite>%d</cite> do again?</dt>
+<dd>You'll learn more about this as you continue, but they are &quot;formatters&quot;.
+They tell Python to take the variable on the right, and put it in
+to replace the <cite>%s</cite> with its value.</dd>
+<dt>I don't get it, what is a &quot;formatter&quot;? Huh?</dt>
+<dd>The problem with teaching you programming is that to understand many
+of my descriptions you need to know how to do programming already.
+The way I solve this is I make you do something, and then I explain
+it later.  When you run into these kinds of questions, write them down
+and see if I explain it later.</dd>
+<dt>How can I round a floating point number?</dt>
+<dd>You can use the <tt class="docutils literal"><span class="pre">round()</span></tt> function like this:  <tt class="docutils literal"><span class="pre">round(1.7333)</span></tt>.</dd>
+<dt>I get this error <cite>TypeError: 'str' object is not callable</cite>.</dt>
+<dd>You probably forgot the <cite>%</cite> between the string and the list of
+variables.</dd>
+<dt>Why does this not make sense to me?</dt>
+<dd>Try making the numbers in this script your measurements.  It's weird,
+but talking about yourself will make it seem more &quot;real&quot;.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex6.html" title="Exercise 6: Strings And Text"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex4.html" title="Exercise 4: Variables And Names"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex5.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+</html>

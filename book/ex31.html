@@ -1,0 +1,291 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex31.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 31: Making Decisions &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 32: Loops And Lists" href="ex32.html" />
+    <link rel="prev" title="Exercise 30: Else And If" href="ex30.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex32.html" title="Exercise 32: Loops And Lists"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex30.html" title="Exercise 30: Else And If"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-31-making-decisions">
+<h1>Exercise 31: Making Decisions<a class="headerlink" href="#exercise-31-making-decisions" title="Permalink to this headline">¶</a></h1>
+<p>In the first half of this book you mostly just printed out things and called
+functions, but everything was basically in a straight line.  Your scripts ran
+starting at the top, and went to the bottom where they ended.  If you
+made a function you could run that function later, but it still didn't
+have the kind of branching you need to really make decisions.  Now that
+you have <tt class="docutils literal"><span class="pre">if</span></tt>, <tt class="docutils literal"><span class="pre">else</span></tt>, and <tt class="docutils literal"><span class="pre">elif</span></tt> you can start to make scripts that
+decide things.</p>
+<p>In the last script you wrote out a simple set of tests asking some questions.
+In this script you will ask the user questions and make decisions based
+on their answers.  Write this script, and then play with it quite a lot
+to figure it out.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">print</span> <span class="s">&quot;You enter a dark room with two doors.  Do you go through door #1 or door #2?&quot;</span>
+
+<span class="n">door</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;&gt; &quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">door</span> <span class="o">==</span> <span class="s">&quot;1&quot;</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;There&#39;s a giant bear here eating a cheese cake.  What do you do?&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;1. Take the cake.&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;2. Scream at the bear.&quot;</span>
+
+    <span class="n">bear</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;&gt; &quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">bear</span> <span class="o">==</span> <span class="s">&quot;1&quot;</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;The bear eats your face off.  Good job!&quot;</span>
+    <span class="k">elif</span> <span class="n">bear</span> <span class="o">==</span> <span class="s">&quot;2&quot;</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;The bear eats your legs off.  Good job!&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;Well, doing </span><span class="si">%s</span><span class="s"> is probably better.  Bear runs away.&quot;</span> <span class="o">%</span> <span class="n">bear</span>
+
+<span class="k">elif</span> <span class="n">door</span> <span class="o">==</span> <span class="s">&quot;2&quot;</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;You stare into the endless abyss at Cthulhu&#39;s retina.&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;1. Blueberries.&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;2. Yellow jacket clothespins.&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;3. Understanding revolvers yelling melodies.&quot;</span>
+
+    <span class="n">insanity</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;&gt; &quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">insanity</span> <span class="o">==</span> <span class="s">&quot;1&quot;</span> <span class="ow">or</span> <span class="n">insanity</span> <span class="o">==</span> <span class="s">&quot;2&quot;</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;Your body survives powered by a mind of jello.  Good job!&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;The insanity rots your eyes into a pool of muck.  Good job!&quot;</span>
+
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;You stumble around and fall on a knife and die.  Good job!&quot;</span>
+</pre></div>
+</td></tr></table></div>
+<p>A key point here is that you are now putting the <tt class="docutils literal"><span class="pre">if-statements</span></tt> <em>inside</em>
+<tt class="docutils literal"><span class="pre">if-statements</span></tt> as code that can run.  This is very powerful and can be used
+to create &quot;nested&quot; decisions, where one branch leads to another and another.</p>
+<p>Make sure you understand this concept of if-statements inside
+if-statements.  In fact, do the extra credit to really nail it.</p>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<p>Here is me playing this little adventure game.  I do not do so well.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python ex31.py 
+<span class="go">You enter a dark room with two doors.  Do you go through door #1 or door #2?</span>
+<span class="gp">&gt;</span> 1
+<span class="go">There&#39;s a giant bear here eating a cheese cake.  What do you do?</span>
+<span class="go">1. Take the cake.</span>
+<span class="go">2. Scream at the bear.</span>
+<span class="gp">&gt;</span> 2
+<span class="go">The bear eats your legs off.  Good job!</span>
+
+<span class="gp">$</span> python ex31.py 
+<span class="go">You enter a dark room with two doors.  Do you go through door #1 or door #2?</span>
+<span class="gp">&gt;</span> 1
+<span class="go">There&#39;s a giant bear here eating a cheese cake.  What do you do?</span>
+<span class="go">1. Take the cake.</span>
+<span class="go">2. Scream at the bear.</span>
+<span class="gp">&gt;</span> 1
+<span class="go">The bear eats your face off.  Good job!</span>
+
+<span class="gp">$</span> python ex31.py 
+<span class="go">You enter a dark room with two doors.  Do you go through door #1 or door #2?</span>
+<span class="gp">&gt;</span> 2
+<span class="go">You stare into the endless abyss at Cthuhlu&#39;s retina.</span>
+<span class="go">1. Blueberries.</span>
+<span class="go">2. Yellow jacket clothespins.</span>
+<span class="go">3. Understanding revolvers yelling melodies.</span>
+<span class="gp">&gt;</span> 1
+<span class="go">Your body survives powered by a mind of jello.  Good job!</span>
+
+<span class="gp">$</span> python ex31.py 
+<span class="go">You enter a dark room with two doors.  Do you go through door #1 or door #2?</span>
+<span class="gp">&gt;</span> 2
+<span class="go">You stare into the endless abyss at Cthuhlu&#39;s retina.</span>
+<span class="go">1. Blueberries.</span>
+<span class="go">2. Yellow jacket clothespins.</span>
+<span class="go">3. Understanding revolvers yelling melodies.</span>
+<span class="gp">&gt;</span> 3
+<span class="go">The insanity rots your eyes into a pool of muck.  Good job!</span>
+
+<span class="gp">$</span> python ex31.py 
+<span class="go">You enter a dark room with two doors.  Do you go through door #1 or door #2?</span>
+<span class="gp">&gt;</span> stuff
+<span class="go">You stumble around and fall on a knife and die.  Good job!</span>
+
+<span class="gp">$</span> python ex31.py 
+<span class="go">You enter a dark room with two doors.  Do you go through door #1 or door #2?</span>
+<span class="gp">&gt;</span> 1
+<span class="go">There&#39;s a giant bear here eating a cheese cake.  What do you do?</span>
+<span class="go">1. Take the cake.</span>
+<span class="go">2. Scream at the bear.</span>
+<span class="gp">&gt;</span> apples
+<span class="go">Well, doing apples is probably better.  Bear runs away.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<p>Make new parts of the game and change what decisions people can make.  Expand
+the game out as much as you can before it gets ridiculous.</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex32.html" title="Exercise 32: Loops And Lists"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex30.html" title="Exercise 30: Else And If"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex31.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:16 GMT -->
+</html>

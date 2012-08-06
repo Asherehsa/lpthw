@@ -1,0 +1,229 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex11.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 11: Asking Questions &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 12: Prompting People" href="ex12.html" />
+    <link rel="prev" title="Exercise 10: What Was That?" href="ex10.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex12.html" title="Exercise 12: Prompting People"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex10.html" title="Exercise 10: What Was That?"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-11-asking-questions">
+<h1>Exercise 11: Asking Questions<a class="headerlink" href="#exercise-11-asking-questions" title="Permalink to this headline">¶</a></h1>
+<p>Now it is time to pick up the pace.  I have got you doing a lot of printing so
+that you get used to typing simple things, but those simple things are fairly
+boring.  What we want to do now is get data into your programs.  This is a
+little tricky because you have learn to do two things that may not make sense right
+away, but trust me and do it anyway.  It will make sense in a few exercises.</p>
+<p>Most of what software does is the following:</p>
+<ol class="arabic simple">
+<li>Take some kind of input from a person.</li>
+<li>Change it.</li>
+<li>Print out something to show how it changed.</li>
+</ol>
+<p>So far you have only been printing, but you haven't been able to get any input
+from a person, or change it.  You may not even know what &quot;input&quot; means, so
+rather than talk about it, let's have you do some and see if you get it.  Next
+exercise we'll do more to explain it.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">print</span> <span class="s">&quot;How old are you?&quot;</span><span class="p">,</span>
+<span class="n">age</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">()</span>
+<span class="k">print</span> <span class="s">&quot;How tall are you?&quot;</span><span class="p">,</span>
+<span class="n">height</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">()</span>
+<span class="k">print</span> <span class="s">&quot;How much do you weigh?&quot;</span><span class="p">,</span>
+<span class="n">weight</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">()</span>
+
+<span class="k">print</span> <span class="s">&quot;So, you&#39;re </span><span class="si">%r</span><span class="s"> old, </span><span class="si">%r</span><span class="s"> tall and </span><span class="si">%r</span><span class="s"> heavy.&quot;</span> <span class="o">%</span> <span class="p">(</span>
+    <span class="n">age</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Notice that we put a <tt class="docutils literal"><span class="pre">,</span></tt> (comma) at the end of each <tt class="docutils literal"><span class="pre">print</span></tt> line.
+This is so that <tt class="docutils literal"><span class="pre">print</span></tt> doesn't end the line with a newline and go
+to the next line.</p>
+</div>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python ex11.py
+<span class="go">How old are you? 35</span>
+<span class="go">How tall are you? 6&#39;2&quot;</span>
+<span class="go">How much do you weigh? 180lbs</span>
+<span class="go">So, you&#39;re &#39;35&#39; old, &#39;6\&#39;2&quot;&#39; tall and &#39;180lbs&#39; heavy.</span>
+<span class="gp">$</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Go online and find out what Python's <tt class="docutils literal"><span class="pre">raw_input</span></tt> does.</li>
+<li>Can you find other ways to use it?  Try some of the samples you find.</li>
+<li>Write another &quot;form&quot; like this to ask some other questions.</li>
+<li>Related to escape sequences, try to find out why the last line has <tt class="docutils literal"><span class="pre">'6\'2&quot;'</span></tt>
+with that <tt class="docutils literal"><span class="pre">\'</span></tt> sequence.  See how the single-quote needs to be escaped
+because otherwise it would end the string?</li>
+</ol>
+</div>
+<div class="section" id="frequently-asked-questions">
+<h2>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>How do I get a number from someone so I can do math?</dt>
+<dd>That's a little advanced, but try <tt class="docutils literal"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">int(raw_input())</span></tt> which gets the number as a string from <cite>raw_input()</cite> then converts
+it to an integer using <cite>int()</cite>.</dd>
+<dt>I put my height into raw input like this <tt class="docutils literal"><span class="pre">raw_input(&quot;6'2&quot;)</span></tt> but it doesn't work.</dt>
+<dd>You don't put your height in there, you type it directly into your terminal.  First thing is, go back and make
+the code exactly like mine.  Next, run the script, and when it pauses, type your hieight in at your keyboard.
+That's all there is to it.</dd>
+<dt>Why do you have a newline on line 8 instead of putting it on one line?</dt>
+<dd>That's so that the line is less than 80 characters long, which is a style
+that Python programmers like.  You could put it on one line if you like.</dd>
+<dt>What's the difference between <tt class="docutils literal"><span class="pre">input()</span></tt> and <tt class="docutils literal"><span class="pre">raw_input()</span></tt>?</dt>
+<dd>The <tt class="docutils literal"><span class="pre">input()</span></tt> function will try to convert things you enter as if they
+were Python code, but it has security problems so you should avoid it.</dd>
+<dt>When my strings print out there's a <tt class="docutils literal"><span class="pre">u</span></tt> in front of them, as in <tt class="docutils literal"><span class="pre">u'35'</span></tt>.</dt>
+<dd>That's how Python tells you that the string is unicode.  Use a <tt class="docutils literal"><span class="pre">%s</span></tt>
+format instead and you'll see it printed like normal.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex12.html" title="Exercise 12: Prompting People"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex10.html" title="Exercise 10: What Was That?"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex11.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+</html>

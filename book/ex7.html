@@ -1,0 +1,238 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex7.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 7: More Printing &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 8: Printing, Printing" href="ex8.html" />
+    <link rel="prev" title="Exercise 6: Strings And Text" href="ex6.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex8.html" title="Exercise 8: Printing, Printing"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex6.html" title="Exercise 6: Strings And Text"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-7-more-printing">
+<h1>Exercise 7: More Printing<a class="headerlink" href="#exercise-7-more-printing" title="Permalink to this headline">¶</a></h1>
+<p>Now we are going to do a bunch of exercises where you just type code in
+and make it run.  I won't be explaining much since it is just more of
+the same.  The purpose is to build up your chops.  See you in a few
+exercises, and <em>do not skip!</em>  Do not <em>paste!</em></p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">print</span> <span class="s">&quot;Mary had a little lamb.&quot;</span>
+<span class="k">print</span> <span class="s">&quot;Its fleece was white as </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="s">&#39;snow&#39;</span>
+<span class="k">print</span> <span class="s">&quot;And everywhere that Mary went.&quot;</span>
+<span class="k">print</span> <span class="s">&quot;.&quot;</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c"># what&#39;d that do?</span>
+
+<span class="n">end1</span> <span class="o">=</span> <span class="s">&quot;C&quot;</span>
+<span class="n">end2</span> <span class="o">=</span> <span class="s">&quot;h&quot;</span>
+<span class="n">end3</span> <span class="o">=</span> <span class="s">&quot;e&quot;</span>
+<span class="n">end4</span> <span class="o">=</span> <span class="s">&quot;e&quot;</span>
+<span class="n">end5</span> <span class="o">=</span> <span class="s">&quot;s&quot;</span>
+<span class="n">end6</span> <span class="o">=</span> <span class="s">&quot;e&quot;</span>
+<span class="n">end7</span> <span class="o">=</span> <span class="s">&quot;B&quot;</span>
+<span class="n">end8</span> <span class="o">=</span> <span class="s">&quot;u&quot;</span>
+<span class="n">end9</span> <span class="o">=</span> <span class="s">&quot;r&quot;</span>
+<span class="n">end10</span> <span class="o">=</span> <span class="s">&quot;g&quot;</span>
+<span class="n">end11</span> <span class="o">=</span> <span class="s">&quot;e&quot;</span>
+<span class="n">end12</span> <span class="o">=</span> <span class="s">&quot;r&quot;</span>
+
+<span class="c"># watch that comma at the end.  try removing it to see what happens</span>
+<span class="k">print</span> <span class="n">end1</span> <span class="o">+</span> <span class="n">end2</span> <span class="o">+</span> <span class="n">end3</span> <span class="o">+</span> <span class="n">end4</span> <span class="o">+</span> <span class="n">end5</span> <span class="o">+</span> <span class="n">end6</span><span class="p">,</span>
+<span class="k">print</span> <span class="n">end7</span> <span class="o">+</span> <span class="n">end8</span> <span class="o">+</span> <span class="n">end9</span> <span class="o">+</span> <span class="n">end10</span> <span class="o">+</span> <span class="n">end11</span> <span class="o">+</span> <span class="n">end12</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python ex7.py
+<span class="go">Mary had a little lamb.</span>
+<span class="go">Its fleece was white as snow.</span>
+<span class="go">And everywhere that Mary went.</span>
+<span class="go">..........</span>
+<span class="go">Cheese Burger</span>
+<span class="gp">$</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<p>For these next few exercises, you will have the exact same extra credit.</p>
+<ol class="arabic simple">
+<li>Go back through and write a comment on what each line does.</li>
+<li>Read each one backwards or out loud to find your errors.</li>
+<li>From now on, when you make mistakes write down on a piece of paper what
+kind of mistake you made.</li>
+<li>When you go to the next exercise, look at the last mistakes you made and
+try not to make them in this new one.</li>
+<li>Remember that everyone makes mistakes.  Programmers are like magicians who
+like everyone to think they are perfect and never wrong, but it's all an act.
+They make mistakes all the time.</li>
+</ol>
+</div>
+<div class="section" id="frequently-asked-questions">
+<h2>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>How does the &quot;end&quot; statement work?</dt>
+<dd>These are not really an &quot;end statement&quot;, but actually the names of variables that just happen to have the word &quot;end&quot; in them.</dd>
+<dt>Why are you using the variable named 'snow'?</dt>
+<dd>That's actually not a variable, it is just a string with the word <cite>snow</cite> in it. A variable wouldn't have the single-quotes around it.</dd>
+<dt>Is it normal to write an English comment for every line of code like you say to do in Extra Credit #1?</dt>
+<dd>No, normally you write comments only to explain difficult to understand code, or why you did something.  Why (or your motivation) is
+usually much more important, and then you try to write the code so that it explains how something is being done on its own. However,
+sometimes you just have to write such nasty code to solve a problem that it does need a comment on every line.  In this case though
+it's strictly for you to get better at translating from code to English.</dd>
+<dt>Can I use single-quotes or double-quotes to make a string or do they do different things?</dt>
+<dd>In Python either way to make a string is acceptable although typically you'll use single-quotes for any short strings like <cite>'a'</cite> or <cite>'snow'</cite>.</dd>
+<dt>Couldn't you just not use the comma <cite>,</cite> and turn the last two lines into one single-line print?</dt>
+<dd>Yes, you could very easily, but then it'd be longer than 80 characters which in Python is bad style.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex8.html" title="Exercise 8: Printing, Printing"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex6.html" title="Exercise 6: Strings And Text"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex7.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:14 GMT -->
+</html>

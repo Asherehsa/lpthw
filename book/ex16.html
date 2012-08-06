@@ -1,0 +1,292 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex16.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:15 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 16: Reading And Writing Files &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 17: More Files" href="ex17.html" />
+    <link rel="prev" title="Exercise 15: Reading Files" href="ex15.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex17.html" title="Exercise 17: More Files"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex15.html" title="Exercise 15: Reading Files"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-16-reading-and-writing-files">
+<h1>Exercise 16: Reading And Writing Files<a class="headerlink" href="#exercise-16-reading-and-writing-files" title="Permalink to this headline">¶</a></h1>
+<p>If you did the extra credit from the last exercise you should have seen all
+sorts of commands (methods/functions) you can give to files.  Here's the
+list of commands I want you to remember:</p>
+<ul class="simple">
+<li>close -- Closes the file.  Like <tt class="docutils literal"><span class="pre">File-&gt;Save..</span></tt> in your editor.</li>
+<li>read -- Reads the contents of the file, you can assign the result to a variable.</li>
+<li>readline -- Reads just one line of a text file.</li>
+<li>truncate -- Empties the file, watch out if you care about the file.</li>
+<li>write(stuff) -- Writes stuff to the file.</li>
+</ul>
+<p>For now these are the important commands you need to know.  Some of them
+take parameters, but we do not really care about that.  You only need to
+remember that <tt class="docutils literal"><span class="pre">write</span></tt> takes a parameter of a string you want to write
+to the file.</p>
+<p>Let's use some of this to make a simple little text editor:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">argv</span>
+
+<span class="n">script</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">argv</span>
+
+<span class="k">print</span> <span class="s">&quot;We&#39;re going to erase </span><span class="si">%r</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="n">filename</span>
+<span class="k">print</span> <span class="s">&quot;If you don&#39;t want that, hit CTRL-C (^C).&quot;</span>
+<span class="k">print</span> <span class="s">&quot;If you do want that, hit RETURN.&quot;</span>
+
+<span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s">&quot;Opening the file...&quot;</span>
+<span class="n">target</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s">&quot;Truncating the file.  Goodbye!&quot;</span>
+<span class="n">target</span><span class="o">.</span><span class="n">truncate</span><span class="p">()</span>
+
+<span class="k">print</span> <span class="s">&quot;Now I&#39;m going to ask you for three lines.&quot;</span>
+
+<span class="n">line1</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;line 1: &quot;</span><span class="p">)</span>
+<span class="n">line2</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;line 2: &quot;</span><span class="p">)</span>
+<span class="n">line3</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;line 3: &quot;</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s">&quot;I&#39;m going to write these to the file.&quot;</span>
+
+<span class="n">target</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line1</span><span class="p">)</span>
+<span class="n">target</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">target</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line2</span><span class="p">)</span>
+<span class="n">target</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">target</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line3</span><span class="p">)</span>
+<span class="n">target</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s">&quot;And finally, we close it.&quot;</span>
+<span class="n">target</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p>That's a large file, probably the largest you have typed in.  So go slow, do
+your checks, and make it run.  One trick is to get bits of it running at a
+time.  Get lines 1-8 running, then 5 more, then a few more, etc., until it's
+all done and running.</p>
+<div class="section" id="what-you-should-see">
+<h2>What You Should See<a class="headerlink" href="#what-you-should-see" title="Permalink to this headline">¶</a></h2>
+<p>There are actually two things you will see, first the output of your new
+script:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python ex16.py test.txt
+<span class="go">We&#39;re going to erase &#39;test.txt&#39;.</span>
+<span class="go">If you don&#39;t want that, hit CTRL-C (^C).</span>
+<span class="go">If you do want that, hit RETURN.</span>
+<span class="go">?</span>
+<span class="go">Opening the file...</span>
+<span class="go">Truncating the file.  Goodbye!</span>
+<span class="go">Now I&#39;m going to ask you for three lines.</span>
+<span class="go">line 1: To all the people out there.</span>
+<span class="go">line 2: I say I don&#39;t like my hair.</span>
+<span class="go">line 3: I need to shave it off.</span>
+<span class="go">I&#39;m going to write these to the file.</span>
+<span class="go">And finally, we close it.</span>
+<span class="gp">$</span>
+</pre></div>
+</div>
+<p>Now, open up the file you made (in my case <tt class="docutils literal"><span class="pre">test.txt</span></tt>) in your
+editor and check it out.  Neat right?</p>
+</div>
+<div class="section" id="extra-credit">
+<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>If you feel you do not understand this, go back through and use the comment
+trick to get it squared away in your mind.  One simple English comment
+above each line will help you understand, or at least let you know what
+you need to research more.</li>
+<li>Write a script similar to the last exercise that uses <tt class="docutils literal"><span class="pre">read</span></tt> and <tt class="docutils literal"><span class="pre">argv</span></tt>
+to read the file you just created.</li>
+<li>There's too much repetition in this file.  Use strings, formats, and escapes
+to print out <tt class="docutils literal"><span class="pre">line1</span></tt>, <tt class="docutils literal"><span class="pre">line2</span></tt>, and <tt class="docutils literal"><span class="pre">line3</span></tt> with just one <tt class="docutils literal"><span class="pre">target.write()</span></tt>
+command instead of 6.</li>
+<li>Find out why we had to pass a <tt class="docutils literal"><span class="pre">'w'</span></tt> as an extra parameter to <tt class="docutils literal"><span class="pre">open</span></tt>.  Hint:
+<tt class="docutils literal"><span class="pre">open</span></tt> tries to be safe by making you explicitly say you want to write a file.</li>
+<li>If you open the file with <tt class="docutils literal"><span class="pre">'w'</span></tt> mode, then do you really need the <tt class="docutils literal"><span class="pre">target.truncate()</span></tt>?
+Go read the docs for Python's <tt class="docutils literal"><span class="pre">open</span></tt> function and see if that's true.</li>
+</ol>
+</div>
+<div class="section" id="frequently-asked-questions">
+<h2>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Is the <tt class="docutils literal"><span class="pre">truncate()</span></tt> necessary with the <tt class="docutils literal"><span class="pre">'w'</span></tt> parameter?</dt>
+<dd>See Extra Credit #5.</dd>
+<dt>What does <tt class="docutils literal"><span class="pre">'w'</span></tt> mean?</dt>
+<dd>It's really just a string with a character in it for the kind of mode for the
+file.  If you use <tt class="docutils literal"><span class="pre">'w'</span></tt> then you're saying &quot;open this file in 'write' mode&quot;,
+thus the <tt class="docutils literal"><span class="pre">'w'</span></tt> character.  There's also <tt class="docutils literal"><span class="pre">'r'</span></tt> for &quot;read&quot;, <tt class="docutils literal"><span class="pre">'a'</span></tt> for
+append, and modifiers on these.</dd>
+<dt>What are the modifiers to the file modes we can use?</dt>
+<dd>The most important one to know for now is the <tt class="docutils literal"><span class="pre">+</span></tt> modifier, so you can
+do <tt class="docutils literal"><span class="pre">'w+'</span></tt>, <tt class="docutils literal"><span class="pre">'r+'</span></tt>, and <tt class="docutils literal"><span class="pre">'a+'</span></tt>.  This will open the file in both
+read and write mode, and depending on the character use position the file
+in different ways.</dd>
+<dt>Does just doing <tt class="docutils literal"><span class="pre">open(filename)</span></tt> open it in <tt class="docutils literal"><span class="pre">'r'</span></tt> (read) mode?</dt>
+<dd>Yes, that's the default for the <cite>open()</cite> function.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex17.html" title="Exercise 17: More Files"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex15.html" title="Exercise 15: Reading Files"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex16.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:15 GMT -->
+</html>

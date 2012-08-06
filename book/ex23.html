@@ -1,0 +1,211 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from learnpythonthehardway.org/book/ex23.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:15 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exercise 23: Read Some Code &mdash; Learn Python The Hard Way, 2nd Edition</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Learn Python The Hard Way, 2nd Edition" href="index-2.html" />
+    <link rel="next" title="Exercise 24: More Practice" href="ex24.html" />
+    <link rel="prev" title="Exercise 22: What Do You Know So Far?" href="ex22.html" /> 
+  </head>
+  <body>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex24.html" title="Exercise 24: More Practice"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="ex22.html" title="Exercise 22: What Do You Know So Far?"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exercise-23-read-some-code">
+<h1>Exercise 23: Read Some Code<a class="headerlink" href="#exercise-23-read-some-code" title="Permalink to this headline">¶</a></h1>
+<p>You should have spent last week getting your list of symbols straight
+and locked in your mind.  Now you get to apply this to another
+week reading code on the internet.  This exercise will be daunting at first.
+I'm going to throw you in the deep end for a few days and have you just try
+your best to read and understand some source code from real projects.  The
+goal isn't to get you to understand code, but to teach you the following
+three skills:</p>
+<ol class="arabic simple">
+<li>Finding Python source code for things you need.</li>
+<li>Reading through the code and looking for files.</li>
+<li>Trying to understand code you find.</li>
+</ol>
+<p>At your level you really do not have the skills to evaluate the things
+you find, but you can benefit from getting exposure and seeing how
+things look.</p>
+<p>When you do this exercise, think of yourself as an anthropologist, trucking
+through a new land with just barely enough of the local language to get around
+and survive.  Except, of course, that you will actually get out alive because
+the internet isn't a jungle.  Anyway.</p>
+<p>Here's what you do:</p>
+<ol class="arabic simple">
+<li>Go to bitbucket.org with your favorite web browser and search for &quot;python&quot;.</li>
+<li>Avoid any project with &quot;Python 3&quot; mentioned.  That'll only confuse you.</li>
+<li>Pick a random project and click on it.</li>
+<li>Click on the <tt class="docutils literal"><span class="pre">Source</span></tt> tab and browse through the list of files and
+directories until you find a .py file (but not setup.py, that's useless).</li>
+<li>Start at the top and read through it, taking notes on what you think it
+does.</li>
+<li>If any symbols or strange words seem to interest you, write them down to
+research later.</li>
+</ol>
+<p>That's it.  Your job is to use what you know so far and see if you can read the
+code and get a grasp of what it does.  Try skimming the code first, and then
+read it in detail.  Maybe also try taking very difficult parts and reading each
+symbol you know outloud.</p>
+<p>Now try several three other sites:</p>
+<ul class="simple">
+<li>github.com</li>
+<li>launchpad.net</li>
+<li>koders.com</li>
+</ul>
+<p>On each of these sites you may find weird files ending in <tt class="docutils literal"><span class="pre">.c</span></tt> so stick to
+<tt class="docutils literal"><span class="pre">.py</span></tt> files like the ones you have written in this book.</p>
+<p>A final fun thing to do is use the above four sources of Python code and
+type in topics you are interested in instead of &quot;python&quot;.  Search for &quot;journalism&quot;,
+&quot;cooking&quot;, &quot;physics&quot;, or anything you are curious about.  Chances are there's
+some code out there you could use right away.</p>
+<div class="section" id="frequently-asked-questions">
+<h2>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Can you recommend some projects so I don't have to go scrounging around?</dt>
+<dd>Try one of my projects <a class="reference external" href="https://github.com/zedshaw/lamson">https://github.com/zedshaw/lamson</a> then search
+around from there.</dd>
+<dt>Help! I have no idea what any of this means?!</dt>
+<dd>You probably won't know what it means because you're still a beginner.
+The purpose of the exerise is just to throw you in the deep end of the
+code pool and have you thrash around.  After you're done you'll
+be less afraid to read other people's code later.</dd>
+<dt>Am I really supposed to do this every day for a week?</dt>
+<dd>If you have the time then definitely spend it reading code for a
+week, but don't be crazy about it.  You could easily spend 30 minutes
+a day trying to read code, and then move on to more exercises for the
+next hour.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+        <ul>
+        <li class="right"><a style="color: #C40B46;" href="http://learncodethehardway.org/contact.html" title="Need Help?">Need Help?</a></li>
+        <li class="right"><a style="color: #C40B46;" href="http://regex.learncodethehardway.org/" title="Learn Regex">Learn Regex</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://sql.learncodethehardway.org/" title="Learn SQL">Learn SQL</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://c.learncodethehardway.org/" title="Learn C">Learn C</a> | </li>
+        <li class="right"><a style="color: #C40B46;" href="http://ruby.learncodethehardway.org/" title="Learn Ruby">Learn Ruby</a> | </li>
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19967/19291?referer=http%3A//learnpythonthehardway.org/book/"><b>Buy PDF - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19968/19292?referer=http%3A//learnpythonthehardway.org/book/"><b>ePub - $2.99</b></a> |
+        <li><a style="color: #C40B46;" href="https://getdpd.com/v2/cart/add/8273/19969/19293?referer=http%3A//learnpythonthehardway.org/book/"><b>Both - $5</b></a></li>
+        </ul>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="ex24.html" title="Exercise 24: More Practice"
+             >next</a></li>
+        <li class="right" >
+          <a href="ex22.html" title="Exercise 22: What Do You Know So Far?"
+             >previous</a> |</li>
+        <li><a href="../index.html">Learn Python The Hard Way, 2nd Edition</a> &raquo;</li> 
+        <li class="right"><a href="search.html" title="search">search</a> | </li>
+      </ul>
+    </div>
+    <a name="comments"><hr/></a>
+<div sytle="text-align: left">
+    <div style="background: white; padding: 10px" id="disqus_thread"></div>
+</div>
+    <script type="text/javascript">
+        var dow = new Date().getDay();
+
+        if(dow == 5 || dow == 6) {
+            $("#disqus_thread").html("<h1>Today Is Zed's Day Off</h1><p>I take Friday and Saturday off.  Comments open again on Sunday-Thursday.</p>")
+        } else {
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'learn-code-the-hard-way'; // required: replace example with your forum shortname
+
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="footer">
+      &copy; Copyright 2010, Zed A. Shaw.
+      Last updated on Jul 26, 2012.
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24168052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+  </body>
+
+<!-- Mirrored from learnpythonthehardway.org/book/ex23.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 01 Aug 2012 02:03:15 GMT -->
+</html>
