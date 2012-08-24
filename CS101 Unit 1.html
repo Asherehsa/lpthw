@@ -1,0 +1,1478 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Udacity - 21st Century University</title>
+<meta name="google-site-verification" content="8BozdrktZ5uY63LYrPxB5iOkouVTdHipGsNzUW9V2pU" />
+<link rel="stylesheet" type="text/css" href="/media/css/udacity2.css?113" />
+<link rel="stylesheet" type="text/css" href="/media/css/dialogs.css?113"/>
+
+<!--[if gte IE 9]>
+  <style type="text/css">
+    button, .button, a.button, ol.nugget-list {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+<!--
+<script
+    src="//www.google.com/jsapi?key=ABQIAAAAOx-pTXyuaUsotjKevTem5RRY-J96ZG6vUeHysYWcYheHIRtZ7hQ7CQ5yRTKcwjX2z4sBOrajFOZMkA"></script>
+-->
+<script type="text/javascript">
+    if (!window.console) {
+       window.console = {
+          log : function(){},
+          debug : function(){},
+          info : function(){},
+          warn : function(){}
+       }
+    }
+    window.udacityJSVersion = 113;
+</script>
+<!-- 
+<script type="text/javascript">
+    google.load("jquery", "1.7.1", {uncompressed:true});
+    google.load("jqueryui", "1.8.16");
+</script>
+ -->
+<script src="/media/js/libs/jquery/jquery-1-7-2-min.js?113"></script>
+<script src="/media/js/libs/jquery/jquery-ui-1-8-16-min.js?113"></script>
+<script src="/media/js/jquery.form.js?113"></script>
+<script src="/media/js/jquery.history.js?113"></script>
+<script src="/media/js/json2.js?113"></script>
+<script src="/media/js/udacity.js?113"></script>
+<script src="/media/js/pages.js?113"></script>
+<script src="/media/js/social_apis.js?113"></script>
+
+
+<!-- Ember includes -->
+<script type="text/javascript">
+if ($.browser.msie && 1*$.browser.version < 9.0) {
+	document.write('<script src="/media/js/ember-0.9.6.min.js?113"><'+'/script>' );
+	console.log($.browser);
+	$.each($.browser,function(i,val){
+		console.log(i);
+		console.log(val);
+	});
+}
+else{
+    document.write('<script src="/media/js/ember-0.9.6.min.js?113"><'+'/script>');
+}
+</script>
+<script src="/media/js/models.js?113" type="text/javascript"></script>
+<script src="/media/js/ember/apps/notifications.js?113"></script>
+<script src="/media/js/bangvars.js?113" type="text/javascript"></script>
+
+<script type="text/javascript">
+  csrf_token = "BpLu9vJcSNfxxmfQfT7ZVkXriDMzEawzi7r2pHtp43ZKtjHLY3es9ZmeKaz6"
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28524234-1']);
+  _gaq.push(['_setCustomVar',1,'isUdacityRegistered','Yes', 1]);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+$(document).ready(function() {
+    // use js to position botbar at either end of document or bottom of window, whichever is lower
+    var windowHeight = $(window).height();   // returns height of browser viewport
+    var contentHeight = $("body").height(); // returns height of HTML document
+    var footerHeight = $("div#bottom_bin").height();
+    var footerTop = windowHeight - footerHeight - 50;
+    if (windowHeight > contentHeight) {
+        //$("div#bottom_bin").css("top",footerTop);
+    }
+
+
+    if(window.location.hash && window.location.hash.length > 0) {
+      UY.ajaxGET('account.is_enrolled_in_path',{path: window.location.hash.slice(1)},function(data){
+        _gaq.push(['_setCustomVar',2,'isEnrolledInCourse', (data.result) ? 'Yes' : 'No',3]);
+        _gaq.push(['_trackPageview',UY.getHashConvertedUrl()]);
+        isEnrolledInCourse = data.result;
+      });
+    } else {
+      _gaq.push(['_trackPageview',UY.getHashConvertedUrl()]);      
+    }
+});
+
+
+//Notifications
+$(document).ready(function(){
+    //Note.NotificationManager.getNotes(UY.BangVars.getHash(true));
+});
+
+</script>
+<script type="text/x-handlebars" data-template-name="notification-view">
+<div class="notification width960">
+    <div {{bindAttr class="importance"}}>
+        <div class="notification-icon">&nbsp;</div>
+        <div class="notification-content">{{{notification.content}}}</div>
+        <div class="dismissbox" {{action "dismissNotification" on="click" }}>x</div> 
+        <div class="clear"></div>
+    </div>
+</div>
+</script>
+
+</head>
+<body>
+    <div id="not-footer">
+        
+
+
+
+
+
+<div id="top_bin">
+	<div id="top_content" class="width960">
+		<!-- logo -->
+		<div class="udacity float-left">
+			<a href="/"><img id="top-logo" src="/media/img/logo-header-284x19.png" alt="Udacity" /></a><span id="top-course-title">&nbsp;</span>
+		</div>
+		<!-- buttons -->
+		<div class="user-block">
+		
+			 <!-- WELCOME BUTTON & ACCOUNT SETTINGS OVERLAY -->
+				<div id="user-topbar-button" class="topbar-modal-button float-right">
+					<span class="downward-link">Welcome, Asher Silberman</span>
+				</div>
+				<div id="user-topbar-button-overlay" class="overlay">
+					<div class="topbar-menu">
+						<p class="text-center">
+						   <a href="/account/transcript">My Transcript</a>
+						</p>					
+						<p class="text-center">
+						   <a href="/account/profile">Profile Settings</a>
+						</p>					
+						<p class="text-center">
+						   <a href="/account/settings">Account Settings</a>
+						</p>
+					</div>
+					<div class="topbar-bottom-button">
+						<form id="signout-form" method="post">
+						   <button class="button forward-button" type="submit">
+								<span>Sign Out</span>
+						   </button>
+						</form>
+					</div>
+				</div>
+			<!-- SEPARATOR -->
+				<div class="top-bar-separator float-right"></div>
+			<!-- CLASS LIST BUTTON & OVERLAY -->
+				<div id="courses-topbar-button" class="topbar-modal-button float-right">
+				   <span class="downward-link">My Classes</span>
+				</div>
+				<div id="courses-topbar-button-overlay" class="overlay">
+					<div class="topbar-menu topbar-course-menu">
+						Loading courses...
+						<img src="/media/img/ajax-loader.gif" width=16 height=16 style="margin: 4px; vertical-align: middle;">
+					</div>
+					<div class="topbar-bottom-button">
+					   <a href="/courses" class="button">See All Classes</a>
+					</div>
+				</div>                
+
+
+		</div><!-- end user-block -->
+		<div class="header-title">
+			<h2></h2>
+		</div>
+		<div class="header-text clear">
+		
+		</div>
+
+		<!-- header nav function starts here -->
+		
+<div id="header-nav" style="display: none;">
+	<script type="text/x-handlebars">
+
+<ul class="topnav">
+	{{#if UY.HeaderNavApp.enabled}}
+  	    {{#unless UY.HeaderNavApp.headerLinks.enabled}}
+	        {{#each UY.HeaderNavApp.headerLinks.content}}
+		        <li class="topnav inactive">
+				    <span class="inactive">{{label}}</span>
+        	    </li>
+    	    {{/each}}
+	    {{else}}
+	        {{#each UY.HeaderNavApp.headerLinks.content}}
+			    {{#if current}}
+				    <li class="topnav selected">
+				    <a>{{label}}</a>
+			    {{else}}
+		            {{#if active}}
+   			             <li class="topnav">
+		                <a {{bindAttr href="link"}}>{{label}}</a>
+		            {{else}}                    
+		                <li class="topnav inactive">
+		                <span class="inactive">{{label}}</span>
+		            {{/if}}
+			    {{/if}}
+        	    </li>
+    	    {{/each}}
+	    {{/unless}}
+	{{/if}}
+</ul>
+<div class="clear"></div>
+</script>
+</div>
+
+		<!-- header nav function ends here -->
+
+	</div><!-- end top_content -->
+	<div class="clear"></div>
+
+<div id="javascript_warning">
+	<img src="/media/img/icons/alert.gif" style="vertical-align: middle;" />
+	<span>This website requires JavaScript to be enabled. Please make sure JavaScript is enabled in your web browser preferences and any JavaScript blockers are disabled for this site.</span>
+</div>
+<script type="text/javascript">
+	var el = document.getElementById('javascript_warning');
+	el.style.display = "none";
+</script>
+</div><!-- end top_bin -->
+
+        <div class="" id="notification-ember-anchor">
+	        <script type="text/x-handlebars">
+                {{#each Note.NotificationManager.content}}
+                    <div>
+                      {{view Note.NotificationView notificationBinding="this"}}
+                    </div>
+               {{/each}}
+           </script>
+           
+        </div>
+        <div id="content-background">
+            <div id="content" class="width960">            
+               
+<link rel="stylesheet" type="text/css" href="/media/wiki/style.css?113"/>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+ "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] },
+ tex2jax: { inlineMath: [ ["$%","$%"] ],
+            displayMath: [ ["$$","$$"] ],
+            processEscapes: true,
+            ignoreClass: "tex2jax_ignore|dno"
+ },
+ TeX: { noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } } },
+ messageStyle: "none"
+});
+</script>
+<script>
+(function() {
+	var mj = document.createElement('script'); mj.type = 'text/javascript'; mj.async = true;
+	mj.id = 'mathjax-script-tag';
+	if (window.location.protocol.indexOf("https") == 0) {
+		mj.src = 'https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML';
+	} else {
+		mj.src = 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML';
+	}
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mj, s);
+})();
+</script>
+<script>window.Handlebars || document.write('<script src="/media/js/ember-0.9.4.min.js"><\/script>')</script>
+<script>
+(function() {
+	var course = new RegExp('course=([^&]*)').exec(window.location.search);
+	course = course && unescape(course[1]) || ''; 
+	if (!course.match(/^\w+$/i)) {
+		UY.BangVars.getHash = function() { return ''; }
+		UY.ajaxGET = function() { }
+	} 
+	else {
+		$("#top-course-title").text(course);
+		// TODO Clean this up plz
+		var rev = 'apr2012';
+		if(course === 'ph100' || course === 'st101' || course === 'cs215' || course === 'cs221' || course === 'cs258') {
+			rev = '1';
+		}
+		UY.BangVars.getHash = function() { return 'Course/' + course + '/CourseRev/' + rev + '/Unit/1/Nugget/1'; }
+		$(function() {
+			$("#header-nav").show();
+			$('#wiki-content-container a').each(function(i, e) {
+				if (e.pathname.indexOf('/wiki') < 0 || e.search.indexOf('course=') >= 0) { return; }
+				if (e.search == '') { e.search = 'course=' + course; }
+				else { e.search += '&course=' + course; }
+			});
+		});	
+	}
+})();
+</script>
+<script src="/media/js/header_nav.js?113"></script>
+
+
+
+<div id="wiki-content-container">
+
+
+
+<link href="/media/wiki/google-code-prettify/prettify.css?111" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="/media/wiki/google-code-prettify/prettify.js?111"></script>
+<script>
+$(document).ready(function() {
+    prettyPrint();
+})
+</script>
+<script type="text/javascript" src="/media/wiki/jquery.highlight.js?111"></script>
+<script>
+$(document).ready(function() {
+    var rx = /highlight=([^&]+)/;
+    var match = rx.exec(window.location.search);
+    if (match) {
+        $('#pb').highlight(decodeURIComponent(match[1]));
+    }
+})
+</script>
+
+<ul id="tabs" class="locked">
+  <li class="active"><a class="view" href="/wiki/CS101_Unit_1">View</a></li>
+    <li><a href="/wiki/w/edit?page=CS101_Unit_1">Edit</a></li>
+  <li><a href="/wiki/w/history?page=CS101_Unit_1">History</a></li>
+</ul>
+<div class="wtabs extl" id="pb">
+      <span class="pretty-format"><h1 id="unit-1-how-to-get-started-your-first-program">Unit 1: How to get started: your first program</h1>
+
+<span class="toc"><p>Contents</p><ul>
+  <li>1. <a href="#unit-1-how-to-get-started-your-first-program">Unit 1: How to get started: your first program</a>
+  <ul>
+    <li>1.1. <a href="#introducing-the-web-crawler">Introducing the Web Crawler</a>
+    <ul>
+      <li>1.1.1. <a href="#quiz-1-first-quiz">Quiz 1: First Quiz</a></li>
+    </ul></li>
+    <li>1.2. <a href="#programming">Programming</a>
+    <ul>
+      <li>1.2.1. <a href="#quiz-2-what-is-a-programming-language">Quiz 2: What is a Programming Language</a></li>
+    </ul></li>
+    <li>1.3. <a href="#getting-started-with-python-programming">Getting Started with Python Programming</a>
+    <ul>
+      <li>1.3.1. <a href="#quiz-3-first-programming-quiz">Quiz 3: First Programming Quiz</a></li>
+    </ul></li>
+    <li>1.4. <a href="#would-you-rather">Would You Rather</a></li>
+    <li>1.5. <a href="#grammar">Grammar</a></li>
+    <li>1.6. <a href="#backus-naur-form">Backus-Naur Form</a>
+    <ul>
+      <li>1.6.1. <a href="#quiz-4-eat-quiz">Quiz 4: Eat Quiz</a></li>
+    </ul></li>
+    <li>1.7. <a href="#python-expressions">Python Expressions</a>
+    <ul>
+      <li>1.7.1. <a href="#quiz-5-python-expressions">Quiz 5: Python Expressions</a></li>
+      <li>1.7.2. <a href="#quiz-6-speed-of-light">Quiz 6: Speed of Light</a></li>
+    </ul></li>
+    <li>1.8. <a href="#admiral-grace-hopper-1906-1992">Admiral Grace Hopper (1906- 1992)</a></li>
+    <li>1.9. <a href="#variables">Variables</a>
+    <ul>
+      <li>1.9.1. <a href="#quiz-7-variables">Quiz 7: Variables</a></li>
+    </ul></li>
+    <li>1.10. <a href="#variables-can-vary">Variables Can Vary</a>
+    <ul>
+      <li>1.10.1. <a href="#quiz-8-varying-variables-quiz-1">Quiz 8: Varying Variables Quiz 1</a></li>
+      <li>1.10.2. <a href="#quiz-9-varying-variables-quiz-2">Quiz 9: Varying Variables Quiz 2</a></li>
+      <li>1.10.3. <a href="#quiz-10-spirit-age">Quiz 10: Spirit Age</a></li>
+    </ul></li>
+    <li>1.11. <a href="#strings">Strings</a>
+    <ul>
+      <li>1.11.1. <a href="#quiz-11-valid-strings">Quiz 11: Valid Strings</a></li>
+    </ul></li>
+    <li>1.12. <a href="#ada">Ada</a>
+    <ul>
+      <li>1.12.1. <a href="#quiz-12-hello">Quiz 12: Hello!!!</a></li>
+      <li>1.12.2. <a href="#strings-and-numbers">Strings and Numbers</a></li>
+    </ul></li>
+    <li>1.13. <a href="#indexing-strings">Indexing Strings</a>
+    <ul>
+      <li>1.13.1. <a href="#quiz-13-same-value">Quiz 13: Same Value</a></li>
+    </ul></li>
+    <li>1.14. <a href="#selecting-sub-sequences">Selecting Sub-Sequences</a>
+    <ul>
+      <li>1.14.1. <a href="#quiz-14-capital-udacity">Quiz 14: Capital Udacity</a></li>
+      <li>1.14.2. <a href="#quiz-15-understanding-selection">Quiz 15: Understanding Selection</a></li>
+    </ul></li>
+    <li>1.15. <a href="#finding-strings-in-strings">Finding Strings in Strings</a>
+    <ul>
+      <li>1.15.1. <a href="#quiz-16-testing">Quiz 16: Testing</a></li>
+      <li>1.15.2. <a href="#quiz-17-testing-2">Quiz 17: Testing 2</a></li>
+    </ul></li>
+    <li>1.16. <a href="#find-with-numbers">Find with Numbers</a>
+    <ul>
+      <li>1.16.1. <a href="#quiz-18-find-with-numbers">Quiz 18: Find with Numbers</a></li>
+    </ul></li>
+    <li>1.17. <a href="#extracting-links">Extracting Links</a>
+    <ul>
+      <li>1.17.1. <a href="#quiz-19-extracting-links">Quiz 19: Extracting Links</a></li>
+      <li>1.17.2. <a href="#quiz-20-final-quiz">Quiz 20: Final Quiz</a></li>
+    </ul></li>
+    <li>1.18. <a href="#answer-key">Answer Key</a>
+    <ul>
+      <li>1.18.1. <a href="#quiz-1-answer">Quiz 1: Answer</a></li>
+      <li>1.18.2. <a href="#quiz-2-answer">Quiz 2: Answer</a></li>
+      <li>1.18.3. <a href="#quiz-3-answer">Quiz 3: Answer</a></li>
+      <li>1.18.4. <a href="#quiz-4-answer">Quiz 4: Answer</a></li>
+      <li>1.18.5. <a href="#quiz-5-answer">Quiz 5: Answer</a></li>
+      <li>1.18.6. <a href="#quiz-6-answer">Quiz 6: Answer</a></li>
+      <li>1.18.7. <a href="#quiz-7-answer">Quiz 7: Answer</a></li>
+      <li>1.18.8. <a href="#quiz-8-answer">Quiz 8: Answer</a></li>
+      <li>1.18.9. <a href="#quiz-9-answer">Quiz 9: Answer</a></li>
+      <li>1.18.10. <a href="#quiz-10-answer">Quiz 10: Answer</a></li>
+      <li>1.18.11. <a href="#quiz-11-answer">Quiz 11: Answer</a></li>
+      <li>1.18.12. <a href="#quiz-12-answer">Quiz 12: Answer</a></li>
+      <li>1.18.13. <a href="#quiz-13-answer">Quiz 13: Answer</a></li>
+      <li>1.18.14. <a href="#quiz-14-answer">Quiz 14: Answer</a></li>
+      <li>1.18.15. <a href="#quiz-15-answer">Quiz 15: Answer</a></li>
+      <li>1.18.16. <a href="#quiz-16-answer">Quiz 16: Answer</a></li>
+      <li>1.18.17. <a href="#quiz-17-answer">Quiz 17: Answer</a></li>
+      <li>1.18.18. <a href="#quiz-18-answer">Quiz 18: Answer</a></li>
+      <li>1.18.19. <a href="#quiz-19-answer">Quiz 19: Answer</a></li>
+      <li>1.18.20. <a href="#quiz-20-answer">Quiz 20: Answer</a></li>
+    </ul></li>
+  </ul></li>
+</ul></span>
+
+<h2 id="introducing-the-web-crawler">Introducing the Web Crawler</h2>
+
+<p>A web crawler is a program that collects content from the web. A web crawler finds web pages by starting from a seed page and following links to find other pages, and following links from the other pages it finds, and continuing to follow links until it has found many web pages.</p>
+
+<p>Here is the process that a web crawler follows:</p>
+
+<ul>
+<li>Start from one preselected page. We call the starting page the "seed" page.</li>
+<li>Extract all the links on that page. (This is the part we will work on in this unit and Unit 2.)</li>
+<li>Follow each of those links to find new pages.</li>
+<li>Extract all the links from all of the new pages found.</li>
+<li>Follow each of those links to find new pages.</li>
+<li>Extract all the links from all of the new pages found.</li>
+<li>...</li>
+</ul>
+
+<p>This keeps going as long as there are new pages to find, or until it is stopped.</p>
+
+<p>In this unit you will be writing a program to extract the first link from a given web page. In Unit 2, you will find out how to extract all the links on a web page. In Unit 3, you will see how to keep the crawl going over many pages.</p>
+
+<h3 id="quiz-1-first-quiz">Quiz 1: First Quiz</h3>
+
+<p>What is the goal of Unit 1?</p>
+
+<ul>
+<li>a. Get started programming.</li>
+<li>b. Learn important computers science concepts.</li>
+<li>c. Write code to extract a link from a web page.</li>
+<li>d. Write code to rank web pages.</li>
+</ul>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer1">Answer</a></p>
+
+<h2 id="programming">Programming</h2>
+
+<p><strong>Programming</strong> is the core of computer science.</p>
+
+<p>A <strong>computer</strong> is a machine that can execute a program. With the right program, a computer can do any mechanical computation you can imagine.</p>
+
+<p>A <strong>program</strong> describes a very precise sequence of steps. Since the computer is just a machine, the program must give the steps in a way that can be executed mechanically. That is, the program can be followed without any thought.</p>
+
+<p>A <strong>programming language</strong> is a language designed for producing computer programs. A good programming language makes it easy for humans to read and write programs that can be executed by a computer.</p>
+
+<p><strong>Python</strong> is a programming language. The programs that we write in the Python language will be the input to the Python interpreter, which is a program that runs on the computer. The Python interpreter reads our programs and executes them by following the rules of the Python language.</p>
+
+<h3 id="quiz-2-what-is-a-programming-language">Quiz 2: What is a Programming Language</h3>
+
+<p>What is a programming language?</p>
+
+<ul>
+<li>a. a language designed to be executed by computers</li>
+<li>b. a language designed for describing programs</li>
+<li>c. a language designed to be written by humans, and executed by computers</li>
+<li>d. a language designed to be read by humans, and written by computers</li>
+<li>e. a language designed to be read and written by humans, and executed by computers</li>
+</ul>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer2">Answer</a></p>
+
+<h2 id="getting-started-with-python-programming">Getting Started with Python Programming</h2>
+
+<p>We have provided a way for you to run Python programs using your web browser. You do not need to install any extra programs to do this.</p>
+
+<p>There are two parts to the Python programming environment you will see in your web browser:</p>
+
+<ol>
+<li>The top part is an editor, where you can write and edit code.</li>
+<li>The bottom part is an output window, where you can see the results of running your code.</li>
+</ol>
+
+<p>To try running your code, click the "Run" button below the editor.
+ <a href='/wiki/w/image/view?key=agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UYsdToBgw' title='agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UYsdToBgw'><img src='//lh6.ggpht.com/AQWSSlqb3-ngLPcsfBJpNqig6kvMWJIdIj6CUPwJR8gh2Ula0T19QmJxFJXDmvnZ-Hq0nQI8lNNFCW20KYw' alt='01.jpg'/></a></p>
+
+<p>Find the value of something in Python by using print like this:</p>
+
+<pre><code class="prettyprint">print 3
+3
+</code></pre>
+
+<p>Use a Python expression to return a value. Here are some examples:</p>
+
+<pre><code class="prettyprint">1 + 1#addition
+2 - 1   #subtraction
+2 * 6   #multiplication
+</code></pre>
+
+<p>You can compose expressions to make more complicated expressions, such as:</p>
+
+<pre><code class="prettyprint">52 * 3 +12 * 9
+</code></pre>
+
+<p>You can also use parentheses to group expressions:</p>
+
+<pre><code class="prettyprint">(52 * 3) + (12 * 9)
+</code></pre>
+
+<p>which is different from:</p>
+
+<pre><code class="prettyprint">52 * (3 + 12) * 9
+</code></pre>
+
+<p>The code below prints out the number of seconds in a year:</p>
+
+<pre><code class="prettyprint">print 365 * 24 * 60 * 60
+31536000
+</code></pre>
+
+<h3 id="quiz-3-first-programming-quiz">Quiz 3: First Programming Quiz</h3>
+
+<p>Write a Python program that prints out the number of minutes in seven weeks. You should enter your program in the editor window (top part), and then click "'Run'" to see the output in the bottom part.</p>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer3">Answer</a></p>
+
+<h2 id="would-you-rather">Would You Rather</h2>
+
+<p>Why should you learn new languages, like Python, to program computers, rather than using natural languages like English or Mandarin?</p>
+
+<p>There are many reasons why a designed language like Python is better for writing programs than a natural language like English. One problem with natural languages is that they are ambiguous. Hence, not everyone will interpret the same phrase the same way. To program computers, it is important that we know exactly what our programs mean, and that the computer will run them with the meaning we intended. Another problem with natural language is that they are very verbose. To say something with the level of precision needed for a computer to be able to follow it mechanically would require an awful lot of writing. You want your programs to be short so it is less work to write them, and so that it is easier to read and understand them.</p>
+
+<h2 id="grammar">Grammar</h2>
+
+<p>Compared to a natural language, programming languages adhere to a strict grammatical structure. In English, even if a phrase is written or spoken incorrectly, it can still be understood with the help of context or other cues. On the other hand, in a programming language like Python, the code must match the language grammar exactly. The Python interpreter has no idea what to do with input that is not in the Python language, so it produces an error.</p>
+
+<p><strong>Basic English Grammar Rules:</strong></p>
+
+<ul>
+<li><em>Sentence</em> → <em>Subject Verb Object</em></li>
+<li><em>Subject</em> → <em>Noun</em></li>
+<li><em>Object</em> → <em>Noun</em></li>
+<li><em>Verb</em> → <strong>Eat</strong></li>
+<li><em>Verb</em> → <strong>Like</strong></li>
+<li><em>Noun</em> → <strong>I</strong></li>
+<li><em>Noun</em> → <strong>Python</strong></li>
+<li><em>Noun</em> → <strong>Cookies</strong></li>
+</ul>
+
+<p>When programming language grammar is not followed the interpreter will return a <strong><a href="/wiki/SyntaxError">SyntaxError</a></strong> message. This means that the structure of the code is inconsistent with the rules of the programming language.</p>
+
+<h2 id="backus-naur-form">Backus-Naur Form</h2>
+
+<p>The notation we used to describe the grammar is known as <strong>Backus-Naur Form</strong>, which was introduced in the 1950s by John Backus, the lead designer of the Fortran programming language at IBM.</p>
+
+<p>The purpose of Backus-Naur Form is to describe a programming language in a simple and concise manner. The structure of this form is:</p>
+
+<p><em><Non-Terminal> → replacement</em></p>
+
+<p>The replacement can be any sequence of zero or more non-terminals or terminals.</p>
+
+<p><strong>Terminals</strong> never appear on the left side of a rule. Once you get to a terminal there is nothing else you can replace it with. Here is an example showing how to derive a sentence by following the replacement rules:</p>
+
+<p><a href='/wiki/w/image/view?key=agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UYmcD1Bgw' title='agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UYmcD1Bgw'><img src='//lh3.ggpht.com/Js1c4xC47wgMIx5tw978YTAewW-w7M_dDsJbP61xQ9FeZepRqmRd-HaUzKRUuOAWY6t0kT2ppy5QFPEe-g' alt='02.jpg'/></a></p>
+
+<ul>
+<li><p><strong>Sentence</strong> → <em>Subject Verb Object</em></p>
+
+<ul>
+<li>→ <em>Noun Verb Object</em></li>
+<li>→ <em>I Verb Object</em></li>
+<li>→ <strong>I Like</strong> <em>Object</em></li>
+<li>→ <strong>I Like</strong> <em>Noun</em></li>
+<li>→ <strong>I Like</strong> <em>Python</em></li>
+</ul></li>
+</ul>
+
+<p>The important thing about a replacement grammar is that we can describe an infinitely large language with a small set of precise rules.</p>
+
+<h3 id="quiz-4-eat-quiz">Quiz 4: Eat Quiz</h3>
+
+<p>Which of these sentences can be produced from this grammar, starting from sentence?</p>
+
+<ul>
+<li>\a. <strong>Python Eat Cookies</strong></li>
+<li>\b. <strong>Python Eat Python</strong></li>
+<li>\c. <strong>I Like Eat</strong></li>
+</ul>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer4">Answer</a></p>
+
+<h2 id="python-expressions">Python Expressions</h2>
+
+<p>An <strong>expression</strong> is something that has a value. Here are some examples of expressions in Python:</p>
+
+<pre><code class="prettyprint">3
+1 + 1
+7 * 7 * 24 * 60
+</code></pre>
+
+<p>Here is one of the rules of the Python grammar for making expressions:</p>
+
+<p><em>Expression → Expression Operator Expression</em></p>
+
+<p>The <em>Expression</em> non-terminal that appears on the left side can be replaced by an <em>Expression</em>, followed by an <em>Operator</em>, followed by another <em>Expression</em>. For example, 1 + 1 is an <em>Expression Operator Expression</em>.</p>
+
+<p>The interesting thing about this rule is that it has <em>Expression</em> on both the left and right sides! This looks circular, and would be, except we also have other rules for <em>Expression</em> that do not include Expression on the right side. This is an example of a <strong>recursive definition</strong>. To make a good recursive definition you need at least two rules:</p>
+
+<ol>
+<li><p>A rule that defines something in terms of itself.</p>
+
+<ul>
+<li><em>Expression → Expression Operator Expression</em></li>
+</ul></li>
+<li><p>A rule that defines that thing in terms of something else that we already know.</p>
+
+<ul>
+<li><em>Expression → Number</em></li>
+</ul></li>
+</ol>
+
+<p>Recursive definitions are a very powerful idea in computer science. They allow us to define infinitely many things using a few simple rules. You will see this more in Unit 6.</p>
+
+<p>Here are some of the Python grammar rules for arithmetic expressions:</p>
+
+<ul>
+<li><em>Expression → Expression Operator Expression</em></li>
+<li><em>Expression → Number</em></li>
+<li><em>Operator</em> → <strong>+</strong></li>
+<li><em>Operator</em> → <strong>*</strong></li>
+<li><em>Number</em> → <strong>0, 1, ...</strong></li>
+</ul>
+
+<p>Here is an example derivation using this grammar:</p>
+
+<ul>
+<li><em>Expression → Expression Operator Expression</em></li>
+<li>→ <em>Expression + Expression</em></li>
+<li>→ <em>Expression + Number</em></li>
+<li>→ <em>Expression</em> <strong>+ 1</strong></li>
+<li>→ <em>Expression Operator Expression</em> <strong>+ 1</strong></li>
+<li>→ <em>Number Operator Expression</em> <strong>+ 1</strong></li>
+<li>→ <strong>2</strong> <em>Operator Expression</em> <strong>+ 1</strong></li>
+<li>→ <strong>2 *</strong> <em>Expression</em> <strong>+ 1</strong></li>
+<li>→ <strong>2 *</strong> <em>Expression Operator Expression</em> <strong>+ 1</strong></li>
+<li>→ <strong>2 *</strong> <em>Number Operator Expression</em> <strong>+ 1</strong></li>
+<li>→ <strong>2 * 3</strong> <em>Operator Expression</em> <strong>+ 1</strong></li>
+<li>→ <strong>2 * 3 *</strong> <em>Expression</em> <strong>+ 1</strong></li>
+<li>→ <strong>2 * 3 *</strong> <em>Number</em> <strong>+ 1</strong></li>
+<li>→ <strong>2 * 3 * 3 + 1</strong></li>
+<li>(Note: the example here is slightly different than the one in the video. The 3+3 expression has been changed to 3*3, since the precedence rules in Python would have grouped 2 * 3 + 3 + 1 as (2 * 3) + 3 + 1, so it would not be interpreted as shown in the derivation.)</li>
+</ul>
+
+<p>We need to add one more rule to our expression grammar to be able to produce all of the expressions we have used so far:</p>
+
+<ul>
+<li><em>Expression → (Expression)</em></li>
+</ul>
+
+<h3 id="quiz-5-python-expressions">Quiz 5: Python Expressions</h3>
+
+<p>Which of the following are valid Python expressions that can be produced starting from Expression? There may be more than one.</p>
+
+<ul>
+<li>a. 3</li>
+<li>b. ((3)</li>
+<li>c. (1 * (2 * (3 * 4)))</li>
+<li>d. + 3 3</li>
+<li>e. (((7)))</li>
+</ul>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer5">Answer</a></p>
+
+<h3 id="quiz-6-speed-of-light">Quiz 6: Speed of Light</h3>
+
+<p>Write Python code to print out how far light travels in centimeters after one nanosecond using the multiplication operator.</p>
+
+<ul>
+<li>The speed of light is 299792458 meters per second.</li>
+<li>One meter is 100 centimeters.</li>
+<li>One nanosecond is one billionth (1/1000000000) of a second.</li>
+</ul>
+
+<p>The reason for computing this is because the distance light travels in a nanosecond really matters in computing! A typical computer today executes billions of steps every second. The processor I am using is a 2.7 GHz processor. The GHz means gigahertz which is a billion cycles per second. So, the computer executes 2700000000 cycles per second.</p>
+
+<p>You can think of each cycle as executing a very small instruction step. If you are using a Mac, you can see how fast your processor is by selecting the Apple menu and choosing About this Mac. If you are using a Windows 7 machine, open the Control Panel and select System and Security, then under System select View amount of RAM and processor speed.</p>
+
+<p>We can compute how far light travels in the time it takes for the computer to complete one cycle:</p>
+
+<pre><code class="prettyprint">print 299792458 * 100 * 1.0/1000000000 *1/2.7
+11.1034243704
+</code></pre>
+
+<p>This is approximately 3/4 of the length of a dollar bill.
+ <a href='/wiki/w/image/view?key=agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UYy_DWBgw' title='agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UYy_DWBgw'><img src='//lh3.ggpht.com/CIA8nu8FNcTuSdQ-KY8uUOvptLs6xehSqAA5n-xQCOgDqDGWJlMVmwfDIn6qqRGzP6bfy6ewjw4khSEe4UM' alt='03.jpg'/></a></p>
+
+<p>A <strong>'processor</strong> is the part of the computer that carries out the steps specified in a computer program. Sometimes people call the processor the "central processing unit" or CPU.</p>
+
+<p>A processor has to be small to execute programs quickly. If your computer's processor were any larger than the size of a dollar bill, then you couldn't even send light from one end of the processor to the other before finishing the execution of a single step in a program.</p>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer6">Answer</a></p>
+
+<h2 id="admiral-grace-hopper-1906-1992">Admiral Grace Hopper (1906- 1992)</h2>
+
+<p><a rel="nofollow"  href="http://www.youtube.com/watch?v=RZ0g5_NgRao">Grace Hopper</a> was a pioneer in computing who was known for walking around with nanosticks. Nanosticks are pieces of wire that are the length light travels in a nanosecond, about 30 cm.</p>
+
+<p>Hopper wrote one of the first programming languages, COBOL, which was for a long time the world's most widely used programming language. Hopper built the first compiler. A compiler is a program that takes as input a program in a programming language easy for humans to write and outputs a program in another language that is easier for computers to execute. The difference between a compiler and an interpreter like Python is that a compiler does all the work at once and runs a new program, whereas, the interpreter converts the source code one step at a time as the program runs.</p>
+
+<p>When Grace Hopper started building the first compiler, most people did not believe it was possible for a computer program to produce other computer programs: "Nobody believed that I had a running compiler and nobody would touch it. They told me computers could only do arithmetic."</p>
+
+<h2 id="variables">Variables</h2>
+
+<p>A <strong>variable</strong> is a name refers to a value. In Python, we can use any sequence of letters and numbers and underscores (_) we want to make a variable name, so long as it does not start with a number. Here are some examples of valid variable names:</p>
+
+<pre><code class="prettyprint">processor_speed
+n
+Dorina
+item73
+</code></pre>
+
+<p>To introduce a new variable, we use an assignment statement:</p>
+
+<ul>
+<li><em>Name = Expression</em></li>
+</ul>
+
+<p>After executing an assignment expression, the name refers to the value of the expression on the right side of the assignment:</p>
+
+<pre><code class="prettyprint">speed_of_light = 299792458
+</code></pre>
+
+<p>We can use the variable name anywhere we want and it means the same things as the value it refers to. Here is an expression using the name to print out the speed of light in centimeters:</p>
+
+<pre><code class="prettyprint">print speed_of_light * 100
+</code></pre>
+
+<p>You can create new variables to keep track of values in programs. Here is an expression to find the length of the nanostick in centimeters:</p>
+
+<pre><code class="prettyprint">speed_of_light = 299792458
+billionth = 1.0 / 1000000000
+nanostick = speed_of_light * billionth * 100
+print nanostick
+</code></pre>
+
+<h3 id="quiz-7-variables">Quiz 7: Variables</h3>
+
+<p>Given the variables defined below, write Python code that prints out the distance, in meters, that light travels in one processor cycle. We use the hash mark (#) to introduce a comment. After the hash, we can write anything we want. The rest of the line is treated as a comment. The comment is not interpreted by the Python interpreter, but it is useful for humans reading the code.</p>
+
+<p>Compute this by dividing the speed of light by the number of cycles per second.</p>
+
+<pre><code class="prettyprint">speed_of_light = 299792458      # meters per second
+cycles_per_second = 27000000000.&nbsp; # 2.7GHz
+</code></pre>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer7">Answer</a></p>
+
+<h2 id="variables-can-vary">Variables Can Vary</h2>
+
+<p>The value a variable refers to can change. When a variable name is used, it always refers to the last value assigned to that variable.</p>
+
+<p>For example, you can change the value of <strong>cycles_per_second</strong>. Suppose you have a faster processor:</p>
+
+<pre><code class="prettyprint">speed_of_light = 299792458# meters per second
+cycles_per_second = 27000000000.# 2.7GHz
+cycle_distance = speed_of_light / cycles_per_second
+cycle_per_second = 2800000000.# 2.8 GHz
+
+print cycle_distance
+0.111.34243704
+
+cycle_distance = speed_of_light/ cycles_per_second
+print cycle_distance
+0.107068735
+</code></pre>
+
+<p>Since the value that a variable refers to can change, the same exact expression can have different values at the different times it is executed.</p>
+
+<p>This gets more interesting when we use the same variable on both sides of an assignment. The right side is evaluated first, using the current value of the variable. Then the assignment is done using that value. In the following expressions, the value of days changes from 49 to 48 and then to 47 as the expression changes:</p>
+
+<pre><code class="prettyprint">        days = 7 * 7# after the assignment, days refers to 49
+        days = 48 # after the assignment, days refers to 48
+        days = days - 1# after the assignment, days refers to 47
+        days = days - 1# after the assignment, days refers to 46
+</code></pre>
+
+<p>It is important to remember that although we use <strong>=</strong> for assignment it does not mean equality. You should think of the = sign in Python as an arrow, <strong>-</strong> , showing that the value the right side evaluates to is being assigned to the variable name on the left side.</p>
+
+<h3 id="quiz-8-varying-variables-quiz-1">Quiz 8: Varying Variables Quiz 1</h3>
+
+<p>What is the value of hours after running this code:</p>
+
+<pre><code class="prettyprint">        hours = 9
+        hours = hours + 1
+        hours = hours * 2
+</code></pre>
+
+<ul>
+<li>a. 9</li>
+<li>b. 10</li>
+<li>c. 18</li>
+<li>d. 20</li>
+<li>e. 22</li>
+<li>f. Error</li>
+</ul>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer8">Answer</a></p>
+
+<h3 id="quiz-9-varying-variables-quiz-2">Quiz 9: Varying Variables Quiz 2</h3>
+
+<p>What is the value of seconds after running this code:</p>
+
+<pre><code class="prettyprint">minutes = minutes + 1
+seconds = minutes * 60
+</code></pre>
+
+<ul>
+<li>a. 0</li>
+<li>b. 60</li>
+<li>c. 120</li>
+<li>d. Error</li>
+</ul>
+
+<p>For Python to be able to output a result, you always need to define a variable by assigning a value to it, before using it.</p>
+
+<pre><code class="prettyprint">minutes = 30
+minutes = minutes +1
+seconds = minutes * 60
+print seconds
+1860
+</code></pre>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer9">Answer</a></p>
+
+<h3 id="quiz-10-spirit-age">Quiz 10: Spirit Age</h3>
+
+<p>Write Python code that defines the variable age to be your age in years, and then prints out the number of days you have been alive. If you don't want to use your real age, feel free to use your age in spirit instead.</p>
+
+<pre><code class="prettyprint">age = 26
+days_per_year = 365
+days_alive = age * days_per_year
+print days_alive
+9490
+</code></pre>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer10">Answer</a></p>
+
+<h2 id="strings">Strings</h2>
+
+<ul>
+<li><p>A <strong>string</strong> is a sequence of characters surrounded by quotes, either single or double.</p>
+
+<p>'I am a string!'</p></li>
+</ul>
+
+<p>The only requirement is that the string must start and end with the same kind of quote.</p>
+
+<pre><code class="prettyprint">"I prefer double quotes!"
+</code></pre>
+
+<p>This allows you to include quotes inside of quotes as a character in the string.</p>
+
+<pre><code class="prettyprint">"I'm happy I started with a double quote!"
+</code></pre>
+
+<p>Using the interpreter, notice how the color of the input changes before and after you put quotes on both sides of the string.</p>
+
+<p>What happens when you do not include any quotes:</p>
+
+<pre><code class="prettyprint">print Hello
+</code></pre>
+
+<p>Without the quotes, Python reads Hello as a variable that is undefined:</p>
+
+<pre><code class="prettyprint">NameError: name 'Hello' is not defined
+</code></pre>
+
+<p>As we saw above, Python will not print an undefined variable, which is why we get the <strong><a href="/wiki/NameError">NameError</a></strong>.</p>
+
+<h3 id="quiz-11-valid-strings">Quiz 11: Valid Strings</h3>
+
+<p>Which of the following are valid strings in Python?</p>
+
+<ul>
+<li>\a. <strong>"Ada"</strong></li>
+<li>\b. <strong>'Ada"</strong></li>
+<li>\c. <strong>"Ada</strong></li>
+<li>\d. <strong>Ada</strong></li>
+<li>\e. <strong>'"Ada</strong>'</li>
+</ul>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer11">Answer</a></p>
+
+<h2 id="ada">Ada</h2>
+
+<p>August Ada King, Countess of Lovelace, 1815-1852, was arguably the world's first computer programmer. Grace Hopper wasn't the first person to think about using computers to do things other than arithmetic, but Ada probably was. In her 1843 notes on programming the Analytical Engine, she writes:</p>
+
+<p><em>It might act upon other things besides number, were objects found whose mutual fundamental relations could be expressed by those of the abstract science of operations, and which should be also susceptible of adaptations to the action of the operating notation and mechanism of the engine...</em></p>
+
+<p>The "it" King is referring to is the Analytical Engine, a mechanical programmable computer that Charles Babbage designed. Although he did not succeed in building it in the 1840s, he did have a design for it, which Ada was thinking about programming to compose music.</p>
+
+<h3 id="quiz-12-hello">Quiz 12: Hello!!!</h3>
+
+<p>Define a variable, name, and assign to it a string that is your name.</p>
+
+<h3 id="strings-and-numbers">Strings and Numbers</h3>
+
+<p>We can also use the plus operator (+) on strings, but it has a different meaning from when it is used on numbers. With string, plus means <strong>concatenation</strong>.</p>
+
+<ul>
+<li><em><string> + <string></em> → outputs the concatenation of the two strings</li>
+</ul>
+
+<p>Try concatenating the string 'Hello' to name.</p>
+
+<p>You can create a space between the strings by adding a space to one of the strings. You can also continue to add strings as many times as you need.</p>
+
+<pre><code class="prettyprint">name = 'Dave'
+print 'Hello ' + name + '!' + '!' + '!'
+Hello Dave!!!
+</code></pre>
+
+<p>However, you cannot use the plus operator to combine strings and integers, as in the case of:</p>
+
+<pre><code class="prettyprint">print 'My name is ' + 9
+</code></pre>
+
+<p>When you run this program you should see an error message like this:</p>
+
+<pre><code class="prettyprint">TypeError: cannot concatenate 'str' and 'int' objects.
+</code></pre>
+
+<p>It is a bit surprising that you can multiply strings and integers!</p>
+
+<pre><code class="prettyprint">print '!' * 12
+!!!!!!!!!!!!
+</code></pre>
+
+<ul>
+<li>This program multiplies the string by the integer to return 12 exclamation points!</li>
+</ul>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer12">Answer</a></p>
+
+<h2 id="indexing-strings">Indexing Strings</h2>
+
+<ul>
+<li>When you want to select sub-sequences from a string, it is called indexing. Use the square brackets [] to specify which part of the string you want to select.</li>
+<li><em><string>[<expression>]</em></li>
+</ul>
+
+<p>For example, if you have the string 'udacity' and you want to select the character in the zero position (that is, the first character), you would write:</p>
+
+<pre><code class="prettyprint">'udacity'[0]
+</code></pre>
+
+<p>The positions in a string are numbered starting with 0, so this evaluates to 'u'.</p>
+
+<p>Indexing strings is the most useful when the string is given using a variable:</p>
+
+<pre><code class="prettyprint">'udacity'[0]
+'u'
+'udacity'[1 + 1]
+'a'
+name = 'Dave'
+name[0]
+'D'
+</code></pre>
+
+<p>When you use negative numbers in the index, Python starts counting from the back of the string:</p>
+
+<pre><code class="prettyprint">name = 'Dave'
+print name[-1]
+'e'
+</code></pre>
+
+<p>or,</p>
+
+<pre><code class="prettyprint">name='Dave'
+print name[-2]
+'v'
+</code></pre>
+
+<p>When you try to index a character in a position where there is none, Python produces an <strong><a href="/wiki/IndexError">IndexError</a></strong> indicating that the index is out of range:</p>
+
+<pre><code class="prettyprint">name = 'Dave'
+print name[4]
+IndexError: string index out of range
+</code></pre>
+
+<h3 id="quiz-13-same-value">Quiz 13: Same Value</h3>
+
+<p>Given the variable,</p>
+
+<pre><code class="prettyprint">s = '&lt;any string&gt;'
+</code></pre>
+
+<p>which of these pairs are two things with the exact same value?</p>
+
+<ul>
+<li>a. s[3], s[1+1+1]</li>
+<li>b. s[0], (s+s)[0]</li>
+<li>c. s[0] + s[1], s[0+1]</li>
+<li>d. s[1], (s + 'ity') [1]</li>
+<li>e. s[-1], (s + s)[-1]</li>
+</ul>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer13">Answer</a></p>
+
+<h2 id="selecting-sub-sequences">Selecting Sub-Sequences</h2>
+
+<p>You can select a sub-sequence of a string by designating a starting position and an end position. Python reads the characters positions starting at 0, so that if you consider the string 'udacity,' that has 7 characters, there are 6 positions with 'u' being in the 0 position.</p>
+
+<ul>
+<li><em><string>[<expression>] → a one-character string</em></li>
+<li><em><string>[<start expression>:<stop expression>]</em> → a string that is a sub-sequence of the characters in the string, from the start position up to the character before the stop position. If the start expression is missing, the sub-sequence starts from the beginning of the string; if the stop expression is missing, the sub-sequence goes to the end of the string.</li>
+</ul>
+
+<p>Examples:</p>
+
+<pre><code class="prettyprint">word = 'assume'
+print word[3]
+'u'
+print word[4:6]
+'me'
+print word[4:]
+'me'
+print word[:2]
+'as'
+print word[:]
+'assume'
+</code></pre>
+
+<h3 id="quiz-14-capital-udacity">Quiz 14: Capital Udacity</h3>
+
+<p>Write Python code that prints out Udacity (with a capital U), given the definition:</p>
+
+<pre><code class="prettyprint">s = 'audacity'
+</code></pre>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer14">Answer</a></p>
+
+<h3 id="quiz-15-understanding-selection">Quiz 15: Understanding Selection</h3>
+
+<p>For any string,</p>
+
+<pre><code class="prettyprint">s= '&lt;any string&gt;'
+</code></pre>
+
+<p>which of these is always equivalent to <strong>s</strong>?</p>
+
+<ul>
+<li>a. s[:]</li>
+<li>b. s + s[0:-1 +1]</li>
+<li>c. s[0:]</li>
+<li>d. s[:-1]</li>
+<li>e. s[:3] + s[3:]</li>
+</ul>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer15">Answer</a></p>
+
+<h2 id="finding-strings-in-strings">Finding Strings in Strings</h2>
+
+<p>The find method is a built in operation, or method, provided by Python, that operates on strings. The output of find is the position of the string where the specified sub-string is found.</p>
+
+<ul>
+<li><em><search string>.<strong>find</strong>(<target string>)</em></li>
+</ul>
+
+<p>If the target string is not found anywhere in the search string, then the output will be -1.</p>
+
+<p>Here are some examples (try them yourself in the interpreter):</p>
+
+<pre><code class="prettyprint">pythagoras = 'There is geometry in the humming of the strings, there is music in the spacing of the spheres. '
+
+print pythagoras.find('string')
+40
+print pythagoras[40:]
+'strings, there is music in the spacing of the spheres.'
+print pythagoras.find('T')
+0
+print pythagoras.find('sphere')
+86
+print pythagoras[86:]
+spheres.
+print pythagoras.find('algebra')
+-1
+</code></pre>
+
+<h3 id="quiz-16-testing">Quiz 16: Testing</h3>
+
+<p>Which of the following evaluate to -1:</p>
+
+<ul>
+<li>a. 'test'.find('t')</li>
+<li>b. "test".find('st')</li>
+<li>c. "Test".find('te')</li>
+<li>d. 'west'.find('test')</li>
+</ul>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer16">Answer</a></p>
+
+<h3 id="quiz-17-testing-2">Quiz 17: Testing 2</h3>
+
+<p>For any string,</p>
+
+<pre><code class="prettyprint">s = '&lt;any string&gt;'
+</code></pre>
+
+<p>which of the following always has the value 0?</p>
+
+<ul>
+<li>a. s.find(s)</li>
+<li>b. s.find('s')</li>
+<li>c. 's'.find('s')</li>
+<li>d. s.find(' ')</li>
+<li>e. s.find(s + '!!!') +1</li>
+</ul>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer17">Answer</a></p>
+
+<h2 id="find-with-numbers">Find with Numbers</h2>
+
+<p>In addition to passing in a target string to find, you can also pass in a number:</p>
+
+<ul>
+<li><search string>.find(<target string>, <number>)</li>
+</ul>
+
+<p>The number input is the position in the search string where find will start looking for the target string. So, the output is a number giving the position of the first occurrence of the target string in the search string at, or after the input position. If there is no occurrence at or after that position, the output is -1.</p>
+
+<p>For example:</p>
+
+<pre><code class="prettyprint">danton = "De l'audace, encore de l'audace, toujours de l'audace."
+print danton.find('audace')
+5
+print danton.find('audace', 0)
+5
+print danton.find('audace', 5)
+5
+print danton.find('audace', 6)
+25
+print danton.find('audace', 25)
+25
+print danton.find('audace', 48)
+-1
+</code></pre>
+
+<h3 id="quiz-18-find-with-numbers">Quiz 18: Find with Numbers</h3>
+
+<p>For any variables <strong>s</strong> and <strong>t</strong> that are strings, and <strong>i</strong> that is a number:</p>
+
+<pre><code class="prettyprint">s = '&lt;any string&gt;'
+t = '&lt;any string&gt;'
+i = &lt;any number&gt;
+</code></pre>
+
+<p>which of these are equivalent to s.find(t,i):</p>
+
+<ul>
+<li>a. s[i: ].find(t)</li>
+<li>b. s.find(t)[ :i]</li>
+<li>c. s[i: ].find(t) + i</li>
+<li>d. s[i: ].find(t[i: ])</li>
+</ul>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer18">Answer</a></p>
+
+<h2 id="extracting-links">Extracting Links</h2>
+
+<p>A <strong>web page</strong> is really just a long string of characters. Your <strong>browser</strong> renders the web page in a way that looks more attractive than just the string of characters. You can view the string of characters for any web page in your browser. How to do this depends on the browser you are using. For Chrome and Firefox, right-click anywhere on the page that is not a link and select "View Page Source". For Internet Explorer, right-click and select "View Source".</p>
+
+<p>Here's what this looks like in Chrome:
+ <a href='/wiki/w/image/view?key=agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UYj7rZBgw' title='agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UYj7rZBgw'><img src='//lh4.ggpht.com/kk838osE1MfsfyOn0qQWIrIRh7-XgsTvAcT1BDzH9sL11JO6VWRrvDzbrUXebCORSc4vGgRgtg6A8mcJLqM' alt='05.jpg'/></a></p>
+
+<p>Select View Page Source from the menu.
+ The raw string for the web page pops up in a new window:
+ <a href='/wiki/w/image/view?key=agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UYkbrZBgw' title='agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UYkbrZBgw'><img src='//lh6.ggpht.com/Gl7RGRzK6yOY1qlCfh0qbpvhLTHdBjJcNHiyxbUL4fjCvguonomYyMMRxx1mD0N6vbE_Gx0YjfxKFEz5jQ' alt='06.jpg'/></a></p>
+
+<p>For our web crawler, the important thing is to find the links to other web pages in the page. We can find those links by looking for the anchor tags that match this structure:</p>
+
+<pre><code class="prettyprint">&lt;a href="&lt;url&gt;"&gt;
+</code></pre>
+
+<p>For example, here is a link to the News/Blag page:</p>
+
+<pre><code class="prettyprint">&lt;a href=http://blag.xkcd.com/&gt;
+</code></pre>
+
+<p>To build our crawler, for each web page we want to find all the link target URLs on the page. We want to keep track of them and follow them to find more content on the web.
+ For this unit, we will do the first step which is to extract the first target URL from the page. In Unit 2, we will see how to keep going to get all the link targets, and in Unit 3, we will see how to keep track of them to be able to crawl the target pages.
+ For now, our goal is to take the text from a web request and find the first link target in that text. We can do this by finding the anchor tag, <strong><a href="</strong>, and then extract from that tag the URL that is found between the double quotes.
+ We will assume that with the page's contents in a variable, page.</p>
+
+<h3 id="quiz-19-extracting-links">Quiz 19: Extracting Links</h3>
+
+<p>Write Python code that initializes the variable <strong>start_link</strong> to be the value of the position where the first <strong>'<a href=</strong>' occurs in the string that <strong>page</strong> refers to.</p>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer19">Answer</a></p>
+
+<h3 id="quiz-20-final-quiz">Quiz 20: Final Quiz</h3>
+
+<p>Write Python code that assigns to the variable url a string that is the value of the first URL that appears in a link tag in the string page.
+ For the example page used in the test code, your code should end up with url having the value <strong>'<a rel="nofollow"  href="http://udacity.com">http://udacity.com</a></strong>'.</p>
+
+<pre><code class="prettyprint">page = '&lt;contents of a web page&gt;'
+start_link = page.find('&lt;a href= ')
+
+[ your code here ]''
+
+print url
+http://udacity.com
+</code></pre>
+
+<p><a href="/wiki/CS101%20Unit%201#Answer20">Answer</a></p>
+
+<p><strong>Yay! You did it and are off to a great start!</strong>
+ You've learned about programs, variables, expressions, and strings, and a well on your way to building a web crawler. Next unit, we will learn some big ideas in computer science that will make this code more useful and enable us to get all the links on the page, not just the first one.</p>
+
+<h2 id="answer-key">Answer Key</h2>
+
+<h4 id="quiz-1-answer">Quiz 1: Answer</h4>
+
+<p>a, b, and c. We will look at ranking web pages in Unit 6.</p>
+
+<h4 id="quiz-2-answer">Quiz 2: Answer</h4>
+
+<p>All are true, but e is the best answer. In particular, it is important that programs can be read and understood by humans, even if they will <strong>also</strong> be executed by computers.</p>
+
+<h4 id="quiz-3-answer">Quiz 3: Answer</h4>
+
+<pre><code class="prettyprint">print 7 * 7 * 24 * 60
+70560
+</code></pre>
+
+<h4 id="quiz-4-answer">Quiz 4: Answer</h4>
+
+<p>a &amp; b, follow the rules</p>
+
+<h4 id="quiz-5-answer">Quiz 5: Answer</h4>
+
+<ol>
+<li>valid</li>
+<li><p>not valid, doesn't follow rule, expression --> (expression), b/c have to have ( ) on right and left</p></li>
+<li><p>valid</p></li>
+<li>not valid doesn't follow expression a Expression Operator Expression</li>
+<li>valid, nested parentheses valid but unnecessary</li>
+</ol>
+
+<h4 id="quiz-6-answer">Quiz 6: Answer</h4>
+
+<pre><code class="prettyprint">print 299792458 * 100 * 1/1000000000
+
+29
+</code></pre>
+
+<p>Note that with division, Python still reads the result as an integer and the result is truncated to the resulting whole number, not rounded. For a better result, we should make one of the numbers a floating point number by adding a decimal point. Here, we changed 1 to 1.0:</p>
+
+<pre><code class="prettyprint">print 299792458 * 100 * 1.0/1000000000
+29.9792458
+</code></pre>
+
+<h4 id="quiz-7-answer">Quiz 7: Answer</h4>
+
+<pre><code class="prettyprint">speed_of_light = 299792458 # meters per second
+cycles_per_second = 27000000000. # 2.7GHz
+
+print speed_of_light/ cycles_per_second
+0.111034243704
+</code></pre>
+
+<p>You could also solve this by introducing another variable:</p>
+
+<pre><code class="prettyprint">        speed_of_light = 299792458 # meters per second
+cycles_per_second = 27000000000. # 2.7GHz
+cycle_distance = speed_of_light/ cycles_per_second
+
+print cycle_distance
+0.111034243704
+</code></pre>
+
+<p>This is more useful since now we can easily use <strong>cycle_distance</strong> in other computations.</p>
+
+<h4 id="quiz-8-answer">Quiz 8: Answer</h4>
+
+<p>d</p>
+
+<h4 id="quiz-9-answer">Quiz 9: Answer</h4>
+
+<p>Error. The first assignment has minutes on the right side, but it was not yet defined since we did not yet use minutes on the left side of an assignment. The error Python gives for this is a <a href="/wiki/NameError">NameError</a>:</p>
+
+<pre><code class="prettyprint">Traceback (most recent call last):
+        File "/code/knowvn/input/test.py", line 2, in &lt;module&gt;
+                        minutes = minutes +1
+NameError: name 'minutes' is not defined
+</code></pre>
+
+<h4 id="quiz-10-answer">Quiz 10: Answer</h4>
+
+<pre><code class="prettyprint">age = 26
+        days_per_year = 365
+        days_alive = age * days_per_year
+        print days_alive
+9490
+</code></pre>
+
+<h4 id="quiz-11-answer">Quiz 11: Answer</h4>
+
+<p>a and e</p>
+
+<h4 id="quiz-12-answer">Quiz 12: Answer</h4>
+
+<pre><code class="prettyprint">name = "Dave"
+</code></pre>
+
+<p>Of course, your answer will be different, unless your name is Dave too.</p>
+
+<h4 id="quiz-13-answer">Quiz 13: Answer</h4>
+
+<p>a, b and e. For c, the first expression is a two-character string, where the second is the one-character string of the letter at position 1. For d, the results are the same only if the value of s contains at least two characters. For example, if s = 'a', the first expression produces an indexing error and the second expression outputs 'i'.</p>
+
+<ul>
+<li><string>[<expression>] --> one-character string</li>
+<li><string>[<expression>:<expression>] --> string that is a subsequence of the characters in the string</li>
+</ul>
+
+<h4 id="quiz-14-answer">Quiz 14: Answer</h4>
+
+<p>Select the part of the string we can use, from position two until the end of the string:</p>
+
+<ul>
+<li><strong>s[2:]</strong></li>
+</ul>
+
+<p>Add the upper-case <em>U</em> to return the desired result:</p>
+
+<ul>
+<li><strong>'U' + s[2:]</strong></li>
+</ul>
+
+<p>Use the <em>print</em> command to print it out 'Udacity':</p>
+
+<pre><code class="prettyprint">print 'U' + s[2: ]
+Udacity
+</code></pre>
+
+<h4 id="quiz-15-answer">Quiz 15: Answer</h4>
+
+<p>a, b, c, and e. Note that e is equivalent even if s has fewer than three characters!</p>
+
+<pre><code class="prettyprint">&lt;string&gt;.find(&lt;string&gt;)
+</code></pre>
+
+<h4 id="quiz-16-answer">Quiz 16: Answer</h4>
+
+<p>The find method returns -1 when the target string is not in the first string: c and d</p>
+
+<h4 id="quiz-17-answer">Quiz 17: Answer</h4>
+
+<ol>
+<li>yes, no matter what string s is we will always find s at the beginning of itself</li>
+<li>no, first letter has to be s</li>
+<li>yes</li>
+<li>yes</li>
+<li>yes - the s.find(s + '!!!') part always evaluates to -1, since you can never find a string longer than s in s. Adding 1 to this produces 0.</li>
+</ol>
+
+<h4 id="quiz-18-answer">Quiz 18: Answer</h4>
+
+<p>None of the above are equivalent! This was a tricky question. Choice c is almost equivalent, except for the case where t is not found at all in s[i:], and the output of the find is -1.</p>
+
+<h4 id="quiz-19-answer">Quiz 19: Answer</h4>
+
+<p>start_link = page.find('<a href=')</p>
+
+<h4 id="quiz-20-answer">Quiz 20: Answer</h4>
+
+<p>To extract the URL, we need to find the starting and ending double quotes and then extract the subsequence of characters between them.</p>
+
+<p><strong>Step 1</strong>: Initialize the variable <strong>start_quote</strong>, which is where the double quote that starts the URL is:</p>
+
+<pre><code class="prettyprint">start_quote = page.find(' " ', start_link)
+</code></pre>
+
+<p>Note that it is important to pass in start_link as the second input to find, so we only find a string inside the anchor tag. Otherwise, there might be other strings on the page that are not link targets that would be found.</p>
+
+<p><strong>Step 2</strong>: Find the end quote:</p>
+
+<pre><code class="prettyprint">end_quote = page.find (' " ', start_quote + 1)
+</code></pre>
+
+<p>We need to pass in <strong>start_quote + 1</strong> to find the next " after the start quote.</p>
+
+<p><strong>Step 3</strong>: Select the subsequence of characters from <strong>page</strong> between the start quote and end_quote, not including the quotes, and assign that to the variable <strong>url</strong>:</p>
+
+<pre><code class="prettyprint">url =  page[start_quote +1 : end_quote]
+</code></pre>
+</span>
+</div>
+
+
+
+<div id="wiki-footer">
+    <p id="pm">This 
+        page was last edited
+    by (none)
+    on 2012/07/20 13:39:13.</p>
+</div>
+
+
+</div>
+
+            </div>
+        </div>
+        <div id="footer-pusher"></div>
+    </div>
+    <div id="footer">
+        
+
+<!-- <div class="clear"></div> -->
+<div id="bottom_bin">
+    <div class="width960">
+        <div class="left">
+            <p>Follow us on 
+                <a href="http://www.facebook.com/pages/Udacity/174179219354091?sk=wall" target="_blank">Facebook</a>, 
+                <a href="http://twitter.com/udacity" target="_blank">Twitter</a>, and 
+                <a href="https://plus.google.com/116286004036789369492/posts" target="_blank">Google Plus</a>
+            </p>
+            <p>&copy 2012 Udacity, Inc.</p>    
+        </div>
+        <div class="right">
+			<p>
+			    <a href="/">Home</a>
+			    <a href="/udacity">About</a>
+			    <a href="/careers/">Jobs</a>
+			    <a href="/contact">Contact</a>
+			    <a href="/wiki/FAQ">FAQ</a>
+			    <a href="/legal/">Legal</a>
+			</p>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div><!-- end bottom_bin -->
+<!-- <div class="clear">&nbsp;</div> -->
+
+
+
+
+    </div>
+    
+
+    
+</body>
+</html>
+
+
+
+
+
